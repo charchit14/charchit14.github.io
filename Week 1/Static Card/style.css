@@ -1,0 +1,68 @@
+/* This is the CSS file for 'index.html' */
+
+.card {
+width: 370px;
+height: 400px;
+flex-shrink: 0;
+border-radius: 26px;
+background: #fff;
+box-shadow: 0px 1.85185px 3.14815px 0px rgba(0, 0, 0, 0.00), 0px 8.14815px 6.51852px 0px rgba(0, 0, 0, 0.01), 0px 20px 13px 0px rgba(0, 0, 0, 0.01), 0px 38.51852px 25.48148px 0px rgba(0, 0, 0, 0.01), 0px 64.81481px 46.85185px 0px rgba(0, 0, 0, 0.02), 0px 100px 80px 0px rgba(0, 0, 0, 0.02);
+}
+
+.caption {
+    color: var(--black, #080809);
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 124.5%; /* 22.41px */
+    letter-spacing: 0.27px;
+}
+
+.post_owner {
+    color: var(--text-2, #84829A);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 124.5%; /* 19.92px */
+    letter-spacing: -0.08px;
+}
+
+.post_actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.post_actions a {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    padding: 11px;
+    margin-bottom: 2rem;
+}
+
+.end_line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.end_line img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+ 
+.end_line p {
+    color: var(--text-2, #84829A);
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 124.5%; /* 19.92px */
+    letter-spacing: -0.32px;
+}
