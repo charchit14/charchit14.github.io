@@ -1,0 +1,30 @@
+:root {
+    // fonts
+    --fontPrimary: 'Plus Jakarta Sans';
+    /* radius */
+    --borderRadius: .8rem;
+    /* spacing */
+    --sectionMargin: 9rem;
+    /* shadow */
+    --cardShadow: 0px 2.4rem 3.4rem -1.2rem rgba(26, 24, 65, 0.06);
+    /* colors */
+    --darkBlue: #1d1c31;
+    --midBlue: rgba(29, 28, 49, 0.60);
+    --lightBlue: #5d55ff;
+    --grey: #b6b3eb;
+    /* neutrals */
+    --white: #ffffff;
+    /* text colors */
+    --text-heading: var(--darkBlue);
+    --text-content:  var(--midBlue);
+    --text-white: var(--white);
+    --text-grey: var(--grey);
+    --text-link: var(--darkBlue);
+    --textLinkHover: var(--lightBlue);
+    --text-primary-btn: var(--darkBlue);
+    --text-secondary-btn: var(--white);
+
+    /* Animation */
+    --transit: all .2s linear;
+    
+}

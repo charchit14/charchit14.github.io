@@ -1,0 +1,26 @@
+.u-container {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+
+    @include respond(tab-port) {
+        max-width: 95% !important;
+    }
+
+    @include respond(tab-land) {
+        max-width: 80% !important;
+    }
+
+    @include respond(desktop) {
+        max-width: 75% !important;
+    }
+}
+
+.u-mb-spacing {
+    margin-bottom: 6rem !important;
+}
+
+.u-sec-spacing {
+    @include respond(tab-port) {
+        margin: 0 2rem !important;
+    }
+}

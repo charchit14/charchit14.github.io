@@ -1,0 +1,30 @@
+.highlights {
+    &__title {
+        margin-bottom: 2.4rem;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include respond(tab-port) {
+            flex-direction: row;
+
+            & > .card {
+                flex: 0 0 calc(50% - 2rem);
+            }
+           
+        }
+        @include respond(tab-land) {
+            gap: 3.2rem;
+        }
+
+        @include respond(desktop) {
+            & > .card {
+                flex: 0 0 calc(33.33% - 3.2rem);
+            } 
+        }
+    }
+}

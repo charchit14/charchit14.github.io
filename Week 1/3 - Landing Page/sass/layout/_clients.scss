@@ -1,0 +1,39 @@
+.clients {
+    & {
+        display: none;
+        
+        @include respond(tab-port) {
+            display: block;
+        }
+    }
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.3rem;
+
+        & > * {
+            flex: 0 0 calc(50% - 2.3rem);
+        }
+
+        @include respond(tab-land) {
+            & > * {
+                flex: 0 0 calc(33.33% - 2.3rem);
+            }
+        }
+    }
+
+    &_title {
+        margin-bottom: 4rem;
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+        img {
+            cursor: pointer;
+            width: 7.1rem;
+            height: .8rem;
+        }
+    }
+}

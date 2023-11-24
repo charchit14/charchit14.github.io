@@ -1,0 +1,37 @@
+.card {
+    & {
+        background-color: var(--white);
+        padding: 2rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    figure {
+        width: 7rem;
+        height: 7rem;
+        margin-bottom: 2rem;
+
+        @include respond(tab-land) {
+            width: 8rem;
+            height: 8rem;
+            margin-bottom: 2.4rem;
+        }
+    }
+    
+    &__title {
+        margin-bottom: 1.2rem;
+    }
+
+    &__content {
+        margin-bottom: 1.6rem;
+
+        @include respond(tab-land) {
+            margin-bottom: 3.2rem;
+        }
+    }
+
+    
+}

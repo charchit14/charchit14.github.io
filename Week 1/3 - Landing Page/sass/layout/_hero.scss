@@ -1,0 +1,144 @@
+.hero {
+    & {
+        width: 100%;
+        margin-bottom: 4rem;
+        background: linear-gradient(65deg, #362FCC 31.84%, #5D55FF 68.16%), var(--white);
+        padding-top: 6rem;
+        padding-bottom: 1rem;
+
+        @include respond(tab-port) {
+            padding-bottom: 0;
+        }
+    }
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0 2rem;
+        gap: 10rem;
+        margin-bottom: 6rem;
+        
+
+        @include respond(tab-port) {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 4rem;
+            margin-bottom: 4rem !important;
+        }
+        
+    }
+
+    &__title {
+        font-size: 2.4rem;
+        text-align: center;
+        color: var(--text-white);
+        margin-bottom: 2.4rem;
+        line-height: 120%;
+
+        @include respond(tab-port) {
+            font-size: 3.6rem;
+            text-align: left;
+        }
+
+        @include respond(tab-land) {
+            font-size: 4.8rem;
+        }
+    }
+
+    &__description {
+        font-size: 1.4rem; 
+        color: var(--text-grey);
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        text-align: center;
+        max-width: 80%;
+
+        @include respond(tab-port) {
+            font-size: 1.6rem;
+            text-align: left;
+            margin: 0;
+            margin-bottom: 3.2rem;
+        }
+
+        @include respond(tab-land) {
+            font-size: 1.8rem;
+            
+        }
+    }
+
+    &__cta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2.4rem;
+
+        @include respond(tab-port) {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+    }
+
+    &__btn {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+        @include respond(tab-land) {
+            padding: 1.4rem 2rem;
+            font-size: 1.4rem;
+        }
+    }
+
+    &__stats {
+        display: flex;
+        gap: 6rem;
+        justify-content: center;
+        margin: 0 2rem;
+
+        @include respond(tab-port) {
+            justify-content: flex-start;
+            margin: 0;
+        }
+
+        
+        &-amount {
+            color: var(--text-white);
+            font-size: 2rem;
+            font-weight: 600;
+            
+            @include respond(tab-port) {
+                font-size: 2.4rem;
+            }
+            @include respond(tab-land) {
+                font-size: 3.2rem;
+                
+            }
+        }
+
+        &-text {
+            font-size: 1.2rem;
+            color: var(--text-grey);
+            text-transform: capitalize;
+            
+            @include respond(tab-land) {
+                font-size: 1.6rem;
+                
+            }
+
+        }
+    }
+
+    &__companies {
+        background: rgba(255, 255, 255, 0.20);
+        
+        &-wrapper {
+            display: none;
+            padding: 2.4rem 0;
+            @include respond(tab-port) {
+                display: flex;
+                flex: 0 0 calc(25%);
+                justify-content: space-between;
+            }
+        }
+    }
+}

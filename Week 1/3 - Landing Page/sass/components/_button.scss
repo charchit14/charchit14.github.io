@@ -1,0 +1,33 @@
+.btn {
+    & {
+        border-radius: var(--borderRadius);
+        text-transform: capitalize;
+        transition: var(--transit);
+        font-weight: 500;
+        
+    }
+
+    &--primary {
+        background: var(--white);
+        color: var(--text-primary-btn);
+    }
+    
+    &--tertiary {
+        background: rgba(255, 255, 255, 0.10);
+        color: var(--text-secondary-btn);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.20);
+        }
+    }
+
+    &--outline {
+        border: 1px solid rgba(255, 255, 255, 0.20);
+        color: var(--white);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.20);
+        }
+
+    }
+}

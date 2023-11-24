@@ -1,0 +1,69 @@
+.header {
+    & {
+        width: 100%;
+        background: linear-gradient(65deg, #362FCC 31.84%, #5D55FF 68.16%), var(--white);
+        position: fixed;
+        z-index: 999;
+    }
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2.4rem;
+    }
+
+    &__branding {
+        width: 12rem;
+    }
+
+    // Nav links container
+    &__menu {
+        display: none;
+
+        @include respond(tab-port) {
+            display: flex;
+            gap: 3.2rem;
+            font-size: 1.4rem;
+        }
+
+        @include respond(tab-land) {
+            font-size: 1.6rem;
+        }
+    }
+
+    // Nav links
+    &__link {
+        text-transform: capitalize;
+        line-height: normal;
+        color: var(--text-grey);
+        transition: var(--transit);
+
+        &:hover {
+            color: var(--text-white);
+        }
+
+        @include respond(tab-port) {
+            font-size: 1.4rem;
+        }
+
+        @include respond(tab-land) {
+            font-size: 1.6rem;
+        }
+
+        &--active {
+            color: var(--text-white);
+        }
+
+        &-btn {
+            padding: 1rem 1.6rem;
+        }
+    }
+
+    // burger menu
+    &__btn {
+        @include respond(tab-port) {
+            display: none;
+        }
+    }
+}

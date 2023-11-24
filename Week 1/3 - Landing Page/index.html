@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page</title>
+
+  <!--Inserting Necessary Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Inserting CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="u-container header__wrapper">
+      <!-- Branding -->
+      <figure class="header__branding">
+        <img src="assets/logo.svg" alt="LegacyLine Logo" />
+      </figure>
+
+      <!-- Navigation Bar: Menu Items -->
+      <ul class="header__menu">
+        <li>
+          <a class="header__link header__link--active" href="#">Home</a>
+        </li>
+        <li>
+          <a class="header__link" href="#">Services</a>
+        </li>
+        <li>
+          <a class="header__link" href="#">Contact</a>
+        </li>
+        <li>
+          <a class="header__link" href="#">About us</a>
+        </li>
+        <li>
+          <a class="btn btn--tertiary header__link-btn" href="#">Sign Up</a>
+        </li>
+      </ul>
+
+      <!-- Navigation Bar: Menu Button -->
+      <div class="header__btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" viewBox="0 0 19 12" fill="none">
+          <path
+            d="M1.33398 12H17.334C17.884 12 18.334 11.55 18.334 11C18.334 10.45 17.884 10 17.334 10H1.33398C0.783984 10 0.333984 10.45 0.333984 11C0.333984 11.55 0.783984 12 1.33398 12ZM1.33398 7H17.334C17.884 7 18.334 6.55 18.334 6C18.334 5.45 17.884 5 17.334 5H1.33398C0.783984 5 0.333984 5.45 0.333984 6C0.333984 6.55 0.783984 7 1.33398 7ZM0.333984 1C0.333984 1.55 0.783984 2 1.33398 2H17.334C17.884 2 18.334 1.55 18.334 1C18.334 0.45 17.884 0 17.334 0H1.33398C0.783984 0 0.333984 0.45 0.333984 1Z"
+            fill="white" />
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero__wrapper u-container">
+      <div class="hero__left">
+        <h1 class="hero__title">
+          Discover Financial Freedom with LegacyLine
+        </h1>
+
+        <p class="hero__description">
+          Welcome to our bank's website, where we provide secure financial
+          solutions tailored to meet your unique needs.
+        </p>
+
+        <!-- Hero Section: CTA -->
+        <div class="hero__cta">
+          <a class="btn btn--primary hero__btn" href="#">Open Bank Account</a>
+          <a class="btn btn--outline hero__btn" href="#">LearnMore...</a>
+        </div>
+
+        <!-- Hero Section: Stats -->
+        <ul class="hero__stats">
+          <li>
+            <h3 class="hero__stats-amount">&lt;0.1%</h3>
+            <span class="hero__stats-text">transaction fees</span>
+          </li>
+          <li>
+            <h3 class="hero__stats-amount">+14%</h3>
+            <span class="hero__stats-text">Savings Percentage</span>
+          </li>
+          <li>
+            <h3 class="hero__stats-amount">+2.9M</h3>
+            <span class="hero__stats-text">Buisness Owner</span>
+          </li>
+        </ul>
+      </div>
+      <figure class="hero__right">
+        <img src="assets/screen.png" alt="Mobile Phone with a Card" />
+      </figure>
+    </div>
+
+    <!-- Hero Section: Companies Logos -->
+    <div class="hero__companies">
+      <div class="hero__companies-wrapper u-container">
+
+        <!-- Binance -->
+        <figure>
+          <img class="comapnies__logo" src="assets/icons/binance.svg" alt="Binance Logo" />
+        </figure>
+
+        <!-- IBM -->
+        <figure>
+          <img class="companies__logo" src="assets/icons/ibm.svg" alt="IBM Logo" />
+        </figure>
+
+        <!-- PNC -->
+        <figure>
+          <img class="companies__logo" src="assets/icons/pnc.svg" alt="PNC Logo" />
+        </figure>
+
+        <!-- World Bank -->
+        <figure>
+          <img class="companies__logo" src="assets/icons/world-bank.svg" alt="World Bank Logo" />
+        </figure>
+
+        <!-- Stripe -->
+        <figure>
+          <img class="companies__logo" src="assets/icons/stripe.svg" alt="Stripe Logo" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Page: Highlights of Key Benefits -->
+  <section class="highlights u-mb-spacing">
+    <div class="u-container">
+      <h2 class="section-title highlights__title">
+        OurKeyBenefits
+      </h2>
+
+      <div class="highlights__wrapper">
+        <!-- Key Benefits Cards: Building Icon -->
+        <article class="card">
+          <figure>
+            <img src="assets/icons/building.svg" class="card__image" />
+          </figure>
+          <h3 class="card-title card__title">financial services</h3>
+          <p class="card-content card__content">
+            Banks provide a wide range of financial services,
+            including checking and savings accounts, loans,
+            credit cards, and investment production...
+          </p>
+          <a href="#" class="card-link highlights__link">Read more
+            <img src="assets/icons/arrow-right.svg" />
+          </a>
+        </article>
+
+        <!-- Key Benefits Cards: Security Icon -->
+        <article class="card">
+          <figure>
+            <img src="assets/icons/security.svg" class="card__image" />
+          </figure>
+          <h3 class="card-title card__title">
+            Safety and Security
+          </h3>
+          <p class="card-content card__content">
+            Deposits in most banks are insured by government
+            agencies, such as the Federal Deposit Insurance
+            Corporation (FDIC.....
+          </p>
+          <a href="#" class="card-link highlights__link">Read more
+            <img src="assets/icons/arrow-right.svg" />
+          </a>
+        </article>
+
+        <!-- Key Benefits Cards: Stability Icon  -->
+        <article class="card">
+          <figure>
+            <img src="assets/icons/stability.svg" class="card__image" />
+          </figure>
+          <h3 class="card-title card__title">Economic Stability</h3>
+          <p class="card-content card__content">
+            Deposits in most banks are insured by government
+            agencies, such as the Federal Deposit Insurance
+            Corporation (FDIC.....
+          </p>
+          <a href="#" class="card-link highlights__link">Read more
+            <img src="assets/icons/arrow-right.svg" />
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download CTA Section (Play Store & App Store) -->
+  <section class="dlcta u-mb-spacing">
+    <!-- Inseting an Image -->
+    <figure class="dlcta__image">
+      <img src="assets/woman.png" alt="A woman with a cup of coffee in one hand and using phone in other" />
+    </figure>
+    <div class="dlcta__body">
+      <h2 class="section-title dlcta__title">
+        Ready for the future? Download The App!
+      </h2>
+      <p class="dlcta__text">
+        Download the banking app to easily manage your finances, check account
+        balances, transfer money, pay bills, and access a range of banking services
+        from your mobile device.
+      </p>
+
+      <!-- Download on Play Store image -->
+      <div class="dlcta__btn">
+        <a href="#">
+          <figure class="dlcta__btn-one">
+            <img src="assets/icons/google-play.svg" />
+          </figure>
+        </a>
+
+        <!-- Download on App Store image -->
+        <a href="#">
+          <figure class="dlcta__btn-two">
+            <img src="assets/icons/app-store.svg" />
+          </figure>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review of the Customers/Clients -->
+  <section class="clients u-mb-spacing">
+    <div class="u-container">
+      <h2 class="section-title clients_title">
+        What Our Clients Say About Us
+      </h2>
+
+      <div class="clients__wrapper">
+        <!-- Testimonial: 1-->
+        <article class="testimonial">
+          <p class="testimonial__content">
+            I've been using LegacyLine for several years now,
+            and I couldn't be happier with their services. The
+            mobile banking app they provide is an absolute
+            game-changer. It's incredibly user-friendly and has
+            made managing my finances a breeze.
+          </p>
+          <div class="testimonial__author">
+            <figure>
+              <img class="testimonial__author-avatar" src="assets/author-one.png" />
+            </figure>
+            <div>
+              <h4 class="testimonial__author-name">Jerry Helfer</h4>
+              <div class="testimonial__author-date">
+                24 Oct, 2023
+              </div>
+              <div class="testimonial__author-rating">
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial: 2 -->
+        <article class="testimonial">
+          <p class="testimonial__content">
+            I've been using LegacyLine for several years now,
+            and I couldn't be happier with their services. The
+            mobile banking app they provide is an absolute
+            game-changer. It's incredibly user-friendly and has
+            made managing my finances a breeze.
+          </p>
+          <div class="testimonial__author">
+            <figure>
+              <img class="testimonial__author-avatar" src="assets/author-two.png" />
+            </figure>
+            <div>
+              <h4 class="testimonial__author-name">Mary Freund</h4>
+              <div class="testimonial__author-date">
+                24 Oct, 2023
+              </div>
+              <div class="testimonial__author-rating">
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial: 3 -->
+        <article class="testimonial">
+          <p class="testimonial__content">
+            I've been using LegacyLine for several years now,
+            and I couldn't be happier with their services. The
+            mobile banking app they provide is an absolute
+            game-changer. It's incredibly user-friendly and has
+            made managing my finances a breeze.
+          </p>
+          <div class="testimonial__author">
+            <figure>
+              <img class="testimonial__author-avatar" src="assets/author-three.png" alt="author one" />
+            </figure>
+            <div>
+              <h4 class="testimonial__author-name">
+                Stephanie Nicol
+              </h4>
+              <div class="testimonial__author-date">
+                24 Oct, 2023
+              </div>
+              <div class="testimonial__author-rating">
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+                <img src="assets/icons/star.svg" />
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="clients__pagination">
+        <img src="assets/icons/slider.svg" />
+        <img src="assets/icons/slider.svg" />
+        <img src="assets/icons/slider.svg" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <!-- Subscription Box -->
+  <footer class="footer">
+    <div class="u-container">
+      <div class="footer__wrapper">
+        <section class="newsletter footer__newsletter">
+          <h3 class="section-title newsletter__title">
+            Subscribe to our news letter
+          </h3>
+          <p class="newsletter__text">
+            I've been using LegacyLine for several years now, and I
+            couldn't be happier with their services. The mobile
+            banking app they provide.
+          </p>
+          <form action="">
+            <input type="text" placeholder="Enter your email" class="newsletter__input" name="email" id="email" />
+            <button type="submit" class="btn newsletter__btn">
+              Subscribe
+            </button>
+          </form>
+        </section>
+
+        <!-- Menu and Help Section -->
+        <!-- Menu Section -->
+        <section class="footer__links">
+          <div>
+            <h4 class="footer-subtitle">Menu</h4>
+            <ul class="footer__menu">
+              <li><a href="#" class="footer__menu-link">Home</a></li>
+              <li><a href="#" class="footer__menu-link">Services</a></li>
+              <li><a href="#" class="footer__menu-link">Open Bank Account</a></li>
+            </ul>
+          </div>
+
+          <!-- Help Section -->
+          <div>
+            <h4 class="footer-subtitle">Help</h4>
+            <ul class="footer__menu">
+              <li><a href="#" class="footer__menu-link">About Us</a></li>
+              <li><a href="#" class="footer__menu-link">Contact</a></li>
+              <li><a href="#" class="footer__menu-link">Support</a></li>
+            </ul>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- Bottom Part of the footer -->
+      <div class="footer__bottom">
+
+        <!-- Rights Reserved -->
+        <p class="footer__copy-text">2023. All Rights Reserved</p>
+
+        <!-- Privacy Policy -->
+        <a href="#" class="footer__copy-link">Privacy Policy</a>
+
+        <!-- Social Media Links -->
+        <div class="footer__icon-wrapper">
+          <a href="#"><img src="assets/icons/telegram.svg" alt="Telegram Icon" class="footer__icon" /></a>
+          <a href="#"><img src="assets/icons/facebook.svg" alt="Facebook Icon" class="footer__icon" /></a>
+          <a href="#"><img src="assets/icons/instagram.svg" alt="Instagram Icon" class="footer__icon" /></a>
+          <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter Icon" class="footer__icon" /></a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

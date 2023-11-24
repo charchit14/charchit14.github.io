@@ -1,0 +1,51 @@
+.testimonial {
+    & {
+        padding: 2.5rem;
+        box-shadow: var(--cardShadow);
+        background: url('../../assets/icons/quotes.svg') no-repeat;
+        background-size: 8rem;
+    }
+    &__content {
+        color: var(--text-heading);
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 3.2rem;
+        padding-bottom: 2rem;
+
+        border-bottom: 1px solid var(--grey);
+
+    }
+    &__author {
+        padding-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 2.4rem;
+        &-avatar {
+            width: 7rem;
+            height: 7rem;
+            border-radius: 50%;  
+        }
+        &-name {
+            color: var(--text-heading);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: .4rem;
+
+        }
+        &-date {
+            color: rgba(29, 28, 49, 0.70);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: .4rem;
+
+        }
+        &-rating {
+            display: flex;
+            gap: .4rem;
+            img {
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+        }
+    }
+}

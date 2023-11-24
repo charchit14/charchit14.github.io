@@ -1,0 +1,84 @@
+.dlcta {
+    & {
+        padding: 2rem 0;
+        margin-bottom: 0 !important;
+        @include respond(tab-port) {
+            margin-bottom: 20rem !important;
+        }
+
+        @include respond(tab-land) {
+            margin: 0 20rem;
+            margin-bottom: 15rem !important;
+        }
+
+        @include respond(tab-port) {
+            padding: 0 5rem;
+            position: relative;
+            margin: 0 5rem;
+        }
+
+        @include respond(desktop) {
+            margin: 0 30rem;
+        }
+    }
+
+    &__image {
+        margin-bottom: 2.4rem;
+
+        @include respond(tab-land) {
+            width: 80%;
+        }
+    }
+
+    &__body {
+        background-color: var(--white);
+        padding: 1.5rem;
+        width: 100%;
+        border-radius: var(--borderRadius);
+        
+        
+
+
+        @include respond(tab-port) {
+            position: absolute;
+            top: 100%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            max-width: 60%;
+            box-shadow: 24px 20px 31px -14px rgba(0,0,0,0.21);
+        }
+
+        @include respond(tab-land) {
+            top: 50%;
+            left: 70%;
+            max-width: 50%;
+        }
+
+        @include respond(desktop) {
+            max-width: 50%;
+            left: 85%;
+        }
+    }
+
+    &__title {
+        margin-bottom: 2rem;
+        text-align: left;
+
+        @include respond(tab-port) {
+           margin-bottom: 2.4rem;
+        }
+    }
+
+    &__text {
+        color: rgba(29, 28, 49, 0.60);
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 2.8rem;
+        margin-bottom: 2rem;
+    }
+
+    &__btn {
+        display: flex;
+        gap: 2rem;
+    }
+}
