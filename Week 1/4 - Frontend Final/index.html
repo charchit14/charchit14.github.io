@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Final Assignment</title>
+
+  <!-- Inserting Necessary Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Inserting CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <!-- Logo of the company -->
+    <a href="#" class="header-logo">Vaccination.ng </a>
+
+    <!-- Menu Items -->
+    <button class="header__menu-btn">
+      <!-- Images in menu bar -->
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.25 12.5H8.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M26.25 7.5H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M26.25 17.5H3.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M26.25 22.5H8.75" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <!-- Navigation Bar -->
+    <ul class="header__nav">
+      <li>
+        <a href="#" class="header__nav-link header__nav-link--active">Home</a>
+      </li>
+      <li>
+        <a href="#" class="header__nav-link">Services</a>
+      </li>
+      <li>
+        <a href="#" class="header__nav-link">Schedule</a>
+      </li>
+      <li>
+        <a href="#" class="header__nav-link">Contact us</a>
+      </li>
+    </ul>
+
+    <!-- Header Section: CTA -->
+    <div class="header__cta">
+      <button class="header__cta-btn">check status</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="u-container">
+      <div class="hero__wrapper">
+        <div class="hero__description">
+          <!-- Subtitle -->
+          <h3 class="hero__subtitle">
+            Get Vaccinated. Boost your Immune System
+          </h3>
+          <!-- Hero Section: Highlighted Text Title -->
+          <h1 class="hero__title">
+            COVID-19 Vaccination
+            Got Easier With,
+            <span>Vaccination.ng</span>
+          </h1>
+          <!-- Hero Section: Description -->
+          <p class="hero__text">
+            Vaccination.ng will help you find the nearest
+            centre for vaccination, in all 36 states in Nigeria.
+          </p>
+
+          <!-- Hero Section: CTA -->
+          <div class="hero__cta">
+            <a href="#" class="btn btn-primary hero__cta-btn">Get Vaccine</a>
+            <a href="#" class="btn btn-primary-outlined hero__cta-btn">Help Center</a>
+          </div>
+        </div>
+        
+        <!-- Hero Section: Banner -->
+        <div class="hero__banner">
+          <div class="hero__banner-wrapper">
+            <!-- Hero Section Banner: Images -->
+            <img src="assets/vaccine.png" class="hero__banner-image" />
+            
+            <!-- Surrounding Images -->
+            <figure class="hero__banner-image-sub hero__banner-image--left">
+              <img src="assets/doctor-safety-measure.jpg" />
+            </figure>
+            <figure class="hero__banner-image-sub hero__banner-image--right">
+              <img src="assets/corona-virus.jpg" />
+            </figure>
+
+            <!-- Specialist Doctor Images -->
+            <div class="specialists">
+              <div class="specialists__images">
+                <!-- Doctor One -->
+                <figure class="specialists__images-doctor">
+                  <img src="assets/doctor-one.jpg" />
+                </figure>
+                <!-- Doctor Two -->
+                <figure class="specialists__images-doctor">
+                  <img src="assets/doctor-two.jpg" />
+                </figure>
+                <!-- Doctor Three -->
+                <figure class="specialists__images-doctor">
+                  <img src="assets/doctor-three.jpg" />
+                </figure>
+              </div>
+              <p class="specialists__text">
+                20+
+                <br />
+                <span>Specialists</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheduling Appointment for Vaccination -->
+      <div class="appointments">
+        <!-- Appointment Heading -->
+        <div class="appointments__heading">
+          <div class="appointments__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+              <path
+                d="M14.9806 27.5C21.8789 27.5 27.471 21.9036 27.471 15C27.471 8.09644 21.8789 2.5 14.9806 2.5C8.08237 2.5 2.49023 8.09644 2.49023 15C2.49023 21.9036 8.08237 27.5 14.9806 27.5Z"
+                stroke="#17C2EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M14.9805 7.5V15L19.9766 17.5" stroke="#17C2EC" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+
+          <h2 class="appointments__heading-text">
+            Schedule your Vaccination
+          </h2>
+        </div>
+
+        <div class="appointments__wrapper">
+          <!-- Elements in Appointment -->
+          <div class="appointments__element">
+            <div class="appointments__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                <path
+                  d="M27.1907 12.5C27.1907 21.25 15.9494 28.75 15.9494 28.75C15.9494 28.75 4.70801 21.25 4.70801 12.5C4.70801 9.51631 5.89236 6.65483 8.00052 4.54505C10.1087 2.43526 12.968 1.25 15.9494 1.25C18.9307 1.25 21.79 2.43526 23.8982 4.54505C26.0063 6.65483 27.1907 9.51631 27.1907 12.5Z"
+                  stroke="#17C2EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M15.9493 16.25C18.0187 16.25 19.6964 14.5711 19.6964 12.5C19.6964 10.4289 18.0187 8.75 15.9493 8.75C13.8798 8.75 12.2021 10.4289 12.2021 12.5C12.2021 14.5711 13.8798 16.25 15.9493 16.25Z"
+                  stroke="#17C2EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="appointments__title">Location</h4>
+              <p class="appointments__text">Ikeja Lagos, Nigeria</p>
+            </div>
+          </div>
+
+          <!-- Elements in Appointment -->
+          <div class="appointments__element">
+            <div class="appointments__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                <path
+                  d="M24.4109 5H6.92435C5.5447 5 4.42627 6.11929 4.42627 7.5V25C4.42627 26.3807 5.5447 27.5 6.92435 27.5H24.4109C25.7905 27.5 26.909 26.3807 26.909 25V7.5C26.909 6.11929 25.7905 5 24.4109 5Z"
+                  stroke="#17C2EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M20.6636 2.5V7.5" stroke="#17C2EC" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M10.6714 2.5V7.5" stroke="#17C2EC" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M4.42627 12.5H26.909" stroke="#17C2EC" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="appointments__title">Date</h4>
+              <p class="appointments__text">29 February, 2022</p>
+            </div>
+          </div>
+
+          <!-- Elements in Appointment -->
+          <div class="appointments__element">
+            <div class="appointments__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path
+                  d="M14.9806 27.5C14.9806 27.5 24.9729 22.5 24.9729 15V6.25L14.9806 2.5L4.98828 6.25V15C4.98828 22.5 14.9806 27.5 14.9806 27.5Z"
+                  stroke="#17C2EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="appointments__title">Vaccine Type</h4>
+              <p class="appointments__text">Mordena</p>
+            </div>
+          </div>
+
+          <!-- Appointment Submission Button -->
+          <div class="appointments__cta">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Brands Logo -->
+    <div class="brands">
+      <div class="u-container">
+        <div class="brands__wrapper">
+
+          <figure class="brands__image">
+            <img src="assets/moderna.png" />
+          </figure>
+          <figure class="brands__image">
+            <img src="assets/pfizer.png" />
+          </figure>
+          <figure class="brands__image">
+            <img src="assets/astrazaneca.png" />
+          </figure>
+          <figure class="brands__image">
+            <img src="assets/sinovac.png" />
+          </figure>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Check COVID-19 result on Database -->
+  <section class="test">
+    <div class="u-container">
+      <div class="test__wrapper">
+        <h4 class="test__title">
+          Check your COVID-19 result on our Database
+        </h4>
+        
+        <!-- Form to check result -->
+        <form action="#" class="test__form">
+          <!-- Input Name -->
+          <div class="test__elem">
+            <input type="text" class="form-control test__input" value="Okeowo" placeholder="Name" />
+          </div>
+          <!-- Input Number -->
+          <div class="test__elem">
+            <input type="text" class="form-control test__input" placeholder="NIK Number" />
+          </div>
+          <!-- Submit Button -->
+          <div class="test__cta">
+            <button type="submit" class="btn btn-primary-outlined test__btn">
+              Check
+            </button>
+          </div>
+        </form>
+        <p class="test__alert" role="alert">
+          Need a certificate for your COVID-19 result? Please click <a href="#">here</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits of vaccination -->
+  <section class="benefits">
+    <div class="u-container">
+      <div class="benefits__header">
+        <h2 class="benefits__header-title">Why get vaccinated today?</h2>
+        <p class="benefits__header-subtitle">
+          Magna adipiscing at elit at ornare lectus nibh lorem.
+          Ac, sed ac lorem pellentesque vestibulum risus matti.
+          In molestie condimentum malesuada non.
+        </p>
+      </div>
+
+      <div class="benefits__wrapper">
+        <!-- Main Section of Card -->
+        <article class="benefits__card benefits__card--main">
+          <div class="benefits__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+              <g clip-path="url(#clip0_3_12937)">
+                <path
+                  d="M15.9687 28.4687C15.9687 28.4687 25.9687 23.4687 25.9687 15.9687V7.21875L15.9687 3.46875L5.96875 7.21875V15.9687C5.96875 23.4687 15.9687 28.4687 15.9687 28.4687Z"
+                  stroke="#17C2EC" stroke-width="3.99168" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_3_12937">
+                  <rect width="30" height="30" fill="white" transform="translate(0.96875 0.96875)" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <h4 class="benefits__title">
+            Protects your immune system against viruses
+          </h4>
+          <p class="benefits__description">
+            Velit ut consectetur mauris, orci amet, 
+            faucibus. 
+            Sit turpis fringilla ipsum pretium,
+            dictum. Dolor eget vel nulla lorem ac.
+          </p>
+          <div>
+            <a href="#" class="benefits__link">Read More
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4.16699 10H15.8337" stroke="#17C2EC" stroke-width="1.99584" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="#17C2EC" stroke-width="2.99376"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Secondary part of the card -->
+        <article class="benefits__card benefits__card-one">
+          <div class="benefits__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+              <g clip-path="url(#clip0_3_12951)">
+                <path
+                  d="M21.749 25.7511V23.2511C21.749 21.925 21.2222 20.6532 20.2846 19.7156C19.3469 18.7779 18.0751 18.2511 16.749 18.2511H6.74902C5.42294 18.2511 4.15117 18.7779 3.21349 19.7156C2.27581 20.6532 1.74902 21.925 1.74902 23.2511V25.7511"
+                  stroke="white" stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M11.749 13.2511C14.5104 13.2511 16.749 11.0125 16.749 8.2511C16.749 5.48968 14.5104 3.2511 11.749 3.2511C8.9876 3.2511 6.74902 5.48968 6.74902 8.2511C6.74902 11.0125 8.9876 13.2511 11.749 13.2511Z"
+                  stroke="white" stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M29.249 25.7511V23.2511C29.2482 22.1432 28.8795 21.067 28.2007 20.1915C27.522 19.3159 26.5717 18.6905 25.499 18.4136"
+                  stroke="white" stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M20.499 3.41357C21.5745 3.68895 22.5278 4.31445 23.2086 5.19146C23.8893 6.06847 24.2588 7.14711 24.2588 8.25732C24.2588 9.36754 23.8893 10.4462 23.2086 11.3232C22.5278 12.2002 21.5745 12.8257 20.499 13.1011"
+                  stroke="white" stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_3_12951">
+                  <rect width="30" height="30" fill="white" transform="translate(0.499023 -0.498901)" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <h4 class="benefits__title">Minimize the spread of the Virus</h4>
+          <div>
+            <a href="#" class="benefits__link">Read More
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4.16699 10H15.8337" stroke="white" stroke-opacity="0.5" stroke-width="1.99584"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M10 4.16663L15.8333 9.99996L10 15.8333" stroke="white" stroke-opacity="0.5"
+                    stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Secondary part of the card -->
+        <article class="benefits__card benefits__card-two">
+          <div class="benefits__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+              <g clip-path="url(#clip0_3_12966)">
+                <path
+                  d="M16.4744 18.45V4.375C16.4744 3.5462 16.1644 2.75134 15.6127 2.16529C15.061 1.57924 14.3128 1.25 13.5326 1.25C12.7523 1.25 12.0041 1.57924 11.4524 2.16529C10.9007 2.75134 10.5908 3.5462 10.5908 4.375V18.45C9.64617 19.1204 8.9296 20.0958 8.54687 21.232C8.16414 22.3682 8.13554 23.6051 8.4653 24.7599C8.79507 25.9147 9.4657 26.9262 10.3782 27.6451C11.2906 28.364 12.3965 28.7521 13.5326 28.7521C14.6686 28.7521 15.7745 28.364 16.687 27.6451C17.5994 26.9262 18.2701 25.9147 18.5998 24.7599C18.9296 23.6051 18.901 22.3682 18.5183 21.232C18.1355 20.0958 17.419 19.1204 16.4744 18.45Z"
+                  stroke="white" stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_3_12966">
+                  <rect width="28.2414" height="30" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <h4 class="benefits__title">Protect yourself</h4>
+          <div>
+            <a href="#" class="benefits__link">Read More
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4.16699 10H15.8337" stroke="white" stroke-opacity="0.5" stroke-width="1.99584"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M10 4.16663L15.8333 9.99996L10 15.8333" stroke="white" stroke-opacity="0.5"
+                    stroke-width="2.99376" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vaccination Registration -->
+  <section class="status">
+    <div class="u-container">
+      <h2 class="status__heading">Get your vaccine registration today</h2>
+      <div class="status__wrapper">
+        <div class="status__image">
+          <!-- Registration Images -->
+          <img src="assets/hand-vaccine.png" />
+          <h5 class="status__title">Covid-19 Vaccine</h5>
+          <button class="btn status__btn">Verify Status</button>
+          <!-- Top Left Image -->
+          <figure class="status__image-sub">
+            <img src="assets/virus.png" />
+          </figure>
+        </div>
+        
+        <!-- Registration Form -->
+        <form action="" class="status__form">
+          <div>
+            <label class="status__form-label" for="fname">Full name</label>
+            <input type="text" class="form-control status__input" name="fname" id="fname" />
+          </div>
+          <div>
+            <label class="status__form-label" for="phone">Mobile Number</label>
+            <div class="status__form-helptext">
+              Notifications for appointment and reminders will be sent to this
+              provided number
+            </div>
+            <div class="status__form-group">
+              <div class="status__form-group-input">
+                <div class="status__form-group-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path
+                      d="M4.44444 5.55566C3.2657 5.55566 2.13524 6.02392 1.30175 6.85741C0.468253 7.69091 0 8.82137 0 10.0001L0 30.0001C0 31.1788 0.468253 32.3093 1.30175 33.1428C2.13524 33.9763 3.2657 34.4446 4.44444 34.4446H13.3333V5.55566H4.44444Z"
+                      fill="#009A49" />
+                    <path d="M13.3335 5.55566H26.6668V34.4446H13.3335V5.55566Z" fill="#EEEEEE" />
+                    <path
+                      d="M35.5554 5.55566H26.6665V34.4446H35.5554C36.7341 34.4446 37.8646 33.9763 38.6981 33.1428C39.5316 32.3093 39.9998 31.1788 39.9998 30.0001V10.0001C39.9998 8.82137 39.5316 7.69091 38.6981 6.85741C37.8646 6.02392 36.7341 5.55566 35.5554 5.55566Z"
+                      fill="#009A49" />
+                  </svg>
+                </div>
+                <div class="status__form-group-input-field">
+                  <input type="text" name="phone" id="phone" class="form-control status__input" />
+                </div>
+              </div>
+              <div>
+                <button type="button" class="status__form-verify status__form-btn btn btn-primary">
+                  Verify
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Submission -->
+          <div class="status__form-cta">
+            <button type="submit" class="btn btn-primary status__form-btn status__form-submit">
+              Submit
+            </button>
+            <p class="status__footer">
+              <span>Already registered?</span>
+              <a href="#">Check your status</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVID-19 Symptoms -->
+  <section class="symptoms">
+    <div class="u-container">
+      <!-- Symptoms: Header -->
+      <div class="symptoms__header">
+        <h4 class="symptoms__subtitle">Covid-19 Prevention</h4>
+        <h2 class="symptoms__title">COVID-19 <span>Symptoms</span></h2>
+        <p class="symptoms__text">
+          Adipiscing nec etiam tortor elit quisque. Arcu aliquet convallis aenean eu velit.
+          Mi vestibulum, ullamcorper venenatis imperdiet augue arcu donec neque.
+        </p>
+      </div>
+
+      <!-- List of COVID-19 Symptoms -->
+      <div class="symptoms__list">
+        <div class="item-row">
+          
+          <div class="symptoms__item symptoms__item--1">
+            <figure class="symptoms__item-image">
+              <img src="assets/coronavirus.png" />
+            </figure>
+            <p>High Fever</p>
+          </div>
+          
+          <div class="symptoms__item symptoms__item--2">
+            <figure class="symptoms__item-image">
+              <img src="assets/coronavirus.png" />
+            </figure>
+            Loss sense of taste
+          </div>
+        </div>
+
+        <div class="item-row">
+          <div class="symptoms__item symptoms__item--3">
+            <figure class="symptoms__item-image">
+              <img src="assets/coronavirus.png" />
+            </figure>
+            Loss sense of smell
+          </div>
+
+          <div class="symptoms__item symptoms__item--4">
+            <figure class="symptoms__item-image">
+              <img src="assets/coronavirus.png" />
+            </figure>
+            Difficulty Breathing
+          </div>
+        </div>
+
+        <div class="item-row">
+          <div class="symptoms__item symptoms__item--5">
+            <figure class="symptoms__item-image">
+              <img src="assets/coronavirus.png" />
+            </figure>
+            Dry Cough
+          </div>
+
+          <div class="symptoms__item symptoms__item--6">
+            <figure class="symptoms__item-image">
+              <img src="assets/coronavirus.png" />
+            </figure>
+            Sore Throat
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section class="feedback">
+    <div class="u-container">
+      <h4 class="feedback__subtitle">Feedback</h4>
+      <h2 class="feedback__title">What our Patients Think</h2>
+      <p class="feedback__text">
+        Adipiscing nec etiam tortor elit quisque. Arcu aliquet convallis aenean eu velit.
+        Mi vestibulum, ullamcorper venenatis imperdiet augue arcu donec neque.
+      </p>
+
+      <div class="testimonial__wrapper">
+        <!-- First Testimonial -->
+        <article class="testimonial">
+          <div class="testimonial__author">
+            <figure class="testimonial__avatar">
+              <img src="assets/person-one.png" />
+            </figure>
+            <div>
+              <h4 class="testimonial__author-name">Oyindamola Maja</h4>
+              <p class="testimonial__author-address">Badagry, Lagos</p>
+            </div>
+          </div>
+          <p class="testimonial__description">
+            “Been stressing about a close centre to get the covid-19 vaccine,
+            until i tried Vaccination.ng”
+          </p>
+        </article>
+
+        <!-- Second Testimonial -->
+        <article class="testimonial testimonial--primary">
+          <div class="testimonial__author">
+            <figure class="testimonial__avatar">
+              <img src="assets/person-two.png" />
+            </figure>
+            <div>
+              <h4 class="testimonial__author-name">Okeowo Lekan</h4>
+              <p class="testimonial__author-address">Ikeja, Lagos</p>
+            </div>
+          </div>
+          <p class="testimonial__description">
+            “Got my vaccine very close to my house.
+            Was very easy scheduling an appointment.”
+          </p>
+        </article>
+
+        <!-- Third Testimonial -->
+        <article class="testimonial">
+          <div class="testimonial__author">
+            <figure class="testimonial__avatar">
+              <img src="assets/person-three.png" />
+            </figure>
+            <div>
+              <h4 class="testimonial__author-name">Kafaru Temitope</h4>
+              <p class="testimonial__author-address">Obanikoro, Lagos</p>
+            </div>
+          </div>
+          <p class="testimonial__description">
+            “Been stressing about a close centre to get the
+            covid-19 vaccine, until i tried Vaccination.ng”
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get a Quote: Newsletter Section -->
+  <section class="newsletter">
+    <div class="u-container">
+      <h4 class="newsletter__title">Get a quote</h4>
+      <p class="newsletter__text">Please do enter your email address below</p>
+
+      <form action="" class="newsletter__form">
+        <input type="email" name="email" id="email" class="form-control newsletter__form-input" />
+        <button type="submit" class="btn btn-primary newsletter__btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path d="M36.6668 3.3335L18.3335 21.6668" stroke="white" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M36.6668 3.33301L25.0002 36.6663L18.3335 21.6663L3.3335 14.9997L36.6668 3.33301Z" stroke="white"
+              stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="u-container">
+      <div class="footer__wrapper">
+        <!-- Logo of the company -->
+        <div class="footer__branding">
+          <a href="#" class="header-logo">Vaccination.ng</a>
+        </div>
+
+        <!-- Footer Section: Menu Buttons -->
+        <ul class="footer__menu">
+          <li>
+            <a href="#" class="footer__menu-link footer__menu-link--active">Home</a>
+          </li>
+          <li>
+            <a href="#" class="footer__menu-link">Services</a>
+          </li>
+          <li>
+            <a href="#" class="footer__menu-link">Schedule</a>
+          </li>
+          <li>
+            <a href="#" class="footer__menu-link">Contact us</a>
+          </li>
+        </ul>
+
+        <!-- Footer Section: Social Media Links -->
+        <ul class="footer__icons">
+
+          <!-- Facebook -->
+          <li>
+            <a class="footer__icons-link" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g clip-path="url(#clip0_3_13127)">
+                  <path
+                    d="M16.7859 4.78123C16.6974 4.42779 16.5172 4.10396 16.2635 3.84244C16.0099 3.58092 15.6917 3.39097 15.3411 3.29179C14.0602 2.979 8.9365 2.979 8.9365 2.979C8.9365 2.979 3.81282 2.979 2.5319 3.32158C2.18132 3.42076 1.86312 3.61071 1.60945 3.87223C1.35577 4.13375 1.1756 4.45758 1.08714 4.81102C0.852711 6.11097 0.73804 7.42969 0.744566 8.75059C0.73621 10.0814 0.850888 11.4102 1.08714 12.72C1.18467 13.0624 1.36887 13.3739 1.62195 13.6244C1.87504 13.8749 2.18845 14.0558 2.5319 14.1498C3.81282 14.4924 8.9365 14.4924 8.9365 14.4924C8.9365 14.4924 14.0602 14.4924 15.3411 14.1498C15.6917 14.0506 16.0099 13.8607 16.2635 13.5992C16.5172 13.3376 16.6974 13.0138 16.7859 12.6604C17.0185 11.3702 17.1331 10.0615 17.1284 8.75059C17.1368 7.41974 17.0221 6.09097 16.7859 4.78123V4.78123Z"
+                    stroke="white" stroke-width="0.714932" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M7.26074 11.1854L11.5429 8.75018L7.26074 6.31494V11.1854Z" stroke="white"
+                    stroke-width="0.714932" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_3_13127">
+                    <rect width="17.8733" height="17.8733" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </li>
+
+          <!-- Instagram -->
+          <li>
+            <a class="footer__icons-link" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+                <path
+                  d="M13.1083 1.48926H5.6611C3.60461 1.48926 1.9375 3.15637 1.9375 5.21286V12.6601C1.9375 14.7166 3.60461 16.3837 5.6611 16.3837H13.1083C15.1648 16.3837 16.8319 14.7166 16.8319 12.6601V5.21286C16.8319 3.15637 15.1648 1.48926 13.1083 1.48926Z"
+                  stroke="white" stroke-width="0.714932" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M12.364 8.46723C12.4559 9.08702 12.3501 9.72001 12.0615 10.2762C11.7729 10.8323 11.3163 11.2833 10.7566 11.565C10.197 11.8467 9.56272 11.9448 8.94411 11.8452C8.3255 11.7457 7.75403 11.4536 7.31097 11.0106C6.86792 10.5675 6.57586 9.99605 6.47631 9.37744C6.37677 8.75882 6.47482 8.12458 6.75652 7.5649C7.03822 7.00523 7.48922 6.54863 8.04538 6.26005C8.60153 5.97147 9.23453 5.86561 9.85432 5.95752C10.4865 6.05127 11.0718 6.34586 11.5238 6.79779C11.9757 7.24972 12.2703 7.83502 12.364 8.46723Z"
+                  stroke="white" stroke-width="0.714932" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M13.4805 4.84082H13.4892" stroke="white" stroke-width="0.714932" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </li>
+
+          <!-- Twitter -->
+          <li>
+            <a class="footer__icons-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="18"
+                viewBox="0 0 19 18" fill="none">
+                <g clip-path="url(#clip0_3_13125)">
+                  <path
+                    d="M18.0235 2.23405C17.3104 2.73709 16.5207 3.12184 15.6851 3.37347C15.2366 2.85776 14.6405 2.49224 13.9775 2.32634C13.3144 2.16044 12.6165 2.20217 11.9779 2.44589C11.3394 2.68961 10.7911 3.12355 10.4072 3.68903C10.0234 4.2545 9.82242 4.92423 9.83158 5.60764V6.35236C8.52283 6.38629 7.226 6.09604 6.0566 5.50743C4.88719 4.91883 3.88149 4.05015 3.12909 2.97877C3.12909 2.97877 0.150206 9.68126 6.8527 12.6601C5.31896 13.7012 3.49189 14.2233 1.63965 14.1496C8.34214 17.8732 16.5341 14.1496 16.5341 5.5853C16.5334 5.37786 16.5134 5.17093 16.4745 4.96718C17.2346 4.21761 17.7709 3.27123 18.0235 2.23405V2.23405Z"
+                    stroke="white" stroke-width="0.714932" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_3_13125">
+                    <rect width="17.8733" height="17.8733" fill="white" transform="translate(0.895508)" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </li>
+
+          <!-- Facebook -->
+          <li>
+            <a class="footer__icons-link" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M13.5318 1.48926H11.2976C10.3101 1.48926 9.36294 1.88157 8.66463 2.57988C7.96631 3.27819 7.57401 4.2253 7.57401 5.21286V7.44703H5.33984V10.4259H7.57401V16.3837H10.5529V10.4259H12.7871L13.5318 7.44703H10.5529V5.21286C10.5529 5.01535 10.6314 4.82593 10.771 4.68627C10.9107 4.5466 11.1001 4.46814 11.2976 4.46814H13.5318V1.48926Z"
+                  stroke="white" stroke-width="0.714932" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

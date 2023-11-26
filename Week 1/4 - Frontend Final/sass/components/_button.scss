@@ -1,0 +1,43 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius);
+    gap: .5rem;
+    letter-spacing: .2px;
+    text-transform: capitalize;
+    transition: var(--transit);
+
+    font: {
+        size: 1.4rem;
+        weight: 700;
+    }
+
+
+    &-primary {
+        background: $primary-color;
+        color: $white;
+
+        &:hover {
+            background-color: rgba($primary-color, .7);
+        }
+        
+        &-outlined {
+            border: 2px solid $primary-color;
+            background: rgba($primary-color, 0.10);
+            color: $white;
+
+            &:hover {
+                background-color: rgba($primary-color, .7);
+            }
+        }
+    }
+
+    @include respond(tab-port) {
+        font-size: 2rem;
+    }
+
+    @include respond(tab-land) {
+        font-size: 2.4rem;
+    }
+}

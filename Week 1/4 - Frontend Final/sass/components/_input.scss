@@ -1,0 +1,42 @@
+.input-group {
+    display: flex;
+    
+}
+
+.form-control {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    border: none;
+    border-radius: var(--radius);
+    outline: none;
+    transition: var(--transit);
+    font: {
+        family: inherit;
+        size: 1.2rem;
+        weight: 500;
+    }
+
+    &::placeholder {
+        font: {
+            size: 1.2rem;
+            weight: 500;
+        }
+        
+        @include respond(tab-port) {
+            font-size: 2rem;
+        }
+
+        @include respond(tab-land) {
+        font-size: 2.4rem;
+        }
+    }
+
+    @include respond(tab-port) {
+        font-size: 2rem;
+    }
+
+    @include respond(tab-land) {
+        font-size: 2.4rem;
+    }
+    
+}

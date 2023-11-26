@@ -1,0 +1,102 @@
+.footer {
+    padding-top: 4.1rem;
+    padding-bottom: 4rem;
+
+    // restore position
+    margin-top: -7rem;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include respond(tab-land) {
+            flex-direction: row;
+        }
+        
+    }
+
+    &__branding {
+        margin-bottom: 2rem;
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        &-link {
+            color: rgba($white, .5);
+            text-transform: capitalize;
+            transition: var(--transit);
+            font: {
+                size: 1.4rem;
+                weight: 500;
+            }
+
+            &--active {
+                color: $white;
+            }
+
+            @include respond(tab-port) {
+                font-size: 2rem;
+            }
+
+            @include respond(tab-land) {
+                font-size: 2.4rem;
+            }
+
+            &:hover {
+                color: $white;
+            }
+            
+        }
+
+        @include respond(tab-port) {
+            flex-direction: row;
+            margin: 2rem 0;
+            gap: 2.5rem;
+        }
+
+        @include respond(desktop) {
+            gap: 3rem;
+        }
+    }
+
+    &__icons {
+        @include respond(tab-land) {
+            align-self: flex-start !important;
+        }
+
+        display: flex;
+        margin-top: 2rem;
+        gap: .5rem;
+
+        @include respond(tab-port) {
+            gap: 1rem;
+
+            svg {
+                width: 3.1rem;
+                height: 3.1rem;
+            }
+        }
+
+        @include respond(tab-land) {
+            svg {
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+    }
+
+    @include respond(tab-port) {
+        padding-top: 5.1rem;
+    }
+    
+    @include respond(tab-land) {
+        padding-top: 10.8rem;
+
+        // restore position
+        margin-top: -16rem;
+    }
+}

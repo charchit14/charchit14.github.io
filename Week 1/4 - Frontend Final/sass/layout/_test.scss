@@ -1,0 +1,133 @@
+.test {
+    padding: 3.5rem;
+    padding-right: 0;
+    padding-left: 0;
+    padding: {
+        inset: 8.3rem 3.5rem 3.2rem 3.5rem;
+    }
+    
+    @include respond(tab-port) {
+        padding: {
+            top: 5.7rem;
+            bottom: 4.5rem;
+        }
+    }
+
+    @include respond(tab-land) {
+        padding-top: 6.2rem;
+    }
+    
+
+    &__wrapper {
+        padding-bottom: 3.2rem;
+        border-radius: var(--radius-lg);
+        background: rgba($gray, 0.10);
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 2rem;
+
+        & > * {
+            width: 90%;
+            margin: 0 4rem;
+        }
+
+        @include respond(tab-land) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3.6rem 0;
+            gap: 0;
+
+            & > * {
+                width: 100%;
+            }
+        }
+    }
+
+    &__form > &__elem {
+        flex: 1 0 30%;
+    }
+
+    &__form > &__cta {
+        flex: 0 1 20%;
+    }
+    
+    &__title {
+        padding: 1.4rem 0;
+        border-radius: var(--radius) var(--radius) 0 0;
+        background: rgba($gray, 0.05);
+        color: $white;
+        text-align: center;
+        font: {
+            size: 1rem;
+            weight: 700;
+        }
+
+        @include respond(tab-port) {
+            padding: 1.8rem 0;
+            font-size: 2rem;
+        }
+
+        @include respond(tab-land) {
+            padding: 3.6rem 0;
+            font-size: 2.3rem;
+        }
+    }
+
+    
+
+    &__input {
+        border: 3px solid rgba($gray, 0.15);
+        background-color: transparent;
+        color: $white;
+
+        &:focus {
+            border-color: $primary-color;
+        }
+    }
+
+    &__btn {
+        padding: 1.2rem 4rem;
+        border-radius: var(--radius-lg);
+        
+
+        @include respond(tab-port) {
+            padding: 1.6rem 4.4rem;
+        }
+
+        @include respond(tab-land) {
+            width: 100%;
+            padding: 2rem 5rem;
+        }
+    }
+
+    &__alert {
+        width: 90%;
+        padding: 1.3rem 0;
+        border-radius: var(--radius);
+        margin: 0 auto;
+        background: rgba($gray, 0.05);
+        color: $white;
+        text-align: center;
+        font: {
+            size: 1rem;
+            weight: 700;
+        }
+
+        @include respond(tab-port) {
+            padding: 1.6rem 0;
+            font-size: 1.4rem;
+        }
+
+        @include respond(tab-land) {
+            padding: 2rem 0;
+            border-radius: var(--radius-lg);
+            font-size: 2.4rem;
+        }
+    }
+}

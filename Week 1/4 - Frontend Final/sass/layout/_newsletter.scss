@@ -1,0 +1,96 @@
+.newsletter {
+    width: 85%;
+    padding-bottom: 2.8rem;
+    border-radius: var(--radius);
+    margin: 0 auto;
+    background-color: $primary-color;
+    transform: translateY(-50%);
+    
+    &__title {
+        padding-top: 1.6rem;
+        margin-bottom: .5rem;
+        color: $white;
+        text-align: center;
+
+        font: {
+            size: 1.8rem;
+            weight: 700;
+        }
+
+        @include respond(tab-port) {
+            margin-bottom: 2rem;
+            font-size: 3.6rem;
+        }
+
+        @include respond(tab-land) {
+            padding-top: 7rem;
+            font-size: 4.8rem;
+        }
+    }
+
+    &__text {
+        margin-bottom: 2.4rem;
+        color: $white;
+        text-align: center;
+        font: {
+            size: 1rem;
+            weight: 500;
+        }
+
+        @include respond(tab-port) {
+            margin-bottom: 2.8rem;
+            font-size: 2rem;
+        }
+    }
+
+    
+
+    @include respond(tab-land) {
+        padding-bottom: 10.7rem;
+    }
+
+    &__form {
+        display: flex;
+
+        &-input {
+            padding: 0 2rem;
+            border-radius: 3rem 0 0 3rem;
+            font-size: 1.4rem;
+        }
+
+        @include respond(tab-land) {
+            width: 60%;
+            margin: 0 auto;
+        }
+    }
+
+    &__btn {
+        padding: 1rem;
+        border-radius: 0 3rem 3rem 0;
+        background-color: $secondary-color;
+
+        svg {
+            width: 2rem;
+            height: 2rem;
+
+            
+        }
+
+        &:hover {
+            background-color: rgba($secondary-color, .8);
+        }
+
+        @include respond(tab-port) {
+            padding: 1.5rem 2rem;
+        }
+    }
+
+    @include respond(tab-land) {
+        width: 60%;
+        padding-bottom: 5.6rem; 
+    }
+
+    @include respond(desktop) {
+        width: 50%;
+    }
+}

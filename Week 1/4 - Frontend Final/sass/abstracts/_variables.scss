@@ -1,0 +1,15 @@
+// Sass Variables
+$primary-color: #17c2ec;
+$secondary-color: #0b153c;
+$black: #000;
+$gray: #c4c4c4;
+$white: #fff;
+
+:root {
+    // shapes
+    --radius: 1rem;
+    --radius-lg: 2rem;
+
+    // animation
+    --transit: all .2s linear;
+}

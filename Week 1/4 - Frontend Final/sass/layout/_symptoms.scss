@@ -1,0 +1,272 @@
+.symptoms {
+    padding-top: 2.5rem;
+    background: url('../assets/man--headache.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 26rem;
+
+    @include respond(phone) {
+        background-size: 36rem;
+    }
+
+    @include respond(tab-port) {
+        background-size: 36rem;
+    }
+
+    @include respond(tab-land) {
+        background-size: 60rem;
+    }
+
+    &__header {
+        margin-bottom: 4.2rem;
+
+        @include respond(tab-port) {
+            margin-bottom: 8.6rem;
+        }
+
+        @include respond(tab-land) {
+            margin-bottom: 16.3rem;
+        }
+
+    }
+
+    &__list {
+        display: flex;
+        width: 80%;
+        min-height: 26rem;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 4rem;
+        margin: 0 auto;
+
+
+        @include respond(phone) {
+            width: 80%;
+            margin: 0 auto;
+            background-size: 60%;
+        }
+    }
+
+    .item-row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__subtitle {
+        margin-bottom: 1rem;
+        text-align: center;
+
+        font: {
+            size: 1.2rem;
+            weight: 700;
+        }
+
+        @include respond(tab-port) {
+            font-size: 2rem;
+        }
+
+        @include respond(tab-land) {
+            margin-bottom: 2rem;
+            font-size: 2.4rem;
+        }
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+        color: $white;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-align: center;
+        font: {
+            size: 2.4rem;
+            weight: 800;
+        }
+
+        span {
+            color: $white;
+        }
+
+        @include respond(tab-port) {
+            margin-bottom: 2rem;
+            font-size: 3.6rem;
+        }
+
+        @include respond(tab-land) {
+            margin-bottom: 4rem;
+            font-size: 4.8rem;
+        }
+    }
+
+    &__text {
+        margin: 0 auto;
+        color: rgba($white, 0.50);
+        line-height: 160%;
+        text-align: center;
+        font: {
+            size: 1.2rem;
+            weight: 500;
+        }
+
+        @include respond(tab-port) {
+            max-width: 80%;
+            font-size: 1.8rem;
+        }
+
+        @include respond(tab-land) {
+            max-width: 70%;
+            margin-bottom: 30rem;
+            font-size: 2.4rem;
+        }
+    }
+
+    &__item {
+        position: relative;
+        padding: .5rem;
+        padding-left: 1.5rem;
+        border-radius: 4.863px;
+        background: rgba($gray, 0.20);
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        color: $primary-color;
+
+        font: {
+            size: 1rem;
+            weight: 600;
+        }
+
+        &--1 {
+            transform: translate(5rem, 9rem);
+
+            @include respond(phone) {
+                transform: translate(7rem, 1rem);
+            }
+
+            @include respond(tab-port) {
+                transform: translate(8rem, -1rem);
+            }
+
+            @include respond(tab-land) {
+                transform: translate(16rem, -9rem);
+            }
+            
+        }
+        
+        &--2 {
+            transform: translate(1rem, 9rem);
+
+            @include respond(phone) {
+                transform: translate(-2rem, 1rem);
+            }
+
+            @include respond(tab-port) {
+                transform: translate(3rem, -1rem);
+            }
+
+            @include respond(tab-land) {
+                transform: translate(-2rem, -9rem);
+            }
+        }
+        
+        &--3 {
+            transform: translate(1rem, 6rem);
+
+            @include respond(phone) {
+                transform: translate(2rem, 3rem);
+            }
+
+            @include respond(tab-port) {
+                transform: translate(3rem, 0);
+            }
+
+            @include respond(tab-land) {
+                transform: translate(4rem, -7rem);
+            }
+        }
+        
+        &--4 {
+            transform: translate(5rem, 6rem);
+
+            @include respond(phone) {
+                transform: translate(3rem, 2rem);
+            }
+
+            @include respond(tab-port) {
+                transform: translate(9rem, 0);
+            }
+
+            @include respond(tab-land) {
+                transform: translate(9rem, -6rem);
+            }
+        }
+        
+        &--5 {
+            transform: translate(-3rem, 2rem);
+
+            @include respond(phone) {
+                transform: translate(-5rem, 1rem);
+            }
+
+            @include respond(tab-port) {
+                transform: translate(-5rem, 1rem);
+            }
+
+            @include respond(tab-land) {
+                transform: translate(-7rem, -5rem);
+            }
+        }
+        
+        &--6 {
+            transform: translate(5rem, 2rem);
+
+            @include respond(phone) {
+                transform: translate(6rem, 1rem);
+            }
+
+            @include respond(tab-port) {
+                transform: translate(10rem, 1rem);
+            }
+
+            @include respond(tab-land) {
+                transform: translate(12rem, -4rem);
+            }
+        }
+
+        &-image {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 2rem;
+            height: 2rem;
+            transform: translate(-50%, -50%);
+            
+
+            @include respond(tab-port) {
+                left: -1rem;
+                width: 4rem;
+                height: 4rem;
+            }
+
+            @include respond(tab-land) {
+                width: 6rem;
+                height: 6rem;
+            }
+        }
+
+        @include respond(tab-port) {
+            border-radius: 8px;
+            font-size: 1.8rem;
+            
+        }
+
+        @include respond(tab-land) {
+            padding: 1.5rem;
+            padding-left: 3.5rem;
+            border-radius: 10px;
+            font-size: 2rem;
+        }
+    }
+
+    @include respond(tab-port) {
+        padding-top: 4rem;
+    }
+}

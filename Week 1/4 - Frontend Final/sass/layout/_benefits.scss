@@ -1,0 +1,217 @@
+.benefits {
+    padding: 4.2rem 0;
+
+    @include respond(tab-port) {
+        padding: 4.5rem 0;
+    }
+
+    @include respond(tab-land) {
+        padding: {
+            top: 5.7rem 7.9rem;
+        }
+    }
+
+    &__header {
+        @include respond(tab-land) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+        }
+
+        &-title {
+            flex: 1 0 50%;
+            margin-bottom: 1.7rem;
+            color: $white;
+            text-transform: capitalize;
+            font: {
+                size: 2.4rem;
+                weight: 700;
+            }
+    
+            @include respond(tab-port) {
+                margin-bottom: 4rem;
+                font-size: 3.6rem;
+            }
+    
+            @include respond(tab-land) {
+                font-size: 4.8rem;
+            }
+        }
+
+        &-subtitle {
+            margin-bottom: 4rem;
+            color: rgba($white, 0.50);
+            line-height: 1.7;
+            font: {
+                size: 1.4rem;
+                weight: 400;
+            }
+            
+            @include respond(tab-port) {
+                max-width: 90%;
+                margin-bottom: 5rem;
+                font-size: 2rem;
+                line-height: 160%;
+            }
+            
+            @include respond(tab-land) {
+                max-width: 100%;
+                margin-bottom: 0;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    &__wrapper {
+        display: grid;
+        gap: 3rem;
+        grid-template-areas: 
+        'main'
+        'card1'
+        'card2';
+
+        @include respond(phone) {
+            gap: 4rem;
+            grid-template-areas: 
+            'main main'
+            'card1 card2';
+        }
+        
+        @include respond(desktop) {
+            align-items: flex-end;
+            gap: 7.4rem;
+            grid-template-areas: 
+            'main main card1 card2';
+        }
+    }
+
+    &__card {
+        width: 50%;
+        min-width: 10rem;
+        padding: 2rem;
+        border: 3px solid rgba($white, 0.50);
+        border-radius: var(--radius-lg);
+
+        @include respond(phone) {
+            width: 100%;
+        }
+        
+        @include respond(tab-port) {
+            padding: 4rem;
+            min-height: 38rem;
+        }
+
+        // main benefit card
+        &--main {
+            width: 80%;
+            border: none;
+            border-radius: 2rem 8rem 2rem 2rem;
+            background: rgba($gray, 0.20);
+            grid-area: main;
+
+            h4, a {
+                color: $white;
+            }
+
+            @include respond(desktop) {
+                width: 100%;
+            }
+        }
+
+        &-one {
+            grid-area: card1;
+        }
+
+        &-two {
+            grid-area: card2;
+        }
+    }
+
+    &__icon {
+        display: inline-block;
+        padding: 1rem;
+        border-radius: var(--radius);
+        margin-bottom: 2rem;
+        background-color: rgba($gray, 0.10);
+
+        @include respond(tab-port) {
+            padding: 1.5rem;
+            border-radius: 3rem;
+            margin-bottom: 4rem;
+
+            svg {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+
+        @include respond(tab-land) {
+            svg {
+                width: 7rem;
+                height: 7rem;
+            }
+        }
+
+        
+    }
+
+    &__title {
+        width: 90%;
+        min-width: 5rem;
+        margin-bottom: 2rem;
+        text-transform: capitalize;
+        font: {
+            size: 1.4rem;
+            weight: 700;
+        }
+
+        @include respond(tab-port) {
+            margin-bottom: 3rem;
+            font-size: 2.4rem;
+        }
+    }
+
+    &__description {
+        font: {
+            size: 1.2rem;
+            weight: 500;
+        }
+
+        margin-bottom: 2.7rem;
+        line-height: 1.6;
+
+        @include respond(tab-port) {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        text-transform: capitalize;
+        transition: var(--transit);
+        font: {
+            size: 1.2rem;
+            weight: 700;
+        }
+
+        svg {
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        &:hover {
+            color: $white;
+
+            svg {
+                fill: $white;
+            }
+        }
+
+        @include respond(tab-port) {
+            font-size: 1.8rem;
+        }
+    }
+}

@@ -1,0 +1,137 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem;
+    
+
+    // logo
+    &__branding {
+        position: relative;
+        color: $white;
+
+        font: {
+            size: 1.8rem;
+            weight: 700;  
+        }
+
+        &::after {
+            position: absolute;
+            bottom: -40%;
+            left: 0;
+            width: 40%;
+            height: .4rem;
+            border-radius: var(--radius);
+            background-color: $primary-color;
+            content: '';
+        }
+
+        @include respond(tab-port) {
+            font-size: 2.6rem;
+        }
+
+        @include respond(tab-land) {
+            font-size: 3.2rem;
+        }
+    }
+
+    // menu button
+    &__menu-btn {
+        padding: .7rem;
+        border-radius: var(--radius);
+        background: rgba($gray, 15%);
+
+        // hide on large device
+        @include respond(tab-land) {
+            display: none;
+        }
+    }
+
+    // nav links
+    &__nav {
+        display: none;
+
+        // link inside nav
+        &-link {
+            color: rgba($white, 0.5);
+            text-transform: capitalize;
+            transition: var(--transit);
+            font: {
+                size: 2.4rem;
+                weight: 500;
+            }
+
+            &:hover{
+                color: $white;
+            }
+
+            &--active {
+                position: relative;
+                color: $white;
+
+                &::after {
+                    position: absolute;
+                    bottom: -100%;
+                    left: 50%;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 50%;
+                    background-color: $primary-color;
+                    content: '';
+                }
+            }
+        }
+
+        @include respond(tab-land) {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        @include respond(desktop) {
+            gap: 6rem;
+        }
+    }
+
+    // header cta btn
+    &__cta {
+        display: none;
+        
+        &-btn {
+            padding: 2rem 2.6rem;
+            border-radius: var(--radius);
+            background: rgba($gray, 10%);
+            box-shadow: 0 4px 4px 0 rgba($black, 0.25);
+            color: $white;
+            letter-spacing: .2px;
+            text-transform: capitalize;
+            transition: var(--transit);
+            font: {
+                size: 2.4rem;
+                weight: 700;
+            }
+
+            &:hover {
+                background-color: rgba($gray, 20%);
+            }
+        }
+
+        // show on large device
+        @include respond(tab-land) {
+            display: inline-flex;
+        }
+    }
+
+    // Laater
+    // margin-bottom: 3.2rem;
+
+    @include respond(tab-port) {
+        padding: 5rem;
+    }
+
+    @include respond(desktop) {
+        padding: 4rem 24rem;
+    }
+}

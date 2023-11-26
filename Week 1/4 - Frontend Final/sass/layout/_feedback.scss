@@ -1,0 +1,203 @@
+.feedback {
+    padding-top: 3rem;
+    padding-bottom: 14.5rem;
+    background-color: $white;
+    
+    &__subtitle {
+        margin-bottom: 2rem;
+        color: $primary-color;
+        text-align: center;
+        font: {
+            size: 1.4rem;
+            weight: 700;
+        }
+
+        @include respond(tab-port) {
+            font-size: 2rem;
+        }
+
+        @include respond(tab-land) {
+            font-size: 2.4rem;
+        }
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+        color: $black;
+        text-align: center;
+
+        font: {
+            size: 2.4rem;
+            weight: 800;
+        }
+
+        @include respond(tab-port) {
+            margin-bottom: 4rem;
+            font-size: 3.6rem;
+        } 
+
+        @include respond(tab-land) {
+            font-size: 4.8rem;
+        }
+    }
+
+    &__text {
+        max-width: 80%;
+        margin: 0 auto;
+        margin-bottom: 4rem;
+        color: rgba($black, 0.5);
+        text-align: center;
+        font: {
+            size: 1.2rem;
+            weight: 500;
+        }
+
+        @include respond(tab-port) {
+            max-width: 60%;
+            margin-bottom: 6rem;
+            font-size: 1.8rem;
+        }
+
+        @include respond(tab-land) {
+            max-width: 60%;
+            margin-bottom: 10rem;
+            font-size: 2.4rem;
+        }
+    }
+
+    @include respond(tab-port) {
+        padding-top: 4.6rem;
+        padding-bottom: 20.8rem;
+    }
+
+    @include respond(tab-land) {
+        padding-top: 5.7rem;
+        padding-bottom: 30.3rem;
+        background-color: rgba($white, 0.8);
+    }
+}
+
+.testimonial {
+    padding: 2.2rem;
+    border-radius: var(--radius-lg);
+    background: rgba($gray, 0.50);
+    background: {
+        position: center center;
+        image: url('../assets/bottle.png');
+        repeat: no-repeat;
+        size: 50%;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-between;
+        gap: 3rem;
+
+        @include respond(tab-port) {
+            flex-direction: row;
+
+            & > * {
+                flex: 0 0 calc(50% - 3rem);
+            }
+        }
+
+        @include respond(desktop) {
+            gap: 4.5rem;
+
+            & > * {
+                flex: 0 0 calc(33.333% - 4.5rem);
+            }
+
+            
+        }
+    }
+
+    &__avatar {
+        width: 5.3rem;
+        height: 5.3rem;
+        border-radius: var(--radius);
+
+        @include respond(tab-port) {
+            width: 7rem;
+            height: 7rem;
+        }
+    }
+
+    &__author {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3rem;
+        color: $black;
+        gap: 1.5rem;
+
+        &-name {
+            font: {
+                size: 1.3rem;
+                weight: 700;
+            }
+
+            margin-bottom: 1rem;
+            
+            @include respond(tab-port) {
+                font-size: 2rem;
+            }
+            
+            @include respond(tab-land) {
+                font-size: 2.4rem;
+            }
+        }
+
+        &-address {
+            color: rgba($black, 0.5);
+            font: {
+                size: 1rem;
+                weight: 700;
+            };
+
+            @include respond(tab-port) {
+                font-size: 1.4rem;
+            }
+
+        }
+
+        @include respond(tab-port) {
+            font-size: 1.4rem;
+            gap: 2rem;
+        }
+    }
+
+    &__description {
+        padding: 1rem;
+        padding-bottom: 2rem;
+        color: rgb(0 0 0 / 60%);
+        text-align: center;
+        font: {
+            size: 1.2rem;
+            weight: 500;
+        }
+
+        @include respond(tab-port) {
+            font-size: 2.8rem;
+        }
+    
+    }
+
+    &--primary {
+        background-color: $primary-color;
+        
+    }
+
+    &--primary &__author-address,
+    &--primary > * {
+        color: $white;
+    }
+
+    @include respond(tab-port) {
+        max-width: 80%;
+        padding: 3rem;
+        padding-bottom: 6rem;
+    }
+
+    
+}
