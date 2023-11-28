@@ -12,8 +12,8 @@ html, body{
 }
 
 /*
-width: justify content
-height: align items
+width: justify-content
+height: align-items
 */
 
 /* Main CSS starts from here */
@@ -33,32 +33,19 @@ height: align items
     border-radius: 10px;        /* For round corners */
 }
 
-.header h2{
-    color: red;
+.header h1{
+    color: green;
     display: flex;  /* To align text and logo */ 
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-/* .header h2 img{
-    width: 30px;
-    margin-left: 10px;
-} */
-
 /* Pages */
 .pages{
     display: flex;
     justify-content: space-between;
 }
-
-
-
-
-
-
-
-
 
 .task-center{
     display: flex;
@@ -121,4 +108,22 @@ ul li.checked{
 ul li.checked::before{
     background-image: url(images/checked.png);
 
+}
+
+/* For the delete button at the end of the task */
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+    color: black;
+    font-style: italic;
+    line-height: 40px;
+    text-align: center;
+}
+
+ul li span:hover{
+    background: red;
 }

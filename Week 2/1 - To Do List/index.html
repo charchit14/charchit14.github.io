@@ -11,35 +11,28 @@
 <body>
     <div class="container">
 
-    <div class="header">
-        <!-- Title and Logo -->
-        <h2>
-            Task Manager 
-            <!-- <img src="images/icon.png"> -->
-        </h2>
+        <div class="header">
+            <!-- Title and Logo -->
+            <h1>
+                To Do List (Task Management)
+            </h1>
 
-        <!-- Pages -->
-        <div class="pages">
-            <button>Home</button>
-            <button>Completed Tasks</button>
-            <button>Remaining Tasks</button>
+            <!-- Pages -->
+            <div class="pages">
+                <button>Home</button>
+                <button>Completed Tasks</button>
+                <button>Remaining Tasks</button>
+            </div>
+
+            <!-- Creating Task -->
+            <div class="task-center">
+                <input type="text" id="input-box" placeholder="Type your task here">
+                <button onclick="createTask()"> Create Task </button>
+            </div>
+            
+            <ul id="list-container"></ul>
+
         </div>
-
-        <!-- Creating Task -->
-        <div class="task-center">
-            <input type="text" id="input-box" placeholder="Task Title">
-            <button> Create Task</button>
-        </div>
-        
-        <ul id="list-container">
-            <!-- <li class="checked">Task 1</li>
-            <li>Task 1</li>
-            <li>Task 1</li> -->
-        </ul>
-
-
-
-    </div>
 
     </div>
 
