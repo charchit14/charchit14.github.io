@@ -57,6 +57,7 @@ const completedButton = document.getElementById("completed");
 const homeButton = document.getElementById("home");
 const remainingButton = document.getElementById("remaining");
 
+// To display only the checked tasks and change the color of 'Completed Tasks' button
 function showCompletedTasks() {
     const checkedTasks = document.querySelectorAll("li.checked");
     const allTasks = document.querySelectorAll("li");
@@ -74,6 +75,7 @@ function showCompletedTasks() {
     remainingButton.style.backgroundColor = "";
 }
 
+// To display all the listed tasks and change the color of 'Home' button
 function showAllTasks() {
     const allTasks = document.querySelectorAll("li");
     allTasks.forEach(task => {
@@ -85,6 +87,7 @@ function showAllTasks() {
     remainingButton.style.backgroundColor = "";
 }
 
+// To display the remaining tasks and change the color of 'Remaining Tasks' button
 function showRemainingTasks() {
     const uncheckedTasks = document.querySelectorAll("li:not(.checked)");
     const allTasks = document.querySelectorAll("li");
@@ -115,7 +118,7 @@ remainingButton.addEventListener("click", function() {
     showRemainingTasks();
 });
 
-// Set default selection to Home button when the page loads
+// Setting the default selection to Home button when the page loads (waits for the page to load ("load" event))
 window.addEventListener("load", function() {
     showAllTasks();
     homeButton.style.backgroundColor = "yellow";
