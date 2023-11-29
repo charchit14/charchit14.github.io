@@ -48,3 +48,75 @@ function showData(){
     listContainer.innerHTML = localStorage.getItem("data");
 }
 showData();
+
+
+// Functionality to filter out the tasks based on buttons
+
+// Creating the variables
+const completedButton = document.getElementById("completed");
+const homeButton = document.getElementById("home");
+const remainingButton = document.getElementById("remaining");
+
+function showCompletedTasks() {
+    const checkedTasks = document.querySelectorAll("li.checked");
+    const allTasks = document.querySelectorAll("li");
+
+    allTasks.forEach(task => {
+        task.style.display = "none";
+    });
+
+    checkedTasks.forEach(task => {
+        task.style.display = "block";
+    });
+
+    completedButton.style.backgroundColor = "yellow";
+    homeButton.style.backgroundColor = "";
+    remainingButton.style.backgroundColor = "";
+}
+
+function showAllTasks() {
+    const allTasks = document.querySelectorAll("li");
+    allTasks.forEach(task => {
+        task.style.display = "block";
+    });
+
+    completedButton.style.backgroundColor = "";
+    homeButton.style.backgroundColor = "yellow";
+    remainingButton.style.backgroundColor = "";
+}
+
+function showRemainingTasks() {
+    const uncheckedTasks = document.querySelectorAll("li:not(.checked)");
+    const allTasks = document.querySelectorAll("li");
+
+    allTasks.forEach(task => {
+        task.style.display = "none";
+    });
+
+    uncheckedTasks.forEach(task => {
+        task.style.display = "block";
+    });
+
+    completedButton.style.backgroundColor = "";
+    homeButton.style.backgroundColor = "";
+    remainingButton.style.backgroundColor = "yellow";
+}
+
+completedButton.addEventListener("click", function() {
+    showCompletedTasks();
+});
+
+homeButton.addEventListener("click", function() {
+    showAllTasks();
+    homeButton.style.backgroundColor = "yellow";
+});
+
+remainingButton.addEventListener("click", function() {
+    showRemainingTasks();
+});
+
+// Set default selection to Home button when the page loads
+window.addEventListener("load", function() {
+    showAllTasks();
+    homeButton.style.backgroundColor = "yellow";
+});

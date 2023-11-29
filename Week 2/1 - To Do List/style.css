@@ -94,8 +94,8 @@ height: align-items
     border: none;
     outline: none;
     padding: 16px 50px; /* top-bottom and left-roght */
-    color: red; /* Color of the text 'create task' */
-    background: yellow;
+    color: black; /* Color of the text 'create task' */
+    background: orange;
     font-size: 16px;
     cursor: pointer;
     border-radius: 40px;
