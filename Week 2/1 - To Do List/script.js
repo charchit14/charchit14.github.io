@@ -78,6 +78,7 @@ function showCompletedTasks() {
 // To display all the listed tasks and change the color of 'Home' button
 function showAllTasks() {
     const allTasks = document.querySelectorAll("li");
+    
     allTasks.forEach(task => {
         task.style.display = "block";
     });

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Image Carousel</title>
+    <!-- Linking Css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Slider container -->
+    <div class="slider">
+        
+        <!-- Slide 1 -->
+        <div class="slide">
+            <img src="images/ana1.jpg">
+        </div>
+    
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="images/ana2.jpg">
+        </div>
+    
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="images/ana3.jpg">
+        </div>
+        
+        <!-- Adding Radio Buttons (for the selection of a particular image) -->
+        <div class="radio-buttons">
+            <input type="radio" name="slide-selector" id="radio1" class="radio" checked>
+            <label for="radio1"></label>
+
+            <input type="radio" name="slide-selector" id="radio2" class="radio">
+            <label for="radio2"></label>
+
+            <input type="radio" name="slide-selector" id="radio3" class="radio">
+            <label for="radio3"></label>
+        </div>
+
+        <!-- Control Buttons To Move The Image (Left and Right) -->
+        <button class="btn btn-next"> > </button>
+        <button class="btn btn-prev"> < </button>
+    
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
