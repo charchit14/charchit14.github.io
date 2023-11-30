@@ -2,8 +2,8 @@
 var canvas = document.querySelector("canvas");
 
 // Defining variables
-const TOTAL_BALLS = 20;
-const RADIUS = 10;
+const TOTAL_BALLS = 18;
+const RADIUS = 20;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -47,8 +47,8 @@ for (let i = 0; i < TOTAL_BALLS; i++) {
   let y = Math.random() * (innerHeight - RADIUS * 2) + RADIUS;
 
   // Random speed for each ball
-  let dx = (Math.random() - 0.5) * 4;
-  let dy = (Math.random() - 0.5) * 4;
+  let dx = (Math.random() - 0.5) * 6;
+  let dy = (Math.random() - 0.5) * 6;
 
   circleArray.push(new Circle(x, y, dx, dy, RADIUS));
 }
