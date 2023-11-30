@@ -5,7 +5,7 @@
   }
   
   body {
-    height: 100vh;
+    height: 100vh; /* Slide appears central-vertically (takes 100% of view-port) */
     display: grid;
     place-items: center;
   }
@@ -23,31 +23,38 @@
     width: 100%;
     max-width: 800px;
     height: 350px;
-    position: absolute;
-    transition: all 0.5s;
+    position: absolute; /* Positions each slide absolutely within the slider */
+    transition: all 0.5s; /* Transition effect for slide changes over 0.5s */
   }
   
   .slide img {
+    /* Make the image cover entire height and width of the parent container */
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Cover entire container without stretching, maintaining the aspect ratio */
   }
   
   .btn {
-    position: absolute;
+    position: absolute; /* Position absolutely within the parent container */
     width: 40px;
     height: 40px;
     padding: 10px;
     border: none;
     border-radius: 50%;
-    z-index: 10px;
+    /*To determine which elements appear on top or bottom of stack oreder
+    (Dimensionless value, representing stacking context of elements) (Depth when they overlap in a 3D space)  */
+    z-index: 10px; 
     cursor: pointer;
     background-color: #fff;
     font-size: 18px;
   }
+
+  /* Styles for button when in active state (when clicked) */
   .btn:active {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Enlarge the button slightly when clicked */
   }
+
+  /* Styles for previous and next buttons (positioning them accordingly within the slider) */
   .btn-prev {
     top: 45%;
     left: 2%;
@@ -61,15 +68,17 @@
   /* Styling Radio Buttons */
   .radio-buttons {
     position: absolute;
-    bottom: 10px;
+    bottom: 10px; /* 10px below from its parent (Since, position is absolute) */
     width: 100%;
     text-align: center;
   }
 
   .radio {
-    display: none;
+    display: none;  /*Hides the radio buton (to remove default radio button behaviour i.e. to hide which button is clicked)*/
   }
 
+  /* Styles the labels that are placed next to the hidden radio buttons.
+  In this case, it creates small circular elements with a yellow background color and defines their appearance and spacing */
   .radio + label {
     display: inline-block;
     width: 10px;
