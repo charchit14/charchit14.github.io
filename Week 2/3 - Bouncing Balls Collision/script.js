@@ -1,32 +1,35 @@
+// Selecting the canvas and creating its variable
 var canvas = document.querySelector("canvas");
 
-TOTAL_BALLS = 20;
+// Defining variables
+const TOTAL_BALLS = 20;
+const RADIUS = 10;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var c = canvas.getContext("2d");
 
-function Circle(x, y, dx, dy, radius) {
+function Circle(x, y, dx, dy, RADIUS) {
   this.x = x;
   this.y = y;
   this.dx = dx;
   this.dy = dy;
-  this.radius = radius;
+  this.RADIUS = RADIUS;
 
   this.draw = function () {
     c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = "yellow";
+    c.arc(this.x, this.y, this.RADIUS, 0, Math.PI * 2);
+    c.fillStyle = "yellow"; // Color of the balls
     c.fill();
   };
 
   this.update = function () {
-    if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+    if (this.x + this.RADIUS > innerWidth || this.x - this.RADIUS < 0) {
       this.dx = -this.dx;
     }
 
-    if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+    if (this.y + this.RADIUS > innerHeight || this.y - this.RADIUS < 0) {
       this.dy = -this.dy;
     }
 
@@ -37,18 +40,17 @@ function Circle(x, y, dx, dy, radius) {
 }
 
 const circleArray = [];
-const radius = 10;
 
 // Creating circles and adding them to the array
 for (let i = 0; i < TOTAL_BALLS; i++) {
-  let x = Math.random() * (innerWidth - radius * 2) + radius;
-  let y = Math.random() * (innerHeight - radius * 2) + radius;
+  let x = Math.random() * (innerWidth - RADIUS * 2) + RADIUS;
+  let y = Math.random() * (innerHeight - RADIUS * 2) + RADIUS;
 
   // Random speed for each ball
   let dx = (Math.random() - 0.5) * 4;
   let dy = (Math.random() - 0.5) * 4;
 
-  circleArray.push(new Circle(x, y, dx, dy, radius));
+  circleArray.push(new Circle(x, y, dx, dy, RADIUS));
 }
 
 // Detects collision between two circles
@@ -57,7 +59,7 @@ function detectCollision(circle1, circle2) {
   let distanceY = circle1.y - circle2.y;
   let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-  if (distance < circle1.radius + circle2.radius) {
+  if (distance < circle1.RADIUS + circle2.RADIUS) {
     let tempDx = circle1.dx;
     let tempDy = circle1.dy;
     circle1.dx = circle2.dx;
@@ -72,7 +74,7 @@ function resolveOverlap(circle1, circle2) {
   const distanceX = circle1.x - circle2.x;
   const distanceY = circle1.y - circle2.y;
   const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-  const overlap = circle1.radius + circle2.radius - distance;
+  const overlap = circle1.RADIUS + circle2.RADIUS - distance;
 
   if (overlap >= 0) {
     const angle = Math.atan2(distanceY, distanceX);
