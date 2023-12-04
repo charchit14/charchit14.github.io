@@ -29,8 +29,8 @@ let doodle = {
 // Adding the game physics
 let velocityX = 0; // Initial velocity before pressing left or right key
 let velocityY = 0;
-let initialVelocityY = -6;
-let gravity = 0.2;
+let initialVelocityY = -5;
+let gravity = 0.2; 
 
 
 // Setting up platforms (creating an array because we need multiple platforms)

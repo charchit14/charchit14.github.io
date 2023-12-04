@@ -12,6 +12,8 @@ body {
 #board {
     /* background: pink; */
     background: url(images/screen.png);
+
+    /* Keepthing the game-board at the center of the screen */
     position: absolute;
     top: 50%;
     left: 50%;
