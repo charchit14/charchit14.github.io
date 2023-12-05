@@ -1,0 +1,19 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    background: lavender;
+}
+
+
+#ground {
+    background: darkgreen;
+    /* background: url(images/foosball.png); */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

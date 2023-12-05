@@ -151,3 +151,45 @@ ul li span{
 ul li span:hover{
     background: red;
 }
+
+
+
+
+/* Media query for screens up to 576px (mobile) */
+@media screen and (max-width: 576px) {
+  .header {
+    margin: 50px auto 10px;
+    padding: 20px 15px 40px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .pages {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  #home, #completed, #remaining {
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
+
+  .task-center {
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  .task-center input {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .task-center button {
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+}
