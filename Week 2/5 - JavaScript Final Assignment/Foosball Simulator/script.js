@@ -30,7 +30,20 @@ let goalPostOffset = 0; // Distance from the edges
 let leftTeamScore = 0;
 let rightTeamScore = 0;
 
+// Function to draw players
+function drawPlayers(color, startX, startY, count) {
+    ctx.fillStyle = color;
+    const playerWidth = 12;
+    const playerHeight = 50;
+    const gap = 80; // Gap between players
+
+    for (let i = 0; i < count; i++) {
+        ctx.fillRect(startX, startY + i * (playerHeight + gap), playerWidth, playerHeight);
+    }
+}
+
 function drawGround() {
+    
     // Drawing a white center line
     ctx.beginPath();
     ctx.strokeStyle = 'white';
@@ -46,6 +59,18 @@ function drawGround() {
     ctx.moveTo(groundWidth / 2 - 10, groundHeight / 2);
     ctx.lineTo(groundWidth / 2 + 10, groundHeight / 2);
     ctx.stroke();
+    
+    // Drawing players for Blue Team
+    drawPlayers('skyblue', 50, 310, 1); // 1 player (Goalkeeper) (color, closeness to center, sideways)
+    drawPlayers('skyblue', 200, 200, 3); // 3 players (Defenders)
+    drawPlayers('skyblue', 525, 120, 4); // 4 players (Midfielders)
+    drawPlayers('skyblue', 950, 200, 3); // 3 players (Forwarders)
+
+    // Drawing players for Red Team
+    drawPlayers('red', groundWidth - 60, 310, 1); // 1 player (Goalkeeper)
+    drawPlayers('red', groundWidth - 200, 200, 3); // 3 players (Defenders)
+    drawPlayers('red', groundWidth - 525, 120, 4); // 4 players (Midfielders)
+    drawPlayers('red', groundWidth - 950, 200, 3); // 3 players (Forwarders)
 
     // Drawing left goal post
     ctx.fillStyle = 'white';
@@ -69,14 +94,15 @@ function checkGoalCollision() {
         // Ball has entered the left or right goal post area
         if (ballX - ballRadius < goalPostWidth) {
             rightTeamScore++; // Right team scored
+            ballVelocityX = -ballVelocity; // Ball moves towards the left (Blue Team)
         } else {
             leftTeamScore++; // Left team scored
+            ballVelocityX = ballVelocity; // Ball moves towards the right (Red Team)
         }
         // Reset ball to the center
         ballX = groundWidth / 2;
         ballY = groundHeight / 2;
-        ballVelocityX = Math.random() > 0.5 ? 2 : -2;
-        ballVelocityY = Math.random() > 0.5 ? 2 : -2;
+        ballVelocityY = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Randomize Y-direction for the next movement
     }
 }
 
@@ -84,7 +110,7 @@ function drawCircle() {
     // Clearing the canvas to avoid overlapping of the frames
     ctx.clearRect(0, 0, groundWidth, groundHeight);
 
-    // Redraw the ground elements
+    // Redrawing the ground elements
     drawGround();
 
     // Drawing the ball
@@ -98,12 +124,12 @@ function drawCircle() {
     ballX += ballVelocityX;
     ballY += ballVelocityY;
 
-    // Checking the boundary collision
+    // Boundary collision check
     if (ballX + ballRadius > groundWidth || ballX - ballRadius < 0) {
-        ballVelocityX *= -1; // Reversing the X-direction
+        ballVelocityX *= -1; // Reverse the X-direction
     }
     if (ballY + ballRadius > groundHeight || ballY - ballRadius < 0) {
-        ballVelocityY *= -1; // Reversing the Y-direction
+        ballVelocityY *= -1; // Reverse the Y-direction
     }
 
     // Check for goal collision
@@ -114,6 +140,3 @@ function drawCircle() {
 
 // Start the animation
 drawCircle();
-
-
-// Setting up the players
