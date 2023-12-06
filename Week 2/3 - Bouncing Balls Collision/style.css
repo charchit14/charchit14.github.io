@@ -25,3 +25,21 @@ body {
 /* 'transform' is to move the element 50% of its own width to the left and 50% of its own height upwards.
 This effectively centers the element horizontally and vertically within its containing parent. 
 */
+
+/* Media queries for responsiveness */
+
+/* Mobile devices (up to 576px) */
+@media screen and (max-width: 576px) {
+  #canvas {
+    width: 95vw; /* Adjusting width for smaller screens */
+    height: 70vh; /* Adjusting height for smaller screens */
+  }
+}
+
+/* Tablets (577px to 992px) */
+@media screen and (min-width: 577px) and (max-width: 992px) {
+  #canvas {
+    width: 80vw; /* Adjusting width for tablets */
+    height: 80vh; /* Adjusting height for tablets */
+  }
+}

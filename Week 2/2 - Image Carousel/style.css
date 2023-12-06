@@ -88,3 +88,24 @@
     margin: 0 5px;
     cursor: pointer;
   }
+
+/* Media Queries for Responsive Design */
+/* Mobile devices (up to 576px) */
+@media screen and (max-width: 576px) {
+  .slider,
+  .slide,
+  .slide img {
+    max-width: 100%;
+    height: 250px;
+  }
+}
+
+/* Tablets (576px to 992px) */
+@media screen and (min-width: 577px) and (max-width: 992px) {
+  .slider,
+  .slide,
+  .slide img {
+    max-width: 90%;
+    height: 300px;
+  }
+}
