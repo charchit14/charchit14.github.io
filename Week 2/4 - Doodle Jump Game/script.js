@@ -155,7 +155,7 @@ function update() {
 
     // Game Over Screen
     if (gameOver) {
-        context.fillText("GAME OVER (Press 'Space' to Restart)", boardWidth/7, boardHeight*7/8)
+        context.fillText("Game Over. Press 'Space' to Restart.", boardWidth/7, boardHeight*7/8)
     }
 }
 

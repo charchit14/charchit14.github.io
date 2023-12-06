@@ -13,6 +13,23 @@ ground.height = groundHeight;
 // Getting the 2D rendering context of the canvas
 let ctx = ground.getContext('2d');
 
+// Defining and designing the football
+let ballX = groundWidth / 2;
+let ballY = groundHeight / 2;
+const ballRadius = 10;
+let ballVelocity = 3;
+let ballVelocityX = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Random initial X-direction
+let ballVelocityY = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Random initial Y-direction
+
+// Defining goal post's dimensions and positions
+let goalPostWidth = 24;
+let goalPostHeight = 120;
+let goalPostOffset = 0; // Distance from the edges
+
+// Scores for both teams
+let leftTeamScore = 0;
+let rightTeamScore = 0;
+
 function drawGround() {
     // Drawing a white center line
     ctx.beginPath();
@@ -30,25 +47,38 @@ function drawGround() {
     ctx.lineTo(groundWidth / 2 + 10, groundHeight / 2);
     ctx.stroke();
 
-    // Defining goal post's dimensions and positions
-    let goalPostWidth = 24;
-    let goalPostHeight = 120;
-    let goalPostOffset = 0; // Distance from the edges
-
     // Drawing left goal post
     ctx.fillStyle = 'white';
     ctx.fillRect(goalPostOffset, (groundHeight - goalPostHeight) / 2, goalPostWidth, goalPostHeight);
 
     // Drawing right goal post
     ctx.fillRect(groundWidth - goalPostOffset - goalPostWidth, (groundHeight - goalPostHeight) / 2, goalPostWidth, goalPostHeight);
+
+    // Displaying scores
+    ctx.fillStyle = 'white';
+    ctx.font = '18px Arial';
+    ctx.fillText(`Blue Team: ${leftTeamScore}`, 20, 40);
+    ctx.fillText(`Red Team: ${rightTeamScore}`, groundWidth - 140, 40);
 }
 
-// Defining and designing the football
-let ballX = groundWidth / 2;
-let ballY = groundHeight / 2;
-const ballRadius = 10;
-let ballVelocityX = Math.random() > 0.5 ? 2 : -2; // Random initial X-direction
-let ballVelocityY = Math.random() > 0.5 ? 2 : -2; // Random initial Y-direction
+function checkGoalCollision() {
+    if (
+        (ballX - ballRadius < goalPostWidth && ballY > (groundHeight - goalPostHeight) / 2 && ballY < (groundHeight + goalPostHeight) / 2) ||
+        (ballX + ballRadius > groundWidth - goalPostWidth && ballY > (groundHeight - goalPostHeight) / 2 && ballY < (groundHeight + goalPostHeight) / 2)
+    ) {
+        // Ball has entered the left or right goal post area
+        if (ballX - ballRadius < goalPostWidth) {
+            rightTeamScore++; // Right team scored
+        } else {
+            leftTeamScore++; // Left team scored
+        }
+        // Reset ball to the center
+        ballX = groundWidth / 2;
+        ballY = groundHeight / 2;
+        ballVelocityX = Math.random() > 0.5 ? 2 : -2;
+        ballVelocityY = Math.random() > 0.5 ? 2 : -2;
+    }
+}
 
 function drawCircle() {
     // Clearing the canvas to avoid overlapping of the frames
@@ -76,6 +106,9 @@ function drawCircle() {
         ballVelocityY *= -1; // Reversing the Y-direction
     }
 
+    // Check for goal collision
+    checkGoalCollision();
+
     requestAnimationFrame(drawCircle);
 }
 
@@ -83,49 +116,4 @@ function drawCircle() {
 drawCircle();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Setting up the players
-// // Define player column properties
-// let columnWidth = 20; // Width of each player (column)
-// let columnGap = 48;    // Gap between columns
-// let columnCount = 4;   // Number of columns
-// let playerHeight = 30; // Height of each player
-
-// // Calculate total width occupied by columns and gaps
-// let totalColumnsWidth = columnCount * columnWidth + (columnCount - 1) * columnGap;
-
-// // Calculate the starting position for the columns on the left side
-// let startXLeft = (groundWidth / 2 - totalColumnsWidth) / 2;
-
-// // Draw four columns of sky blue players on the left side
-// for (let i = 0; i < columnCount; i++) {
-//     let columnX = startXLeft + i * (columnWidth + columnGap);
-
-//     // Draw a sky blue player rectangle in each column on the left side
-//     ctx.fillStyle = 'skyblue';
-//     ctx.fillRect(columnX, (groundHeight - playerHeight) / 2, columnWidth, playerHeight);
-// }
-
-// // Calculate the starting position for the columns on the right side
-// let startXRight = groundWidth / 2 + (groundWidth / 2 - totalColumnsWidth) / 2;
-
-// // Draw four columns of red players on the right side
-// for (let i = 0; i < columnCount; i++) {
-//     let columnX = startXRight + i * (columnWidth + columnGap);
-
-//     // Draw a red player rectangle in each column on the right side
-//     ctx.fillStyle = 'red';
-//     ctx.fillRect(columnX, (groundHeight - playerHeight) / 2, columnWidth, playerHeight);
-// }
+// Setting up the players
