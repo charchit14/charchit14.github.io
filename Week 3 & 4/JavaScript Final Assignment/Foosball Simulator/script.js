@@ -3,6 +3,17 @@ let ground;
 let groundWidth = 1320;
 let groundHeight = 660;
 
+
+// NEW VARIABLES
+let blueTeamY = 0; // Initial position for the blue team
+let redTeamY = 0; // Initial position for the red team
+const playerMoveSpeed = 5; // Speed at which players move
+// END OF NEW VAR
+
+
+
+
+
 // Getting the canvas element by its ID
 ground = document.getElementById('ground');
 
@@ -30,7 +41,51 @@ let goalPostOffset = 0; // Distance from the edges
 let leftTeamScore = 0;
 let rightTeamScore = 0;
 
+
+
+
+
+
+// NEW
+// Event listener for key press
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowUp' && blueTeamY > 0) {
+        blueTeamY -= playerMoveSpeed; // Move the blue team up
+    } else if (event.key === 'ArrowDown' && blueTeamY < groundHeight - 60) {
+        blueTeamY += playerMoveSpeed; // Move the blue team down
+    } else if (event.key === 'w' && redTeamY > 0) {
+        redTeamY -= playerMoveSpeed; // Move the red team up
+    } else if (event.key === 's' && redTeamY < groundHeight - 60) {
+        redTeamY += playerMoveSpeed; // Move the red team down
+    }
+});
+// END NEW
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Function to draw players
+// function drawPlayers(color, startX, startY, count) {
+//     ctx.fillStyle = color;
+//     const playerWidth = 12;
+//     const playerHeight = 60;
+//     const gap = 80; // Gap between players
+
+//     for (let i = 0; i < count; i++) {
+//         ctx.fillRect(startX, startY + i * (playerHeight + gap), playerWidth, playerHeight);
+//     }
+// }
+
+// Update the drawPlayers function to use blueTeamY and redTeamY positions
 function drawPlayers(color, startX, startY, count) {
     ctx.fillStyle = color;
     const playerWidth = 12;
@@ -38,9 +93,18 @@ function drawPlayers(color, startX, startY, count) {
     const gap = 80; // Gap between players
 
     for (let i = 0; i < count; i++) {
-        ctx.fillRect(startX, startY + i * (playerHeight + gap), playerWidth, playerHeight);
+        if (color === 'skyblue') {
+            ctx.fillRect(startX, blueTeamY + startY + i * (playerHeight + gap), playerWidth, playerHeight);
+        } else if (color === 'red') {
+            ctx.fillRect(startX, redTeamY + startY + i * (playerHeight + gap), playerWidth, playerHeight);
+        }
     }
 }
+
+
+
+
+
 
 function drawGround() {
     
@@ -72,6 +136,30 @@ function drawGround() {
     drawPlayers('red', groundWidth - 525, 110, 4); // 4 players (Midfielders)
     drawPlayers('red', groundWidth - 950, 190, 3); // 3 players (Forwarders)
 
+
+
+    // // Drawing players for Blue Team
+    // drawPlayers('skyblue', 50, 0, 1); // 1 player (Goalkeeper)
+    // drawPlayers('skyblue', 200, 110, 3); // 3 players (Defenders)
+    // drawPlayers('skyblue', 525, 190, 4); // 4 players (Midfielders)
+    // drawPlayers('skyblue', 950, 110, 3); // 3 players (Forwarders)
+
+    // // Drawing players for Red Team
+    // drawPlayers('red', groundWidth - 60, 0, 1); // 1 player (Goalkeeper)
+    // drawPlayers('red', groundWidth - 200, 110, 3); // 3 players (Defenders)
+    // drawPlayers('red', groundWidth - 525, 190, 4); // 4 players (Midfielders)
+    // drawPlayers('red', groundWidth - 950, 110, 3); // 3 players (Forwarders)
+
+
+
+
+
+
+
+
+
+
+
     // Drawing left goal post
     ctx.fillStyle = 'white';
     ctx.fillRect(goalPostOffset, (groundHeight - goalPostHeight) / 2, goalPostWidth, goalPostHeight);
@@ -87,7 +175,9 @@ function drawGround() {
 }
 
 
-// Checkingm
+// Moving Players
+const playersSpeed = 4;
+
 
 
 
