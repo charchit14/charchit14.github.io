@@ -87,7 +87,7 @@ function drawGround() {
 }
 
 
-// Checking the player and ball collision
+// Checkingm
 
 
 
