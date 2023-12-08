@@ -3,16 +3,10 @@ let ground;
 let groundWidth = 1320;
 let groundHeight = 660;
 
-
-// NEW VARIABLES
+// Defining player movement variables
 let blueTeamY = 0; // Initial position for the blue team
 let redTeamY = 0; // Initial position for the red team
-const playerMoveSpeed = 5; // Speed at which players move
-// END OF NEW VAR
-
-
-
-
+const playerMoveSpeed = 10; // Speed at which players move
 
 // Getting the canvas element by its ID
 ground = document.getElementById('ground');
@@ -42,68 +36,76 @@ let leftTeamScore = 0;
 let rightTeamScore = 0;
 
 
-
-
-
-
-// NEW
 // Event listener for key press
 document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowUp' && blueTeamY > 0) {
         blueTeamY -= playerMoveSpeed; // Move the blue team up
-    } else if (event.key === 'ArrowDown' && blueTeamY < groundHeight - 60) {
+    } 
+    else if (event.key === 'ArrowDown' && blueTeamY < groundHeight - 60) {
         blueTeamY += playerMoveSpeed; // Move the blue team down
-    } else if (event.key === 'w' && redTeamY > 0) {
+    } 
+    else if (event.key === 'w' && redTeamY > 0) {
         redTeamY -= playerMoveSpeed; // Move the red team up
-    } else if (event.key === 's' && redTeamY < groundHeight - 60) {
+    } 
+    else if (event.key === 's' && redTeamY < groundHeight - 60) {
         redTeamY += playerMoveSpeed; // Move the red team down
     }
 });
-// END NEW
 
 
+// Function to check collision between players and the ball
+function checkPlayerBallCollision(playerX, playerY, playerWidth, playerHeight) {
+    // Calculate the distance between the ball and the center of the player
+    const distX = Math.abs(ballX - (playerX + playerWidth / 2));
+    const distY = Math.abs(ballY - (playerY + playerHeight / 2));
 
-
-
-
-
-
-
-
-
-
-
-// Function to draw players
-// function drawPlayers(color, startX, startY, count) {
-//     ctx.fillStyle = color;
-//     const playerWidth = 12;
-//     const playerHeight = 60;
-//     const gap = 80; // Gap between players
-
-//     for (let i = 0; i < count; i++) {
-//         ctx.fillRect(startX, startY + i * (playerHeight + gap), playerWidth, playerHeight);
-//     }
-// }
-
-// Update the drawPlayers function to use blueTeamY and redTeamY positions
-function drawPlayers(color, startX, startY, count) {
-    ctx.fillStyle = color;
-    const playerWidth = 12;
-    const playerHeight = 60;
-    const gap = 80; // Gap between players
-
-    for (let i = 0; i < count; i++) {
-        if (color === 'skyblue') {
-            ctx.fillRect(startX, blueTeamY + startY + i * (playerHeight + gap), playerWidth, playerHeight);
-        } else if (color === 'red') {
-            ctx.fillRect(startX, redTeamY + startY + i * (playerHeight + gap), playerWidth, playerHeight);
-        }
+    // Checking if the distance is less than the sum of the radii of ball and player (collision)
+    if (distX <= ballRadius + playerWidth / 2 && distY <= ballRadius + playerHeight / 2) {
+        
+        // Collision occurred between ball and player so Change the ball's direction based on the collision
+        ballVelocityX *= -1; // Reverse the X-direction of the ball
+        ballVelocityY *= -1; // Reverse the Y-direction of the ball
     }
 }
 
 
+// drawPlayers function to include collision detection and  players movement
+function drawPlayers(color, startX, startY, count) {
+    ctx.fillStyle = color;
+    const playerWidth = 12;
+    const playerHeight = 60;
+    const gap = 80;
 
+    for (let i = 0; i < count; i++) {   //Loop through each player in the specified count
+        let adjustedY;  // Variable to hold the adjusted Y-position of the player
 
+        // For Blue Team
+        if (color === 'skyblue') {
+            const maxUpward = startY + i * (playerHeight + gap);    // Calculation for maximum upward movement of a player
+            const minDownward = groundHeight - 60 - (count - 1 - i) * (playerHeight + gap); // Maximum downward movement of a player
+
+            adjustedY = Math.max(blueTeamY + startY + i * (playerHeight + gap), maxUpward); // Limiting the adjusted Y-position based on upward movement
+            adjustedY = Math.min(adjustedY, minDownward);   // Limiting the adjusted Y-position based on downward move
+            ctx.fillRect(startX, adjustedY, playerWidth, playerHeight); // Drawing the player rectangle at the adjusted position
+
+            // Collision for blue team
+            checkPlayerBallCollision(startX, adjustedY, playerWidth, playerHeight);
+        } 
+        
+        // For Red Team
+        else if (color === 'red') {
+            const maxUpward = startY + i * (playerHeight + gap);
+            const minDownward = groundHeight - 60 - (count - 1 - i) * (playerHeight + gap);
+
+            adjustedY = Math.max(redTeamY + startY + i * (playerHeight + gap), maxUpward);
+            adjustedY = Math.min(adjustedY, minDownward);
+            ctx.fillRect(startX, adjustedY, playerWidth, playerHeight);
+
+            // Collision for red team
+            checkPlayerBallCollision(startX, adjustedY, playerWidth, playerHeight);
+        }
+    }
+}
 
 
 function drawGround() {
@@ -123,41 +125,18 @@ function drawGround() {
     ctx.moveTo(groundWidth / 2 - 10, groundHeight / 2);
     ctx.lineTo(groundWidth / 2 + 10, groundHeight / 2);
     ctx.stroke();
-    
-    // Drawing players for Blue Team
-    drawPlayers('skyblue', 50, 300, 1); // 1 player (Goalkeeper) (color, closeness to center, sideways)
-    drawPlayers('skyblue', 200, 190, 3); // 3 players (Defenders)
-    drawPlayers('skyblue', 525, 110, 4); // 4 players (Midfielders)
-    drawPlayers('skyblue', 950, 190, 3); // 3 players (Forwarders)
 
-    // Drawing players for Red Team
-    drawPlayers('red', groundWidth - 60, 300, 1); // 1 player (Goalkeeper)
-    drawPlayers('red', groundWidth - 200, 190, 3); // 3 players (Defenders)
-    drawPlayers('red', groundWidth - 525, 110, 4); // 4 players (Midfielders)
-    drawPlayers('red', groundWidth - 950, 190, 3); // 3 players (Forwarders)
+    // Checking collision between players and the ball for Blue Team
+    checkPlayerBallCollision(50, blueTeamY, 12, 60); // Adjusting parameters for the goalkeeper
+    checkPlayerBallCollision(200, blueTeamY + 190, 12, 60); // Adjusting parameters for defenders
+    checkPlayerBallCollision(525, blueTeamY + 110, 12, 60); // Adjusting parameters for midfielders
+    checkPlayerBallCollision(950, blueTeamY + 190, 12, 60); // Adjusting parameters for forwarders
 
-
-
-    // // Drawing players for Blue Team
-    // drawPlayers('skyblue', 50, 0, 1); // 1 player (Goalkeeper)
-    // drawPlayers('skyblue', 200, 110, 3); // 3 players (Defenders)
-    // drawPlayers('skyblue', 525, 190, 4); // 4 players (Midfielders)
-    // drawPlayers('skyblue', 950, 110, 3); // 3 players (Forwarders)
-
-    // // Drawing players for Red Team
-    // drawPlayers('red', groundWidth - 60, 0, 1); // 1 player (Goalkeeper)
-    // drawPlayers('red', groundWidth - 200, 110, 3); // 3 players (Defenders)
-    // drawPlayers('red', groundWidth - 525, 190, 4); // 4 players (Midfielders)
-    // drawPlayers('red', groundWidth - 950, 110, 3); // 3 players (Forwarders)
-
-
-
-
-
-
-
-
-
+    // Checking collision between players and the ball for Red Team
+    checkPlayerBallCollision(groundWidth - 60, redTeamY, 12, 60); // Adjusting parameters for the goalkeeper
+    checkPlayerBallCollision(groundWidth - 200, redTeamY + 190, 12, 60); // Adjusting parameters for defenders
+    checkPlayerBallCollision(groundWidth - 525, redTeamY + 110, 12, 60); // Adjusting parameters for midfielders
+    checkPlayerBallCollision(groundWidth - 950, redTeamY + 190, 12, 60); // Adjusting parameters for forwarders
 
 
     // Drawing left goal post
@@ -175,24 +154,6 @@ function drawGround() {
 }
 
 
-// Moving Players
-const playersSpeed = 4;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function checkGoalCollision() {
     if (
         (ballX - ballRadius < goalPostWidth && ballY > (groundHeight - goalPostHeight) / 2 && ballY < (groundHeight + goalPostHeight) / 2) ||
@@ -202,16 +163,19 @@ function checkGoalCollision() {
         if (ballX - ballRadius < goalPostWidth) {
             rightTeamScore++; // Right team scored
             ballVelocityX = -ballVelocity; // Ball moves towards the left (Blue Team)
-        } else {
+        } 
+        else {
             leftTeamScore++; // Left team scored
             ballVelocityX = ballVelocity; // Ball moves towards the right (Red Team)
         }
+        
         // Reset ball to the center
         ballX = groundWidth / 2;
         ballY = groundHeight / 2;
         ballVelocityY = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Randomize Y-direction for the next movement
     }
 }
+
 
 function drawCircle() {
     // Clearing the canvas to avoid overlapping of the frames
@@ -238,6 +202,18 @@ function drawCircle() {
     if (ballY + ballRadius > groundHeight || ballY - ballRadius < 0) {
         ballVelocityY *= -1; // Reverse the Y-direction
     }
+
+    // For Blue Team
+    drawPlayers('skyblue', 50, 300, 1);
+    drawPlayers('skyblue', 200, 190, 3);
+    drawPlayers('skyblue', 525, 110, 4);
+    drawPlayers('skyblue', 950, 190, 3);
+
+    // For Red Team
+    drawPlayers('red', groundWidth - 60, 300, 1);
+    drawPlayers('red', groundWidth - 200, 190, 3);
+    drawPlayers('red', groundWidth - 525, 110, 4);
+    drawPlayers('red', groundWidth - 950, 190, 3);
 
     // Check for goal collision
     checkGoalCollision();
