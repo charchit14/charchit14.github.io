@@ -1,229 +1,483 @@
-// Setting up the ground
-let ground;
-let groundWidth = 1320;
-let groundHeight = 660;
+// Global Variables
+var DIRECTION = {
+  IDLE: 0,
+  UP: 1,
+  DOWN: 2,
+  LEFT: 3,
+  RIGHT: 4,
+};
 
-// Defining player movement variables
-let blueTeamY = 0; // Initial position for the blue team
-let redTeamY = 0; // Initial position for the red team
-const playerMoveSpeed = 10; // Speed at which players move
+var rounds = [3, 4, 4, 4, 3];
+var colors = ["#1abc9c", "#2ecc71", "#3498db", "#8c52ff", "#9b59b6"];
 
-// Getting the canvas element by its ID
-ground = document.getElementById('ground');
+// The ball object (The cube that bounces back and forth)
+var Ball = {
+  new: function (incrementedSpeed) {
+    return {
+      width: 20,
+      height: 20,
+      x: this.canvas.width / 2 - 9,
+      y: this.canvas.height / 2 - 9,
+      moveX: DIRECTION.IDLE,
+      moveY: DIRECTION.IDLE,
+      speed: incrementedSpeed || 7,
+    };
+  },
+};
 
-// Setting the width and height attributes of the canvas
-ground.width = groundWidth;
-ground.height = groundHeight;
+// The ai object (The two lines that move up and down)
+var Ai = {
+  new: function (side) {
+    return {
+      width: 18, // Width of the players
+      height: 120, // Height of the players
+      x: side === "left" ? 150 : this.canvas.width - 150,
+      y: this.canvas.height / 2 - 35,
+      score: 0,
+      move: DIRECTION.IDLE,
+      speed: 8,
+    };
+  },
+};
 
-// Getting the 2D rendering context of the canvas
-let ctx = ground.getContext('2d');
+// var Ai = {
+//     new: function (side) {
+//         var playerGap = 100; // The desired gap between player and the upper line of the D-box for adjustment
+//         var playerHeight = 120; // Height of the players
+//         var yPosition = (this.canvas.height / 2) - (playerHeight / 2) - playerGap; // Adjusting the y position for the player
 
-// Defining and designing the football
-let ballX = groundWidth / 2;
-let ballY = groundHeight / 2;
-const ballRadius = 10;
-let ballVelocity = 2;
-let ballVelocityX = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Random initial X-direction
-let ballVelocityY = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Random initial Y-direction
-
-// Defining goal post's dimensions and positions
-let goalPostWidth = 24;
-let goalPostHeight = 120;
-let goalPostOffset = 0; // Distance from the edges
-
-// Scores for both teams
-let leftTeamScore = 0;
-let rightTeamScore = 0;
-
-
-// Event listener for key press
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowUp' && blueTeamY > 0) {
-        blueTeamY -= playerMoveSpeed; // Move the blue team up
-    } 
-    else if (event.key === 'ArrowDown' && blueTeamY < groundHeight - 60) {
-        blueTeamY += playerMoveSpeed; // Move the blue team down
-    } 
-    else if (event.key === 'w' && redTeamY > 0) {
-        redTeamY -= playerMoveSpeed; // Move the red team up
-    } 
-    else if (event.key === 's' && redTeamY < groundHeight - 60) {
-        redTeamY += playerMoveSpeed; // Move the red team down
-    }
-});
-
-
-// Function to check collision between players and the ball
-function checkPlayerBallCollision(playerX, playerY, playerWidth, playerHeight) {
-    // Calculate the distance between the ball and the center of the player
-    const distX = Math.abs(ballX - (playerX + playerWidth / 2));
-    const distY = Math.abs(ballY - (playerY + playerHeight / 2));
-
-    // Checking if the distance is less than the sum of the radii of ball and player (collision)
-    if (distX <= ballRadius + playerWidth / 2 && distY <= ballRadius + playerHeight / 2) {
-        
-        // Collision occurred between ball and player so Change the ball's direction based on the collision
-        ballVelocityX *= -1; // Reverse the X-direction of the ball
-        ballVelocityY *= -1; // Reverse the Y-direction of the ball
-    }
-}
+//         return {
+//             width: 18, // Width of the players
+//             height: playerHeight, // Height of the players
+//             x: side === 'left' ? 150 : this.canvas.width - 150,
+//             y: yPosition,
+//             score: 0,
+//             move: DIRECTION.IDLE,
+//             speed: 8
+//         };
+//     }
+// };
 
 
-// drawPlayers function to include collision detection and  players movement
-function drawPlayers(color, startX, startY, count) {
-    ctx.fillStyle = color;
-    const playerWidth = 12;
-    const playerHeight = 60;
-    const gap = 80;
 
-    for (let i = 0; i < count; i++) {   //Loop through each player in the specified count
-        let adjustedY;  // Variable to hold the adjusted Y-position of the player
 
-        // For Blue Team
-        if (color === 'skyblue') {
-            const maxUpward = startY + i * (playerHeight + gap);    // Calculation for maximum upward movement of a player
-            const minDownward = groundHeight - 60 - (count - 1 - i) * (playerHeight + gap); // Maximum downward movement of a player
 
-            adjustedY = Math.max(blueTeamY + startY + i * (playerHeight + gap), maxUpward); // Limiting the adjusted Y-position based on upward movement
-            adjustedY = Math.min(adjustedY, minDownward);   // Limiting the adjusted Y-position based on downward move
-            ctx.fillRect(startX, adjustedY, playerWidth, playerHeight); // Drawing the player rectangle at the adjusted position
 
-            // Collision for blue team
-            checkPlayerBallCollision(startX, adjustedY, playerWidth, playerHeight);
-        } 
-        
-        // For Red Team
-        else if (color === 'red') {
-            const maxUpward = startY + i * (playerHeight + gap);
-            const minDownward = groundHeight - 60 - (count - 1 - i) * (playerHeight + gap);
 
-            adjustedY = Math.max(redTeamY + startY + i * (playerHeight + gap), maxUpward);
-            adjustedY = Math.min(adjustedY, minDownward);
-            ctx.fillRect(startX, adjustedY, playerWidth, playerHeight);
 
-            // Collision for red team
-            checkPlayerBallCollision(startX, adjustedY, playerWidth, playerHeight);
+
+var Game = {
+  initialize: function () {
+    this.canvas = document.querySelector("canvas");
+    this.context = this.canvas.getContext("2d");
+
+    this.canvas.width = 2600;
+    this.canvas.height = 1400;
+
+    this.canvas.style.width = this.canvas.width / 2 + "px";
+    this.canvas.style.height = this.canvas.height / 2 + "px";
+
+    this.player = Ai.new.call(this, "left"); // Player is on the left side
+    this.ai = Ai.new.call(this, "right");   // AI is on the right side
+    this.ball = Ball.new.call(this);
+
+    this.ai.speed = 5;
+    this.running = this.over = false;
+    this.turn = this.ai;
+    this.timer = this.round = 0;
+    this.color = "#8c52ff";
+
+    Pong.menu();
+    Pong.listen();
+  },
+
+  endGameMenu: function (text) {
+    // Change the canvas font size and color
+    Pong.context.font = "45px Courier New";
+    Pong.context.fillStyle = this.color;
+
+    // Draw the rectangle behind the 'Press Any Key To Begin' text
+    Pong.context.fillRect(
+      Pong.canvas.width / 2 - 350,
+      Pong.canvas.height / 2 - 48,
+      700,
+      100
+    );
+
+    // Change the canvas color;
+    Pong.context.fillStyle = "#ffffff";
+
+    // Draw the end game menu text ('Game Over' and 'Winner')
+    Pong.context.fillText(
+      text,
+      Pong.canvas.width / 2,
+      Pong.canvas.height / 2 + 15
+    );
+
+    setTimeout(function () {
+      Pong = Object.assign({}, Game);
+      Pong.initialize();
+    }, 3000);
+  },
+
+  menu: function () {
+    // Draw all the Pong objects in their current state
+    Pong.draw();
+
+    // Change the canvas font size and color
+    this.context.font = "50px Courier New";
+    this.context.fillStyle = this.color;
+
+    // Draw the rectangle behind the 'Press any key to begin' text.
+    this.context.fillRect(
+      this.canvas.width / 2 - 350,
+      this.canvas.height / 2 - 48,
+      700,
+      100
+    );
+
+    // Change the canvas color;
+    this.context.fillStyle = "#ffffff";
+
+    // Draw the 'press any key to begin' text
+    this.context.fillText(
+      "Press Any Key To Begin",
+      this.canvas.width / 2,
+      this.canvas.height / 2 + 15
+    );
+  },
+
+  // Update all objects (move the player, ai, ball, increment the score, etc.)
+  update: function () {
+    if (!this.over) {
+      // If the ball collides with the bound limits - correct the x and y coords.
+      if (this.ball.x <= 0) Pong._resetTurn.call(this, this.ai, this.player);
+      if (this.ball.x >= this.canvas.width - this.ball.width)
+        Pong._resetTurn.call(this, this.player, this.ai);
+      if (this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
+      if (this.ball.y >= this.canvas.height - this.ball.height)
+        this.ball.moveY = DIRECTION.UP;
+
+      // Move player if they player.move value was updated by a keyboard event
+      if (this.player.move === DIRECTION.UP) this.player.y -= this.player.speed;
+      else if (this.player.move === DIRECTION.DOWN)
+        this.player.y += this.player.speed;
+
+      // On new serve (start of each turn) move the ball to the correct side
+      // and randomize the direction to add some challenge.
+      if (Pong._turnDelayIsOver.call(this) && this.turn) {
+        this.ball.moveX =
+          this.turn === this.player ? DIRECTION.LEFT : DIRECTION.RIGHT;
+        this.ball.moveY = [DIRECTION.UP, DIRECTION.DOWN][
+          Math.round(Math.random())
+        ];
+        this.ball.y =
+          Math.floor(Math.random() * this.canvas.height - 200) + 200;
+        this.turn = null;
+      }
+
+      // If the player collides with the bound limits, update the x and y coords.
+      if (this.player.y <= 0) this.player.y = 0;
+      else if (this.player.y >= this.canvas.height - this.player.height)
+        this.player.y = this.canvas.height - this.player.height;
+
+      // Move ball in intended direction based on moveY and moveX values
+      if (this.ball.moveY === DIRECTION.UP)
+        this.ball.y -= this.ball.speed / 1.5;
+      else if (this.ball.moveY === DIRECTION.DOWN)
+        this.ball.y += this.ball.speed / 1.5;
+      if (this.ball.moveX === DIRECTION.LEFT) this.ball.x -= this.ball.speed;
+      else if (this.ball.moveX === DIRECTION.RIGHT)
+        this.ball.x += this.ball.speed;
+
+      // Handle ai (AI) UP and DOWN movement
+      if (this.ai.y > this.ball.y - this.ai.height / 2) {
+        if (this.ball.moveX === DIRECTION.RIGHT)
+          this.ai.y -= this.ai.speed / 1.5;
+        else this.ai.y -= this.ai.speed / 4;
+      }
+      if (this.ai.y < this.ball.y - this.ai.height / 2) {
+        if (this.ball.moveX === DIRECTION.RIGHT)
+          this.ai.y += this.ai.speed / 1.5;
+        else this.ai.y += this.ai.speed / 4;
+      }
+
+      // Handle ai (AI) wall collision
+      if (this.ai.y >= this.canvas.height - this.ai.height)
+        this.ai.y = this.canvas.height - this.ai.height;
+      else if (this.ai.y <= 0) this.ai.y = 0;
+
+      // Handle Player-Ball collisions
+      if (
+        this.ball.x - this.ball.width <= this.player.x &&
+        this.ball.x >= this.player.x - this.player.width
+      ) {
+        if (
+          this.ball.y <= this.player.y + this.player.height &&
+          this.ball.y + this.ball.height >= this.player.y
+        ) {
+          this.ball.x = this.player.x + this.ball.width;
+          this.ball.moveX = DIRECTION.RIGHT;
         }
-    }
-}
+      }
 
-
-function drawGround() {
-    
-    // Drawing a white center line
-    ctx.beginPath();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 3;
-    ctx.moveTo(groundWidth / 2, 0); // Starting point
-    ctx.lineTo(groundWidth / 2, groundHeight);  // Ending point
-    ctx.stroke();
-
-    // Drawing center point at the center line
-    ctx.beginPath();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 3;
-    ctx.moveTo(groundWidth / 2 - 10, groundHeight / 2);
-    ctx.lineTo(groundWidth / 2 + 10, groundHeight / 2);
-    ctx.stroke();
-
-    // Checking collision between players and the ball for Blue Team
-    checkPlayerBallCollision(50, blueTeamY, 12, 60); // Adjusting parameters for the goalkeeper
-    checkPlayerBallCollision(200, blueTeamY + 190, 12, 60); // Adjusting parameters for defenders
-    checkPlayerBallCollision(525, blueTeamY + 110, 12, 60); // Adjusting parameters for midfielders
-    checkPlayerBallCollision(950, blueTeamY + 190, 12, 60); // Adjusting parameters for forwarders
-
-    // Checking collision between players and the ball for Red Team
-    checkPlayerBallCollision(groundWidth - 60, redTeamY, 12, 60); // Adjusting parameters for the goalkeeper
-    checkPlayerBallCollision(groundWidth - 200, redTeamY + 190, 12, 60); // Adjusting parameters for defenders
-    checkPlayerBallCollision(groundWidth - 525, redTeamY + 110, 12, 60); // Adjusting parameters for midfielders
-    checkPlayerBallCollision(groundWidth - 950, redTeamY + 190, 12, 60); // Adjusting parameters for forwarders
-
-
-    // Drawing left goal post
-    ctx.fillStyle = 'white';
-    ctx.fillRect(goalPostOffset, (groundHeight - goalPostHeight) / 2, goalPostWidth, goalPostHeight);
-
-    // Drawing right goal post
-    ctx.fillRect(groundWidth - goalPostOffset - goalPostWidth, (groundHeight - goalPostHeight) / 2, goalPostWidth, goalPostHeight);
-
-    // Displaying scores
-    ctx.fillStyle = 'white';
-    ctx.font = '18px Arial';
-    ctx.fillText(`Blue Team: ${leftTeamScore}`, 20, 40);
-    ctx.fillText(`Red Team: ${rightTeamScore}`, groundWidth - 140, 40);
-}
-
-
-function checkGoalCollision() {
-    if (
-        (ballX - ballRadius < goalPostWidth && ballY > (groundHeight - goalPostHeight) / 2 && ballY < (groundHeight + goalPostHeight) / 2) ||
-        (ballX + ballRadius > groundWidth - goalPostWidth && ballY > (groundHeight - goalPostHeight) / 2 && ballY < (groundHeight + goalPostHeight) / 2)
-    ) {
-        // Ball has entered the left or right goal post area
-        if (ballX - ballRadius < goalPostWidth) {
-            rightTeamScore++; // Right team scored
-            ballVelocityX = -ballVelocity; // Ball moves towards the left (Blue Team)
-        } 
-        else {
-            leftTeamScore++; // Left team scored
-            ballVelocityX = ballVelocity; // Ball moves towards the right (Red Team)
+      // Handle ai-ball collision
+      if (
+        this.ball.x - this.ball.width <= this.ai.x &&
+        this.ball.x >= this.ai.x - this.ai.width
+      ) {
+        if (
+          this.ball.y <= this.ai.y + this.ai.height &&
+          this.ball.y + this.ball.height >= this.ai.y
+        ) {
+          this.ball.x = this.ai.x - this.ball.width;
+          this.ball.moveX = DIRECTION.LEFT;
         }
-        
-        // Reset ball to the center
-        ballX = groundWidth / 2;
-        ballY = groundHeight / 2;
-        ballVelocityY = Math.random() > 0.5 ? ballVelocity : -ballVelocity; // Randomize Y-direction for the next movement
-    }
-}
-
-
-function drawCircle() {
-    // Clearing the canvas to avoid overlapping of the frames
-    ctx.clearRect(0, 0, groundWidth, groundHeight);
-
-    // Redrawing the ground elements
-    drawGround();
-
-    // Drawing the ball
-    ctx.beginPath();
-    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = 'yellow';
-    ctx.fill();
-    ctx.closePath();
-
-    // Updating the circle position
-    ballX += ballVelocityX;
-    ballY += ballVelocityY;
-
-    // Boundary collision check
-    if (ballX + ballRadius > groundWidth || ballX - ballRadius < 0) {
-        ballVelocityX *= -1; // Reverse the X-direction
-    }
-    if (ballY + ballRadius > groundHeight || ballY - ballRadius < 0) {
-        ballVelocityY *= -1; // Reverse the Y-direction
+      }
     }
 
-    // For Blue Team
-    drawPlayers('skyblue', 50, 300, 1);
-    drawPlayers('skyblue', 200, 190, 3);
-    drawPlayers('skyblue', 525, 110, 4);
-    drawPlayers('skyblue', 950, 190, 3);
+    // Handle the end of round transition
+    // Check to see if the player won the round.
+    if (this.player.score === rounds[this.round]) {
+      // Check to see if there are any more levels left and display the victory screen if not
+      if (!rounds[this.round + 1]) {
+        this.over = true;
+        setTimeout(function () {
+          Pong.endGameMenu("Congratulations! You Won.");
+        }, 1000);
+      } 
+      else {
+        // If there is another level, reset all the values and increment the round number
+        this.color = this._generateRoundColor();
+        this.player.score = this.ai.score = 0;
+        this.player.speed += 0.5;
+        this.ai.speed += 1;
+        this.ball.speed += 1;
+        this.round += 1;
+      }
+    }
 
-    // For Red Team
-    drawPlayers('red', groundWidth - 60, 300, 1);
-    drawPlayers('red', groundWidth - 200, 190, 3);
-    drawPlayers('red', groundWidth - 525, 110, 4);
-    drawPlayers('red', groundWidth - 950, 190, 3);
+    // Check to see if the AI has won the round.
+    else if (this.ai.score === rounds[this.round]) {
+      this.over = true;
+      setTimeout(function () {
+        Pong.endGameMenu("Game Over! You Lost.");
+      }, 1000);
+    }
+  },
 
-    // Check for goal collision
-    checkGoalCollision();
+  // Draw the objects to the canvas element
+  draw: function () {
+    // Clear the Canvas
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    requestAnimationFrame(drawCircle);
-}
+    // Set the fill style to black
+    this.context.fillStyle = this.color;
 
-// Start the animation
-drawCircle();
+    // Draw the background
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Set the fill for player
+    this.context.fillStyle = "skyblue"; // Color for player
+
+    // Draw the Player
+    this.context.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
+
+    // Set the fill style for AI
+    this.context.fillStyle = "red"; // Color for AI
+
+    // Draw the Ai
+    this.context.fillRect(this.ai.x, this.ai.y, this.ai.width, this.ai.height);
+
+    // // Set the fill style for ball color
+    // this.context.fillStyle = "yellow";
+
+    // // Draw the Ball
+    // if (Pong._turnDelayIsOver.call(this)) {
+    //   this.context.fillRect(this.ball.x, this.ball.y, this.ball.width, this.ball.height);
+    // }
 
 
+    // Draw the Ball (Circle)
+    if (Pong._turnDelayIsOver.call(this)) {
+        this.context.beginPath();
+        this.context.arc(
+            this.ball.x + this.ball.width / 2, // X-coordinate of the center of the circle
+            this.ball.y + this.ball.height / 2, // Y-coordinate of the center of the circle
+            this.ball.width, // Radius of the circle
+            0, // Start angle
+            Math.PI * 2 // End angle (full circle)
+        );
+        this.context.fillStyle = 'yellow'; // Color for the ball
+        this.context.fill();
+    }
 
+    // Draw the net (Line in the middle)
+    this.context.beginPath();
+    this.context.setLineDash([]);
+    this.context.moveTo(this.canvas.width / 2, this.canvas.height - 140);
+    this.context.lineTo(this.canvas.width / 2, 140);
+    this.context.lineWidth = 10; // Increase the line width for a bold line
+    this.context.strokeStyle = "#ffffff"; // Set the line color to white
+    this.context.stroke();
 
+    // Draw the small horizontal line at the center
+    this.context.beginPath();
+    this.context.moveTo(this.canvas.width / 2 - 15, this.canvas.height / 2);
+    this.context.lineTo(this.canvas.width / 2 + 15, this.canvas.height / 2);
+    this.context.lineWidth = 8; // Adjust the line width as needed
+    this.context.stroke();
+
+    // Calculate the coordinates for the center circle of the football ground
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+
+    // Drawing a circle at the center of the football ground
+    const circleRadius = 200; // Adjust the radius of the circle as needed
+    this.context.beginPath();
+    this.context.arc(centerX, centerY, circleRadius, 0, Math.PI * 2);
+    this.context.lineWidth = 10; // Adjust the line width of the circle
+    this.context.strokeStyle = "#ffffff"; // Set the color of the circle
+    this.context.stroke();
+
+    // Calculate the midpoint of the ground
+    const groundMidPoint = this.canvas.height / 2;
+
+    // Calculate the midpoint of the goal posts
+    const goalPostMidPoint = 150 + 20; // 150 is the x-coordinate of the left goal post and 20 is half of its width
+
+    // Calculate the gap between the midpoint of the ground and the midpoint of the goal posts
+    const gap = groundMidPoint - goalPostMidPoint;
+
+    // Adjust the position of the left goal post and draw it
+    this.context.fillStyle = "#ffffff"; // Set color for the goal post
+    this.context.fillRect(0, groundMidPoint - 150, 40, 300);
+
+    // Adjust the position of the right goal post and draw it
+    this.context.fillStyle = "#ffffff"; // Set color for the goal post
+    this.context.fillRect(this.canvas.width - 40, groundMidPoint - 150, 40, 300);
+
+    // Calculate D-box dimensions
+    const dBoxWidth = 180;
+    const dBoxHeight = 460;
+    const dBoxGap = 20;
+
+    // Draw the left D-box outline
+    this.context.beginPath();
+    this.context.setLineDash([]);
+    this.context.moveTo(0, groundMidPoint - dBoxHeight / 2); // Top-left corner of the D-box
+    this.context.lineTo(dBoxWidth, groundMidPoint - dBoxHeight / 2); // Top-right corner of the D-box
+    this.context.lineTo(dBoxWidth, groundMidPoint + dBoxHeight / 2); // Bottom-right corner of the D-box
+    this.context.lineTo(0, groundMidPoint + dBoxHeight / 2); // Bottom-left corner of the D-box
+    this.context.closePath();
+    this.context.lineWidth = 5;
+    this.context.strokeStyle = "#ffffff";
+    this.context.stroke();
+
+    // Draw the right D-box outline
+    this.context.beginPath();
+    this.context.moveTo(this.canvas.width, groundMidPoint - dBoxHeight / 2); // Top-right corner of the D-box
+    this.context.lineTo(this.canvas.width - dBoxWidth, groundMidPoint - dBoxHeight / 2); // Top-left corner of the D-box
+    this.context.lineTo(this.canvas.width - dBoxWidth, groundMidPoint + dBoxHeight / 2); // Bottom-left corner of the D-box
+    this.context.lineTo(this.canvas.width, groundMidPoint + dBoxHeight / 2); // Bottom-right corner of the D-box
+    this.context.closePath();
+    this.context.lineWidth = 5;
+    this.context.strokeStyle = "#ffffff";
+    this.context.stroke();
+
+    // Set the default canvas font and align it to the center
+    this.context.font = "100px Courier New";
+    this.context.textAlign = "center";
+
+    // Draw the players score (left)
+    this.context.font = "bold 100px sans-seriff";
+    this.context.fillText(
+      this.player.score.toString(),
+      50, // X-coordinate for score to be at top left
+      100 // Y-coordinate for score to be at top right
+    );
+
+    // Draw the paddles score (right)
+    this.context.font = "bold 100px sans-seriff";
+    this.context.fillText(
+      this.ai.score.toString(),
+      this.canvas.width - 100, // X-coordindate for score to be at top right
+      100 // Y-coordinate for score to be at top right
+    );
+
+    // Change the font size for the center score text
+    this.context.font = "bold 45px sans-seriff";
+
+    // Draw the winning score (center)
+    this.context.fillText(
+      "Current Level: " + (Pong.round + 1),
+      this.canvas.width / 2,
+      50
+    );
+
+    // Draw the current round number
+    this.context.font = "33px sans-seriff";
+    this.context.fillText(
+      `Score ${
+        rounds[Pong.round] ? rounds[Pong.round] : rounds[Pong.round - 1]
+      } goals to win`,
+      this.canvas.width / 2,
+      110 // Adjust the Y-coordinate as needed for positioning
+    );
+  },
+
+  loop: function () {
+    Pong.update();
+    Pong.draw();
+
+    // If the game is not over, draw the next frame.
+    if (!Pong.over) requestAnimationFrame(Pong.loop);
+  },
+
+  listen: function () {
+    document.addEventListener("keydown", function (key) {
+      // Handle the 'Press any key to begin' function and start the game.
+      if (Pong.running === false) {
+        Pong.running = true;
+        window.requestAnimationFrame(Pong.loop);
+      }
+
+      // Handle up arrow and w key events
+      if (key.keyCode === 38 || key.keyCode === 87)
+        Pong.player.move = DIRECTION.UP;
+
+      // Handle down arrow and s key events
+      if (key.keyCode === 40 || key.keyCode === 83)
+        Pong.player.move = DIRECTION.DOWN;
+    });
+
+    // Stop the player from moving when there are no keys being pressed.
+    document.addEventListener("keyup", function (key) {
+      Pong.player.move = DIRECTION.IDLE;
+    });
+  },
+
+  // Reset the ball location, the player turns and set a delay before the next round begins.
+  _resetTurn: function (victor, loser) {
+    this.ball = Ball.new.call(this, this.ball.speed);
+    this.turn = loser;
+    this.timer = new Date().getTime();
+
+    victor.score++;
+  },
+
+  // Wait for a delay to have passed after each turn.
+  _turnDelayIsOver: function () {
+    return new Date().getTime() - this.timer >= 1000;
+  },
+
+  // Select a random color as the background of each level/round.
+  _generateRoundColor: function () {
+    var newColor = colors[Math.floor(Math.random() * colors.length)];
+    if (newColor === this.color) return Pong._generateRoundColor();
+    return newColor;
+  },
+};
+
+var Pong = Object.assign({}, Game);
+Pong.initialize();
