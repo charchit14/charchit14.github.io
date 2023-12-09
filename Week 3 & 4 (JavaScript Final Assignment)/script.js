@@ -7,8 +7,8 @@ var DIRECTION = {
   RIGHT: 4,
 };
 
-var rounds = [3, 4, 4, 4, 3];
-var colors = ["#1abc9c", "#2ecc71", "#3498db", "#8c52ff", "#9b59b6"];
+var rounds = [5, 4, 4, 3, 3];
+var colors = ["#1ABC9C", "#A9A9A9", "#023020", "#8C52FF", "#9B59B6"];
 
 // The ball object (The cube that bounces back and forth)
 var Ball = {
@@ -31,7 +31,7 @@ var Ai = {
     return {
       width: 18, // Width of the players
       height: 120, // Height of the players
-      x: side === "left" ? 150 : this.canvas.width - 150,
+      x: side === "left" ? 100 : this.canvas.width - 100, // Distance from edge for player and AI re
       y: this.canvas.height / 2 - 35,
       score: 0,
       move: DIRECTION.IDLE,
@@ -39,32 +39,6 @@ var Ai = {
     };
   },
 };
-
-// var Ai = {
-//     new: function (side) {
-//         var playerGap = 100; // The desired gap between player and the upper line of the D-box for adjustment
-//         var playerHeight = 120; // Height of the players
-//         var yPosition = (this.canvas.height / 2) - (playerHeight / 2) - playerGap; // Adjusting the y position for the player
-
-//         return {
-//             width: 18, // Width of the players
-//             height: playerHeight, // Height of the players
-//             x: side === 'left' ? 150 : this.canvas.width - 150,
-//             y: yPosition,
-//             score: 0,
-//             move: DIRECTION.IDLE,
-//             speed: 8
-//         };
-//     }
-// };
-
-
-
-
-
-
-
-
 
 var Game = {
   initialize: function () {
@@ -87,42 +61,42 @@ var Game = {
     this.timer = this.round = 0;
     this.color = "#8c52ff";
 
-    Pong.menu();
-    Pong.listen();
+    Foosball.menu();
+    Foosball.listen();
   },
 
   endGameMenu: function (text) {
     // Change the canvas font size and color
-    Pong.context.font = "45px Courier New";
-    Pong.context.fillStyle = this.color;
+    Foosball.context.font = "45px Courier New";
+    Foosball.context.fillStyle = this.color;
 
     // Draw the rectangle behind the 'Press Any Key To Begin' text
-    Pong.context.fillRect(
-      Pong.canvas.width / 2 - 350,
-      Pong.canvas.height / 2 - 48,
+    Foosball.context.fillRect(
+      Foosball.canvas.width / 2 - 350,
+      Foosball.canvas.height / 2 - 48,
       700,
       100
     );
 
     // Change the canvas color;
-    Pong.context.fillStyle = "#ffffff";
+    Foosball.context.fillStyle = "#ffffff";
 
     // Draw the end game menu text ('Game Over' and 'Winner')
-    Pong.context.fillText(
+    Foosball.context.fillText(
       text,
-      Pong.canvas.width / 2,
-      Pong.canvas.height / 2 + 15
+      Foosball.canvas.width / 2,
+      Foosball.canvas.height / 2 + 15
     );
 
     setTimeout(function () {
-      Pong = Object.assign({}, Game);
-      Pong.initialize();
+      Foosball = Object.assign({}, Game);
+      Foosball.initialize();
     }, 3000);
   },
 
   menu: function () {
-    // Draw all the Pong objects in their current state
-    Pong.draw();
+    // Draw all the Foosball objects in their current state
+    Foosball.draw();
 
     // Change the canvas font size and color
     this.context.font = "50px Courier New";
@@ -151,9 +125,9 @@ var Game = {
   update: function () {
     if (!this.over) {
       // If the ball collides with the bound limits - correct the x and y coords.
-      if (this.ball.x <= 0) Pong._resetTurn.call(this, this.ai, this.player);
+      if (this.ball.x <= 0) Foosball._resetTurn.call(this, this.ai, this.player);
       if (this.ball.x >= this.canvas.width - this.ball.width)
-        Pong._resetTurn.call(this, this.player, this.ai);
+        Foosball._resetTurn.call(this, this.player, this.ai);
       if (this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
       if (this.ball.y >= this.canvas.height - this.ball.height)
         this.ball.moveY = DIRECTION.UP;
@@ -165,7 +139,7 @@ var Game = {
 
       // On new serve (start of each turn) move the ball to the correct side
       // and randomize the direction to add some challenge.
-      if (Pong._turnDelayIsOver.call(this) && this.turn) {
+      if (Foosball._turnDelayIsOver.call(this) && this.turn) {
         this.ball.moveX =
           this.turn === this.player ? DIRECTION.LEFT : DIRECTION.RIGHT;
         this.ball.moveY = [DIRECTION.UP, DIRECTION.DOWN][
@@ -243,7 +217,7 @@ var Game = {
       if (!rounds[this.round + 1]) {
         this.over = true;
         setTimeout(function () {
-          Pong.endGameMenu("Congratulations! You Won.");
+          Foosball.endGameMenu("Congratulations! You Won.");
         }, 1000);
       } 
       else {
@@ -261,7 +235,7 @@ var Game = {
     else if (this.ai.score === rounds[this.round]) {
       this.over = true;
       setTimeout(function () {
-        Pong.endGameMenu("Game Over! You Lost.");
+        Foosball.endGameMenu("Game Over! You Lost.");
       }, 1000);
     }
   },
@@ -289,17 +263,8 @@ var Game = {
     // Draw the Ai
     this.context.fillRect(this.ai.x, this.ai.y, this.ai.width, this.ai.height);
 
-    // // Set the fill style for ball color
-    // this.context.fillStyle = "yellow";
-
-    // // Draw the Ball
-    // if (Pong._turnDelayIsOver.call(this)) {
-    //   this.context.fillRect(this.ball.x, this.ball.y, this.ball.width, this.ball.height);
-    // }
-
-
     // Draw the Ball (Circle)
-    if (Pong._turnDelayIsOver.call(this)) {
+    if (Foosball._turnDelayIsOver.call(this)) {
         this.context.beginPath();
         this.context.arc(
             this.ball.x + this.ball.width / 2, // X-coordinate of the center of the circle
@@ -410,7 +375,7 @@ var Game = {
 
     // Draw the winning score (center)
     this.context.fillText(
-      "Current Level: " + (Pong.round + 1),
+      "Current Level: " + (Foosball.round + 1),
       this.canvas.width / 2,
       50
     );
@@ -419,7 +384,7 @@ var Game = {
     this.context.font = "33px sans-seriff";
     this.context.fillText(
       `Score ${
-        rounds[Pong.round] ? rounds[Pong.round] : rounds[Pong.round - 1]
+        rounds[Foosball.round] ? rounds[Foosball.round] : rounds[Foosball.round - 1]
       } goals to win`,
       this.canvas.width / 2,
       110 // Adjust the Y-coordinate as needed for positioning
@@ -427,33 +392,33 @@ var Game = {
   },
 
   loop: function () {
-    Pong.update();
-    Pong.draw();
+    Foosball.update();
+    Foosball.draw();
 
     // If the game is not over, draw the next frame.
-    if (!Pong.over) requestAnimationFrame(Pong.loop);
+    if (!Foosball.over) requestAnimationFrame(Foosball.loop);
   },
 
   listen: function () {
     document.addEventListener("keydown", function (key) {
       // Handle the 'Press any key to begin' function and start the game.
-      if (Pong.running === false) {
-        Pong.running = true;
-        window.requestAnimationFrame(Pong.loop);
+      if (Foosball.running === false) {
+        Foosball.running = true;
+        window.requestAnimationFrame(Foosball.loop);
       }
 
       // Handle up arrow and w key events
       if (key.keyCode === 38 || key.keyCode === 87)
-        Pong.player.move = DIRECTION.UP;
+        Foosball.player.move = DIRECTION.UP;
 
       // Handle down arrow and s key events
       if (key.keyCode === 40 || key.keyCode === 83)
-        Pong.player.move = DIRECTION.DOWN;
+        Foosball.player.move = DIRECTION.DOWN;
     });
 
     // Stop the player from moving when there are no keys being pressed.
     document.addEventListener("keyup", function (key) {
-      Pong.player.move = DIRECTION.IDLE;
+      Foosball.player.move = DIRECTION.IDLE;
     });
   },
 
@@ -474,10 +439,10 @@ var Game = {
   // Select a random color as the background of each level/round.
   _generateRoundColor: function () {
     var newColor = colors[Math.floor(Math.random() * colors.length)];
-    if (newColor === this.color) return Pong._generateRoundColor();
+    if (newColor === this.color) return Foosball._generateRoundColor();
     return newColor;
   },
 };
 
-var Pong = Object.assign({}, Game);
-Pong.initialize();
+var Foosball = Object.assign({}, Game);
+Foosball.initialize();
