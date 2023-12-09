@@ -350,6 +350,25 @@ var Game = {
     this.context.strokeStyle = "#ffffff";
     this.context.stroke();
 
+    // Calculate adjusted radius based on dRadius and gap
+    const dRadius = dBoxWidth / 1; // Reducing the radius to fit outermost line
+    const adjustedWidthLeft = dRadius; // Adjusted width for left D-box
+    const adjustedWidthRight = this.canvas.width - dRadius; // Adjusted width for right D-box
+
+    // Left half-circle
+    this.context.beginPath();
+    this.context.arc(dRadius, groundMidPoint, dRadius, Math.PI / 2, -Math.PI / 2, true);
+    this.context.lineWidth = 5;
+    this.context.strokeStyle = "#ffffff";
+    this.context.stroke();
+
+    // Right half-circle
+    this.context.beginPath();
+    this.context.arc(this.canvas.width - dRadius, groundMidPoint, dRadius, -Math.PI / 2, Math.PI / 2, true);
+    this.context.lineWidth = 5;
+    this.context.strokeStyle = "#ffffff";
+    this.context.stroke();
+
     // Set the default canvas font and align it to the center
     this.context.font = "100px Courier New";
     this.context.textAlign = "center";
