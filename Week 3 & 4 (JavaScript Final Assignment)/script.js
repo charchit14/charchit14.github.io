@@ -524,3 +524,10 @@ var Game = {
 
 var Foosball = Object.assign({}, Game);
 Foosball.initialize();
+
+
+// LEFT TO DO
+  // 1- Goal collision (count + ) and wall collision fix
+  // 2- 11 player a side in formation
+  // 3- shoot ability
+  // 5- replace player by figure
