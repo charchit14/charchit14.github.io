@@ -125,12 +125,12 @@ var Game = {
   update: function () {
     if (!this.over) {
       // If the ball collides with the bound limits - correct the x and y coords.
-      // if (this.ball.x <= 0) Foosball._resetTurn.call(this, this.ai, this.player);
-      // if (this.ball.x >= this.canvas.width - this.ball.width)
-      //   Foosball._resetTurn.call(this, this.player, this.ai);
-      // if (this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
-      // if (this.ball.y >= this.canvas.height - this.ball.height)
-      //   this.ball.moveY = DIRECTION.UP;
+      if (this.ball.x <= 0) Foosball._resetTurn.call(this, this.ai, this.player);
+      if (this.ball.x >= this.canvas.width - this.ball.width)
+        Foosball._resetTurn.call(this, this.player, this.ai);
+      if (this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
+      if (this.ball.y >= this.canvas.height - this.ball.height)
+        this.ball.moveY = DIRECTION.UP;
 
       // Move player if they player.move value was updated by a keyboard event
       if (this.player.move === DIRECTION.UP) this.player.y -= this.player.speed;
@@ -211,36 +211,26 @@ var Game = {
     }
 
 
+
+
+
+
+
+
     // BELOW THIS
-
-// If the ball collides with the bound limits - correct the x and y coords.
-    if (this.ball.x <= 0) Foosball._resetTurn.call(this, this.ai, this.player);
-    if (this.ball.x >= this.canvas.width - this.ball.width)
-        Foosball._resetTurn.call(this, this.player, this.ai);
-    if (this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
-    if (this.ball.y >= this.canvas.height - this.ball.height)
-        this.ball.moveY = DIRECTION.UP;
-
-    // Add collision detection with goal posts
-    const goalPostWidth = 40; // Width of the goal posts
-    const goalPostGap = 20; // Gap between the goal posts and D-box
-
-    // Left goal post collision
-    if (this.ball.x <= goalPostWidth && this.ball.y >= groundMidPoint - dBoxHeight / 2 - goalPostGap && this.ball.y <= groundMidPoint + dBoxHeight / 2 + goalPostGap) {
-        // Ball hit the left goal post
-        this.player.score++; // Increment player's goal count
-        this._resetTurn(this.ai, this.player); // Trigger next turn
-    }
-
-    // Right goal post collision
-    if (this.ball.x >= this.canvas.width - goalPostWidth - this.ball.width && this.ball.y >= groundMidPoint - dBoxHeight / 2 - goalPostGap && this.ball.y <= groundMidPoint + dBoxHeight / 2 + goalPostGap) {
-        // Ball hit the right goal post
-        this.ai.score++; // Increment AI's goal count
-        this._resetTurn(this.player, this.ai); // Trigger next turn
-    }
 
 
     // ABOVE THIS
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -476,38 +466,15 @@ var Game = {
     });
   },
 
+
   // Reset the ball location, the player turns and set a delay before the next round begins.
-  // _resetTurn: function (winner, loser) {
-  //   this.ball = Ball.new.call(this, this.ball.speed);
-  //   this.turn = loser;
-  //   this.timer = new Date().getTime();
-
-  //   winner.score++;
-  // },  
-
-
-  // NEW
   _resetTurn: function (winner, loser) {
     this.ball = Ball.new.call(this, this.ball.speed);
     this.turn = loser;
     this.timer = new Date().getTime();
+
     winner.score++;
-  },
-  // END NEW
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  },  
 
   // Wait for a delay to have passed after each turn.
   _turnDelayIsOver: function () {
@@ -524,10 +491,3 @@ var Game = {
 
 var Foosball = Object.assign({}, Game);
 Foosball.initialize();
-
-
-// LEFT TO DO
-  // 1- Goal collision (count + ) and wall collision fix
-  // 2- 11 player a side in formation
-  // 3- shoot ability
-  // 5- replace player by figure
