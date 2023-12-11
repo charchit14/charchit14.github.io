@@ -8,7 +8,7 @@ var DIRECTION = {
 };
 
 var rounds = [5, 4, 4, 3, 3];
-var colors = ["#1ABC9C", "#A9A9A9", "#023020", "#8C52FF", "#9B59B6"];
+var colors = ["#1ABC9C", "#000000", "#023020", "#8C52FF", "#9B59B6"];
 
 // The ball object (The cube that bounces back and forth)
 var Ball = {
@@ -125,9 +125,76 @@ var Game = {
   update: function () {
     if (!this.over) {
       // If the ball collides with the bound limits - correct the x and y coords.
-      if (this.ball.x <= 0) Foosball._resetTurn.call(this, this.ai, this.player);
-      if (this.ball.x >= this.canvas.width - this.ball.width)
-        Foosball._resetTurn.call(this, this.player, this.ai);
+      // if (this.ball.x <= 0) Foosball._resetTurn.call(this, this.ai, this.player);
+      if (this.ball.x <= 0) {
+        this.ball.moveX = DIRECTION.RIGHT;
+      }
+
+      else if (this.ball.x >= this.canvas.width - this.ball.width) {
+        this.ball.moveX = DIRECTION.LEFT;
+      }
+      const leftGoalPost = {
+        x: 0,
+        y: 700-150,
+        width: 40,
+        height: 300,
+      }
+      const rightGoalPost = {
+        x: 2600-40,
+        y: 700-150,
+        width: 40,
+        height: 300,
+      }
+      if (detectCollision(this.ball, leftGoalPost)) {
+        Foosball._resetTurn.call(this, this.ai, this.player);
+      }
+      if (detectCollision(this.ball, rightGoalPost)) {
+         Foosball._resetTurn.call(this, this.player, this.ai);
+      }
+
+       // Left Goal Post:
+      // X-coordinate: 0
+      // Y-coordinate: groundMidPoint - 150
+      // Width: 40
+      // Height: 300
+
+      // Right Goal Post:
+      // X-coordinate: this.canvas.width - 40
+      // Y-coordinate: groundMidPoint - 150
+      // Width: 40
+      // Height: 300
+
+      // const groundMidPoint = this.canvas.height / 2;
+
+      // this.canvas.width = 2600;
+      // this.canvas.height = 1400;
+
+      // if collided in goal post
+      // if ball.x < goalpost.x
+      // Foosball._resetTurn.call(this, this.player, this.ai);
+
+      //
+
+      
+      // Left Goal Post:
+      // X-coordinate: 0
+      // Y-coordinate: groundMidPoint - 150
+      // Width: 40
+      // Height: 300
+
+      // Right Goal Post:
+      // X-coordinate: this.canvas.width - 40
+      // Y-coordinate: groundMidPoint - 150
+      // Width: 40
+      // Height: 300
+
+      // const groundMidPoint = this.canvas.height / 2;
+
+      // this.canvas.width = 2600;
+      // this.canvas.height = 1400;
+
+      //
+
       if (this.ball.y <= 0) this.ball.moveY = DIRECTION.DOWN;
       if (this.ball.y >= this.canvas.height - this.ball.height)
         this.ball.moveY = DIRECTION.UP;
@@ -209,31 +276,6 @@ var Game = {
         }
       }
     }
-
-
-
-
-
-
-
-
-    // BELOW THIS
-
-
-    // ABOVE THIS
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // Handle the end of round transition
     // Check to see if the player won the round.
@@ -488,6 +530,15 @@ var Game = {
     return newColor;
   },
 };
+
+function detectCollision(rect1, rect2) {
+  return (
+    rect1.x < rect2.x + rect2.width &&
+    rect1.x + rect1.width > rect2.x &&
+    rect1.y < rect2.y + rect2.height &&
+    rect1.y + rect1.height > rect2.y
+  );
+}
 
 var Foosball = Object.assign({}, Game);
 Foosball.initialize();
