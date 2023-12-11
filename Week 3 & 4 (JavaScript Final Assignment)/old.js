@@ -210,31 +210,6 @@ var DIRECTION = {
         }
       }
   
-  
-  
-  
-  
-  
-  
-  
-      // BELOW THIS
-  
-  
-      // ABOVE THIS
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
       // Handle the end of round transition
       // Check to see if the player won the round.
       if (this.player.score === rounds[this.round]) {
@@ -491,3 +466,4 @@ var DIRECTION = {
   
   var Foosball = Object.assign({}, Game);
   Foosball.initialize();
+  
