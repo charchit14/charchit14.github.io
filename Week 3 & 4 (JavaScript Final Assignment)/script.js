@@ -29,19 +29,66 @@ var Ball = {
 
 
 // The AI object (The two players that move up and down)
+// var Ai = {
+//   new: function (side) {
+//     return {
+//       width: 18, // Width of the players
+//       height: 120, // Height of the players
+//       x: side === "left" ? 100 : this.canvas.width - 100, // Distance from edge for player and AI respectively
+//       y: this.canvas.height / 2 - 35,
+//       score: 0,
+//       move: DIRECTION.IDLE,
+//       speed: 8,
+//     };
+//   },
+// };
+
+
+// Update the Ai object to handle multiple columns of players
 var Ai = {
+  columns: [], // Array to store player columns' coordinates
+  columnsCount: 3, // Number of player columns on each side
+  columnGap: 80, // Gap between player columns
+
   new: function (side) {
-    return {
-      width: 18, // Width of the players
-      height: 120, // Height of the players
-      x: side === "left" ? 100 : this.canvas.width - 100, // Distance from edge for player and AI respectively
-      y: this.canvas.height / 2 - 35,
-      score: 0,
-      move: DIRECTION.IDLE,
-      speed: 8,
-    };
+    // Calculate the initial x position for the first player column
+    var initialX = side === "left" ? 100 : this.canvas.width - 100 - this.columnsCount * 50;
+
+    // Initialize player columns
+    for (var i = 0; i < this.columnsCount; i++) {
+      var columnX = initialX + i * this.columnGap;
+      var players = [];
+      for (var j = 0; j < (i === 1 ? 4 : 3); j++) { // 4 players for the middle column, 3 for others
+        players.push({
+          width: 18,
+          height: 120,
+          x: columnX,
+          y: this.canvas.height / 2 - 150 + j * 120, // Adjusted y positions for player columns
+          score: 0,
+          move: DIRECTION.IDLE,
+          speed: 8,
+        });
+      }
+      this.columns.push(players);
+    }
   },
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var Game = {
@@ -273,6 +320,7 @@ var Game = {
     }
   },
 
+  
   // Drawing the objects to the canvas element
   draw: function () {
     // Clearing the Canvas
