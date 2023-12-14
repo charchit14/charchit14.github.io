@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foosball Simulator Game</title>
-    <!-- Linking the CSS file -->
+    <title>Foosball Game Simulator</title>
+    <!-- Linking CSS the file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas></canvas>
-    <script src="script.js"></script>
+    
+    <div id="container">
+
+        <div id="startScreen">
+            <div id="title">FOOSBALL GAME SIMULATOR</div>
+            <br><br>
+            <button id="play" onclick="init()">CLICK HERE TO PLAY THE GAME</button>
+            <br><br><br>
+            
+            <!-- Inserting Arrow Keys Image -->
+            <img src="images/arrow-keys.png" height="100" width="150" id="help">
+            <br>
+            
+            <span id="instructions">Use 'Left' and 'Right' arrow keys to move the players</span>
+
+        </div>
+
+        <div id="gameOverScreen">
+            <div id="title">FULL-TIME</div>
+            <button id="playagain" onclick="init()">CLICK TO PLAY AGAIN</button>
+            <br><br><br>
+        </div>
+
+        <canvas id="myCanvas" width="480" height="720"></canvas>
+    
+        <div id="score">
+            
+            <div id="timer">
+                Countdown
+                <div id="countdown">02:00</div>
+            </div>
+            
+            <!-- <h3 id="blue">New Castle United (CPU)</h3> -->
+            <h3 id="black">Newcastle United (CPU)</h3>
+            <div id="away">0</div>
+
+            <br><br>
+
+
+            <!-- <h3 id="red">Nottingham Forest (You)</h3> -->
+            <h3 id="red">Nottingham Forest (You)</h3>
+            <div id="home">0</div>
+            
+            <div id="status"></div>
+
+        </div>
+        
+    </div>
+
+<!-- Linking the JS files -->
+<script src="js/theorem.js"></script>
+<script src="js/football.js"></script>
+
 </body>
 </html>
