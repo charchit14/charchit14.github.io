@@ -1,60 +1,58 @@
-//build canvas
+// Setting up the canvas
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-//set initial ball location
+// Setting up initial location of the ball
 var x = canvas.width/2;
 var y = canvas.height/2;
 
-//set ball radius
+// Defining the ball radius
 var ballRadius = 8; //6
 
-//set ball speed
+// Setting up speed of the ball
 var dx = 2; //3
 var dy = -2;
 
-//initialize ball speed
+// Initializing speed of the ball
 var m = 0;
 var j = 0;
 
 var aiSpeed = 0.5; // 1.25, 1.2
 
-//set paddle dimensions
+// Setting up the paddle dimensions
 var paddleHeight = 10;
 var paddleWidth = 30;
 
 var paddleX = (canvas.width-paddleWidth);
 
-//initialize keypress status
+// Initializing 'keypress' status
 var rightPressed = false;
 var leftPressed = false;  
 
-//set goalpost dimensions
+// Setting up the dimensions of goal-post
 var goalpostWidth = 150;
 var goalpostHeight = 10;
 
-//initialize scorecard
+// Initializing the teams's score
 var homeScore = 0;
 var awayScore = 0;
 
-//set player dimensions
+// Setting up dimension of the players
 var playerHeight = 50;
 var playerWidth = 30;
 
-
-//set flags
+// Setting up the flags
 var initFlag = true;
 var gameOver = false;
 var flag1 = 1;
 var flag2 = 1;
 var drawFlag = true;
 
-//register for keypress events
+// Adding 'keypress' events
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-
-//initialize SAT.js variables
+// Initializing variables of theorem.js
 var V = SAT.Vector;
 var C = SAT.Circle;
 var B = SAT.Box;
@@ -62,12 +60,12 @@ var B = SAT.Box;
 var circle;
 var box;
 
-//initialize images
+// Initializing the images
 var homePlayer = new Image();
 var awayPlayer = new Image();
 
 
-//it all starts here
+// Beginning the game functions
 function init() {
     removeStatus();
     homePlayer.src = 'images/homePlayer.png';
@@ -85,10 +83,10 @@ function init() {
 function setInitialDelay() {
     setTimeout(function() {
         // startTimer(60 * 2);
-        startTimer(6) ;
+        startTimer(6) ; // Total match time
         drawFlag = true;
         window.requestAnimationFrame(draw);
-        updateStatus('You are team <br> in <span style="color:red">RED</span>');
+        // updateStatus('You are team <br> in <span style="color:red">RED</span>');
     }, 1500);
 }
 
@@ -116,16 +114,17 @@ function startTimer(duration) {
             gameOver = true;
             clearInterval(countdown);
             if (homeScore > awayScore)
-                updateStatus('GAME OVER!<br>Liverpool Won!');
+                updateStatus('Game Over<br>Nottingham Forest Won');
             else if (awayScore > homeScore)
-                updateStatus('GAME OVER!<br>Juventus Won!');
+                updateStatus('Game Over<br>Newcastle United Won');
             else
-                updateStatus('GAME OVER!<br>Draw!')
+                updateStatus("Game Over<br>It's a draw")
         }
     }, 1000);
 }
 
-//it all happens here
+
+// Beginning the Drawing functions 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
@@ -141,7 +140,6 @@ function draw() {
     if (drawFlag && !gameOver)
         window.requestAnimationFrame(draw);
 }
-
 
 function drawBall() {
     ctx.beginPath();
@@ -165,12 +163,10 @@ function drawBall() {
 
 function drawPlayers() {
     drawHomeTeam();
-    drawAwayTeam();
-    
+    drawAwayTeam();   
 }
 
 function drawHomeTeam() {
-    //home
     drawGoalkeeper();
     drawDefenders();
     drawMidfielders();
@@ -178,7 +174,6 @@ function drawHomeTeam() {
 }
 
 function drawAwayTeam() {
-    //away
     drawAwayGoalkeeper();
     drawAwayDefenders();
     drawAwayMidfielders();
@@ -187,30 +182,29 @@ function drawAwayTeam() {
 
 function drawGoalPost() {
 
-    //home
+    // Drawing home goal-post
     ctx.beginPath();
     var gphX = (canvas.width - goalpostWidth) / 2;
     var gphY = canvas.height - goalpostHeight;
     ctx.rect(gphX, gphY, goalpostWidth, goalpostHeight);
-    // ctx.fillStyle = "#9C9C9C";
     ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
+
     box = new B(new V(gphX, gphY), goalpostWidth, goalpostHeight).toPolygon();
     if (goalDetection(box)) {
         updateScore('home');
-        // updateStatus('GOAL!<br>Juventus Score!');
         updateStatus('Newcastle<br>scored a Goal');
         removeStatus();
         resetBall();
         setDelay();
     }
-    //away
+
+    // Drawing away goal-post
     ctx.beginPath();
     var gpaX = (canvas.width - goalpostWidth) / 2;
     var gpaY = paddleHeight - goalpostHeight;
     ctx.rect(gpaX, gpaY, goalpostWidth, goalpostHeight);
-    // ctx.fillStyle = "#9C9C9C";
     ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
@@ -218,14 +212,12 @@ function drawGoalPost() {
     box = new B(new V(gpaX, gpaY), goalpostWidth, goalpostHeight).toPolygon();
     if (goalDetection(box)) {
         updateScore('away');
-        // updateStatus('GOAL!<br>Liverpool Score!');
         updateStatus('Nottingham<br>scored a Goal');
         removeStatus();
         resetBall();
         setDelay();
     }
 }
-
 
 function updateScore(goal) {
 
@@ -244,7 +236,6 @@ function resetBall() {
     drawBall();
     drawFlag = false;
     window.requestAnimationFrame(draw);
-
 }
 
 function updateStatus(message) {
@@ -258,22 +249,17 @@ function removeStatus() {
     }, 1500);
 }
 
-
-
 function drawGoalkeeper() {
-
     var gkX = paddleX / 2 + m;
     var gkY = canvas.height * 7 / 8 - paddleHeight;
     ctx.drawImage(homePlayer, gkX, gkY - 15, playerWidth, playerHeight);
     drawRods(gkY);
     box = new B(new V(gkX, gkY), playerWidth, paddleHeight).toPolygon();
     collisionDetection(box, gkX);
-
 }
 
 
 function drawDefenders() {
-
     var lcbX = paddleX / 4 + m;
     var lcbY = canvas.height * 13 / 16 - paddleHeight;
     drawRods(lcbY);
@@ -289,8 +275,6 @@ function drawDefenders() {
 }
 
 function drawMidfielders() {
-
-    //midfielders
     var lwbX = paddleX * 1 / 8 + m;
     var lwbY = canvas.height * 5 / 8 - paddleHeight;
     drawRods(lwbY);
@@ -315,11 +299,9 @@ function drawMidfielders() {
     ctx.drawImage(homePlayer, rwbX, rwbY - 15, playerWidth, playerHeight);
     box = new B(new V(rwbX, rwbY), playerWidth, paddleHeight).toPolygon();
     collisionDetection(box, rwbX);
-
 }
 
 function drawStrikers() {
-    //attackers
     var lwX = paddleX / 4 + m;
     var lwY = canvas.height * 9 / 32 - paddleHeight;
     drawRods(lwY);
@@ -338,13 +320,9 @@ function drawStrikers() {
     ctx.drawImage(homePlayer, rwX, rwY - 15, playerWidth, playerHeight);
     box = new B(new V(rwX, rwY), playerWidth, paddleHeight).toPolygon();
     collisionDetection(box, rwX);
-
 }
 
-
-
 function drawAwayGoalkeeper() {
-
     var gkX = paddleX / 2 + j;
     var gkY = canvas.height * 1 / 8 - paddleHeight;
     drawRods(gkY);
@@ -356,11 +334,9 @@ function drawAwayGoalkeeper() {
         j += aiSpeed;
     else if (gkX > paddleX * 1 / 4)
         j -= aiSpeed;
-
 }
 
 function drawAwayDefenders() {
-
     var lcbX = paddleX / 4 + j;
     var lcbY = canvas.height * 3 / 16 - paddleHeight;
     drawRods(lcbY);
@@ -385,8 +361,6 @@ function drawAwayDefenders() {
 }
 
 function drawAwayMidfielders() {
-
-    //midfielders
     var lwbX = paddleX * 1 / 8 + j;
     var lwbY = canvas.height * 3 / 8 - paddleHeight;
     drawRods(lwbY)
@@ -430,9 +404,7 @@ function drawAwayMidfielders() {
         j -= aiSpeed;
 }
 
-
 function drawAwayStrikers() {
-    //attackers
     ctx.beginPath();
     var lwX = paddleX / 4 + j;
     var lwY = canvas.height * 23 / 32 - paddleHeight;
@@ -455,25 +427,22 @@ function drawAwayStrikers() {
     box = new B(new V(rwX, rwY), playerWidth, paddleHeight).toPolygon();
     collisionDetectionAway(box, rwX);
 
-
-    // if(y + 10 == rwY || y - 10 == rwY) {
-    if (x > lwX && lwX < paddleX * 3 / 4)
-        j += aiSpeed;
-    else if (lwX > paddleX * 1 / 4)
-        j -= aiSpeed;
-    if (x > rwX && rwX < paddleX * 3 / 4)
-        j += aiSpeed;
-    else if (rwX > paddleX * 1 / 4)
-        j -= aiSpeed;
-    if (x > cfX && cfX < paddleX * 3 / 4)
-        j += aiSpeed;
-    else if (cfX > paddleX * 1 / 4)
-        j -= aiSpeed;
-    //}
-
-
+    // // if(y + 10 == rwY || y - 10 == rwY) {
+    
+    // if (x > lwX && lwX < paddleX * 3 / 4)
+    //     j += aiSpeed;
+    // else if (lwX > paddleX * 1 / 4)
+    //     j -= aiSpeed;
+    // if (x > rwX && rwX < paddleX * 3 / 4)
+    //     j += aiSpeed;
+    // else if (rwX > paddleX * 1 / 4)
+    //     j -= aiSpeed;
+    // if (x > cfX && cfX < paddleX * 3 / 4)
+    //     j += aiSpeed;
+    // else if (cfX > paddleX * 1 / 4)
+    //     j -= aiSpeed;
+    // //}
 }
-
 
 function collisionDetection(box, pX) {
     var response = new SAT.Response();
