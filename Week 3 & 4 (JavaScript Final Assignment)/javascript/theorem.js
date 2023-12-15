@@ -1,12 +1,9 @@
 // Separating Axis Theorem (SAT)
-// A simple library for determining intersections of circles and
-// polygons using the Separating Axis Theorem.
+// A simple library for determining intersections of circles and polygons using the Separating Axis Theorem
 
 
 // Version 0.5.0 - Copyright 2012 - 2015 -  Jim Riecken <jimr@jimr.ca>
-//
 // Released under the MIT License - https://github.com/jriecken/sat-js
-//
 
 /** @preserve SAT.js - Version 0.5.0 - Copyright 2012 - 2015 - Jim Riecken <jimr@jimr.ca> - released under the MIT License. https://github.com/jriecken/sat-js */
 
