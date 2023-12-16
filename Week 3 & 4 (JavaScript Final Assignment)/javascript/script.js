@@ -7,17 +7,17 @@ var x = canvas.width/2;
 var y = canvas.height/2;
 
 // Defining the ball radius
-var ballRadius = 8; //6
+var ballRadius = 8;
 
 // Setting up speed of the ball
-var dx = 2; //3
+var dx = 2;
 var dy = -2;
 
 // Initializing speed of the ball
 var m = 0;
 var j = 0;
 
-var aiSpeed = 0.5; // 1.25, 1.2 CPU players movement speed
+var aiSpeed = 0.5; // CPU players movement speed
 
 // Setting up the paddle dimensions
 var paddleHeight = 10;
@@ -82,11 +82,9 @@ function init() {
 
 function setInitialDelay() {
     setTimeout(function() {
-        // startTimer(60 * 2);
-        startTimer(6) ; // Total match time
+        startTimer(60*2) ; // Total match time (60*2 for 2mins)
         drawFlag = true;
         window.requestAnimationFrame(draw);
-        // updateStatus('You are team <br> in <span style="color:red">RED</span>');
     }, 1500);
 }
 
@@ -101,7 +99,7 @@ function startTimer(duration) {
     var timer = duration,
         minutes, seconds;
     countdown = setInterval(function() {
-        minutes = parseInt(timer / 60, 10)
+        minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -118,7 +116,17 @@ function startTimer(duration) {
             else if (awayScore > homeScore)
                 updateStatus('Game Over<br>Newcastle United Won');
             else
-                updateStatus("Game Over<br>It's a draw")
+                updateStatus("Game Over<br>It's a draw");
+
+            // Adding sound for final whistle
+            const musicDuration = 4000; // Duration in milliseconds (this means 4sec. here)
+            const music = document.getElementById('gameMusicEnd');
+            music.play();
+
+            setTimeout(function() {
+                music.pause();
+                // Additional actions after the music finishes (if needed)
+            }, musicDuration);
         }
     }, 1000);
 }
@@ -144,7 +152,7 @@ function draw() {
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "yellow";
     ctx.fill();
     ctx.closePath();
     circle = new C(new V(x, y), 6);
@@ -158,7 +166,6 @@ function drawBall() {
     if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
         dy = -dy;
     }
-
 }
 
 function drawPlayers() {
@@ -228,6 +235,16 @@ function updateScore(goal) {
         homeScore += 1;
         document.getElementById('home').innerHTML = homeScore;
     }
+    
+    // Adding Goal Sound
+    const musicDuration = 3000; // Duration in milliseconds (this means 3sec. here)
+            const music = document.getElementById('gameMusicGoal');
+            music.play();
+
+            setTimeout(function() {
+                music.pause();
+                // Additional actions after the music finishes (if needed)
+            }, musicDuration);
 }
 
 function resetBall() {
@@ -240,7 +257,6 @@ function resetBall() {
 
 function updateStatus(message) {
     document.getElementById('status').innerHTML = message;
-
 }
 
 function removeStatus() {
@@ -257,7 +273,6 @@ function drawGoalkeeper() {
     box = new B(new V(gkX, gkY), playerWidth, paddleHeight).toPolygon();
     collisionDetection(box, gkX);
 }
-
 
 function drawDefenders() {
     var lcbX = paddleX / 4 + m;
@@ -426,22 +441,6 @@ function drawAwayStrikers() {
     ctx.drawImage(awayPlayer, rwX, rwY - 15, playerWidth, playerHeight);
     box = new B(new V(rwX, rwY), playerWidth, paddleHeight).toPolygon();
     collisionDetectionAway(box, rwX);
-
-    // // if(y + 10 == rwY || y - 10 == rwY) {
-    
-    // if (x > lwX && lwX < paddleX * 3 / 4)
-    //     j += aiSpeed;
-    // else if (lwX > paddleX * 1 / 4)
-    //     j -= aiSpeed;
-    // if (x > rwX && rwX < paddleX * 3 / 4)
-    //     j += aiSpeed;
-    // else if (rwX > paddleX * 1 / 4)
-    //     j -= aiSpeed;
-    // if (x > cfX && cfX < paddleX * 3 / 4)
-    //     j += aiSpeed;
-    // else if (cfX > paddleX * 1 / 4)
-    //     j -= aiSpeed;
-    // //}
 }
 
 function collisionDetection(box, pX) {

@@ -60,14 +60,6 @@ canvas {
     z-index: 1;
 }
 
-/* #black {
-    color: black;
-}
-
-#red {
-    color: red;
-} */
-
 #home,
 #away {
     font-size: 50px;
@@ -104,7 +96,6 @@ a {
     font-family: cursive;
     border-radius: 16px;
     margin-bottom: 20px; /* Gap between elements */
-
 }
 
 #play:hover {
@@ -132,7 +123,7 @@ a {
     cursor: pointer;
 }
 
-#help {
+#arrow {
     opacity: 0.7;
     margin-bottom: 20px; /* Gap between elements */
 }
