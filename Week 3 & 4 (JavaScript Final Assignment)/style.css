@@ -95,7 +95,7 @@ a {
     font-weight: bold;
     font-family: cursive;
     border-radius: 16px;
-    margin-bottom: 20px; /* Gap between elements */
+    margin-bottom: 20px;
 }
 
 #play:hover {
@@ -114,7 +114,7 @@ a {
     font-weight: bold;
     font-family: cursive;
     border-radius: 16px;
-    margin-bottom: 20px; /* Gap between elements */
+    margin-bottom: 20px;
 }
 
 #playagain:hover {    
@@ -125,14 +125,14 @@ a {
 
 #arrow {
     opacity: 0.7;
-    margin-bottom: 20px; /* Gap between elements */
+    margin-bottom: 20px;
 }
 
 #instructions {
     font-size: 18px;
     color: yellow;
     opacity: 0.7;
-    margin-bottom: 20px; /* Gap between elements */
+    margin-bottom: 20px;
 }
 
 #right {
