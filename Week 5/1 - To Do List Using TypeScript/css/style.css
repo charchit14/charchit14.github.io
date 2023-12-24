@@ -1,0 +1,194 @@
+/* Reseting browser defaults */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+/*
+width: justify-content
+height: align-items
+*/
+
+/* Main CSS starts from here */
+.container{
+    width: 100%;
+    min-height: 100vh; /* vh = viewport (visible part of a web-page)*/
+    background-color: skyblue;
+    padding: 10px;
+}
+
+.header{
+    width: 100%;
+    max-width: 1080px;
+    background: #fff;
+    margin: 100px auto 20px;    /* Top, Left-Right, Bottom */
+    padding: 40px 30px 70px; 
+    border-radius: 10px;        /* For round corners */
+}
+
+.header h1{
+    color: green;
+    display: flex;  /* To align text and logo */ 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Pages */
+.pages{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+#home{
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+#completed{
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+#remaining{
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.task-center{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: whitesmoke;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+.task-center input{
+    flex: 1;    /*  This means the input will grow to fill any available space within its flex container */
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-weight: 14px;  /* Boldness of the font */
+}
+
+.task-center button{
+    border: none;
+    outline: none;
+    padding: 16px 50px; /* top-bottom and left-roght */
+    color: black; /* Color of the text 'create task' */
+    background: orange;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+ul li{
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none; /* Prevents user for interacting with it */
+    cursor: pointer;
+    position: relative;
+}
+
+/* '::before' is a pseudo-element to create a visual representation before the content of each list item */
+ul li::before{
+    content: ''; /* To insert content before the element. Here, it is an empty string but is required for pseudo-element to generate and display*/
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover; /* Ensures that the background image covers the entire area of the pseudo-element */
+    background-position: center;    /* Centers the background image within the element */
+    top: 12px;
+    left: 8px;
+    position: absolute;
+}
+
+ul li.checked{
+    color: blue;
+    text-decoration: line-through;
+}
+
+ul li.checked::before{
+    background-image: url(images/checked.png);
+
+}
+
+/* For the delete button at the end of the task */
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    color: black;
+    font-style: italic;
+    line-height: 40px;
+    text-align: center;
+}
+
+ul li span:hover{
+    background: red;
+}
+
+
+/* Media query for screens up to 576px (mobile) (for responsive design) */
+@media screen and (max-width: 576px) {
+    .header {
+      margin: 50px auto 10px;
+      padding: 20px 15px 40px;
+    }
+  
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+  
+    .pages {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+    }
+  
+    #home, #completed, #remaining {
+      margin-bottom: 15px;
+      font-size: 12px;
+    }
+  
+    .task-center {
+      padding-left: 10px;
+      margin-bottom: 20px;
+    }
+  
+    .task-center input {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .task-center button {
+      padding: 12px 30px;
+      font-size: 14px;
+    }
+  }
+  

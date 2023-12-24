@@ -23,6 +23,7 @@ var aiSpeed = 0.5; // CPU players movement speed
 var paddleHeight = 10;
 var paddleWidth = 30;
 
+// Setting up the initial X-coordinate of the paddle
 var paddleX = (canvas.width-paddleWidth);
 
 // Initializing 'keypress' status
@@ -53,10 +54,11 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 // Initializing variables of theorem.js
-var V = SAT.Vector;
-var C = SAT.Circle;
-var B = SAT.Box;
+var V = SAT.Vector; // Vector Operations
+var C = SAT.Circle; // Circle Collision
+var B = SAT.Box;    // Box Collision
 
+// To hold instances of circle and box objects used for collision detection
 var circle;
 var box;
 
@@ -72,19 +74,21 @@ function init() {
     awayPlayer.src = 'images/awayPlayer.png';
     document.getElementById('startScreen').style['z-index'] = '-1';
     document.getElementById('gameOverScreen').style['z-index'] = '-1';
-    document.getElementById('home').innerHTML = '0';
-    document.getElementById('away').innerHTML = '0';
+    document.getElementById('home').innerHTML = '0';    // Initial home score
+    document.getElementById('away').innerHTML = '0';    // Initial away score
+    // Resetting the scores
     awayScore = 0;
     homeScore = 0;
-    gameOver = 0;
+    gameOver = 0;   // Indicates the game is not over
     setInitialDelay();
 }
 
+// Initiating a delay before starting the game loop and timer
 function setInitialDelay() {
     setTimeout(function() {
         startTimer(60*2) ; // Total match time (60*2 for 2mins)
         drawFlag = true;
-        window.requestAnimationFrame(draw);
+        window.requestAnimationFrame(draw); // Initiating the game-loop
     }, 1500);
 }
 
@@ -95,18 +99,25 @@ function setDelay() {
     }, 1500);
 }
 
+// Creating a count-down timer for a specified duration and perform certain actions when the timer reaches zero
 function startTimer(duration) {
-    var timer = duration,
-        minutes, seconds;
+    var timer = duration, minutes, seconds;
+    
+    // Executes the inner logic every 1000 millisecond (1 second) until cleared (Recurring time)
     countdown = setInterval(function() {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+        minutes = parseInt(timer / 60, 10); // Parse a string and convert it into an integer (for conversion)
+        seconds = parseInt(timer % 60, 10); // Calculating the remaining seconds after calculating the minutes
+        // Here, 10 after value means the base/radix of the number system. In this case it means decimal (base-10)
 
+        // To maintain the 'Minutes:Seconds' format
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
+        // Updating the HTML to display the remaining time
         document.getElementById('countdown').innerHTML = minutes + ":" + seconds;
 
+        // Updating the screen when timer reaches zero
+        // Decrement the timer by 1 value and then check
         if (--timer < 0) {
             document.getElementById('gameOverScreen').style['z-index'] = 3;
             gameOver = true;
@@ -138,33 +149,41 @@ function draw() {
     drawBall();
     drawPlayers();
     drawGoalPost();
+    // Updating the ball's position based on its velcoity (dx and dy)
     x += dx;
     y += dy;
+    // Adjusting the players position based on keypress (also making sure they reamin within the canvas's boundary)
     if (rightPressed && paddleX * 3 / 4 + m < canvas.width - paddleWidth) {
         m += 2;
-    } else if (leftPressed && paddleX / 4 + m > 0) {
+    }
+    else if (leftPressed && paddleX / 4 + m > 0) {
         m -= 2;
     }
+    // Controlling the animation (if drawFlag is True, allows canvas to render next frame)
     if (drawFlag && !gameOver)
         window.requestAnimationFrame(draw);
 }
 
 function drawBall() {
     ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);  // Creating a circular path
     ctx.fillStyle = "yellow";
     ctx.fill();
     ctx.closePath();
+    
+    // Creating a theorem.js circle object for collision detection with a specified position and radius 
     circle = new C(new V(x, y), 6);
+    // Checking collision
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-            dx = -dx;
+            dx = -dx; // Reversing the direction
+            // Ensuring the ball remains within the canvas
             if(x<0)
                 x=0;
             if(x>canvas.width)
                 x = canvas.width; 
     }
     if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-        dy = -dy;
+        dy = -dy;   // Reversing the velcoity if the ball hits top or bottom boundaries
     }
 }
 
@@ -188,16 +207,16 @@ function drawAwayTeam() {
 }
 
 function drawGoalPost() {
-
     // Drawing home goal-post
     ctx.beginPath();
-    var gphX = (canvas.width - goalpostWidth) / 2;
-    var gphY = canvas.height - goalpostHeight;
+    var gphX = (canvas.width - goalpostWidth) / 2;  // X-coordinate of the goal-post's top left
+    var gphY = canvas.height - goalpostHeight;  // Y-coordinate of the goal-post's top left
     ctx.rect(gphX, gphY, goalpostWidth, goalpostHeight);
     ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
 
+    // Creating theorem.js box (converted to polygon) for home goal-post detection
     box = new B(new V(gphX, gphY), goalpostWidth, goalpostHeight).toPolygon();
     if (goalDetection(box)) {
         updateScore('home');
@@ -215,7 +234,8 @@ function drawGoalPost() {
     ctx.fillStyle = "white";
     ctx.fill();
     ctx.closePath();
-
+    
+    // Creating theorem.js box (converted to polygon) for home goal-post detection
     box = new B(new V(gpaX, gpaY), goalpostWidth, goalpostHeight).toPolygon();
     if (goalDetection(box)) {
         updateScore('away');
@@ -226,8 +246,8 @@ function drawGoalPost() {
     }
 }
 
+// Updating the goals based on the team that scored
 function updateScore(goal) {
-
     if (goal === 'home') {
         awayScore += 1;
         document.getElementById('away').innerHTML = awayScore;
@@ -247,11 +267,12 @@ function updateScore(goal) {
             }, musicDuration);
 }
 
+// Resetting the ball to the center, clearing canvas, and redrawing
 function resetBall() {
     x = canvas.width / 2;
     y = canvas.height / 2;
     drawBall();
-    drawFlag = false;
+    drawFlag = false;   // Do not draw the canvas immediately after this function is called
     window.requestAnimationFrame(draw);
 }
 
@@ -259,6 +280,7 @@ function updateStatus(message) {
     document.getElementById('status').innerHTML = message;
 }
 
+// Executing after 1.5secs.
 function removeStatus() {
     setTimeout(function() {
         document.getElementById('status').innerHTML = '';
@@ -270,8 +292,9 @@ function drawGoalkeeper() {
     var gkY = canvas.height * 7 / 8 - paddleHeight;
     ctx.drawImage(homePlayer, gkX, gkY - 15, playerWidth, playerHeight);
     drawRods(gkY);
+    // Creating a box representation at GK's position converting iy into a polygon
     box = new B(new V(gkX, gkY), playerWidth, paddleHeight).toPolygon();
-    collisionDetection(box, gkX);
+    collisionDetection(box, gkX);   // Collision detection based on GK's position within the game
 }
 
 function drawDefenders() {
@@ -345,6 +368,8 @@ function drawAwayGoalkeeper() {
     box = new B(new V(gkX, gkY), playerWidth, paddleHeight).toPolygon();
     collisionDetectionAway(box, gkX);
 
+    // Adjusting GK's position based on the ball's position and the paddle's width
+    // To allow GK to move horizontally based on ball's movement (also making sure GK can't move beyond the boundaries)
     if (x > gkX && gkX < paddleX * 3 / 4)
         j += aiSpeed;
     else if (gkX > paddleX * 1 / 4)
@@ -444,10 +469,15 @@ function drawAwayStrikers() {
 }
 
 function collisionDetection(box, pX) {
+    // Creating a SAT response object to hold the collision information
     var response = new SAT.Response();
+
+    // Collision check between polygon(box) and a circle
     if (SAT.testPolygonCircle(box, circle, response)) {
         var speed = (x + (12 / 2) - pX + (20 / 2)) / (20 / 2) * 5;
         if (flag1 == 1) {
+            // Reacting to the collision based on the ball's current direction
+            // Adjusting the ball's position based on direction after collision
             if (dy > 0) {
                 dy = -dy;
                 y = y - speed;
@@ -462,22 +492,25 @@ function collisionDetection(box, pX) {
                 else
                     x = x + speed;
             }
+            // Chnaging flag1 to indicate collision has occured
             flag1 = 0;
         }
     } else
+        // Resetting flag1 when no collision occurs
         flag1 = 1;
 }
 
 function collisionDetectionAway(box, pX) {
     var response = new SAT.Response();
-    if (SAT.testPolygonCircle(box, circle, response)) {
-        var speed = (x + (12 / 2) - pX + (20 / 2)) / (20 / 2) * 5;
+    if (SAT.testPolygonCircle(box, circle, response)) { // Condition for collision
+        var speed = (x + (12 / 2) - pX + (20 / 2)) / (20 / 2) * 5;  // Speed calculation
         if (flag2 == 1) {
             if (dy < 0) {
                 dy = -dy;
                 y = y + speed;
                 if (dx > 0)
                     x = x + speed;
+                
                 else
                     x = x - speed;
             } else {
@@ -494,8 +527,8 @@ function collisionDetectionAway(box, pX) {
 
 
 function goalDetection(box) {
-    var response = new SAT.Response();
-    return SAT.testPolygonCircle(box, circle, response);
+    var response = new SAT.Response();  // SAT response object to hold collision information
+    return SAT.testPolygonCircle(box, circle, response);    // Testing for collision
 }
 
 function drawRods(yAxis) {
