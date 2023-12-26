@@ -1,0 +1,15 @@
+# If we create this file we don't need to write the commanmds in WindowsPowerShell like "docker run -p 5173:5173 ..."
+
+services:
+  to-do-list-using-ts:  # This is the name of our service
+    build:  # Specifies how to build docker image for this service
+      context: .
+    ports:
+      - 5173:5173 # Exposing port 5173 on the host machine and mapping it to port 5173 inside the Docker container 
+
+
+# The 'context' key refers to the build context, which is the path where the Dockerfile and associated files needed for building the image are located.
+# In this case, . (dot) signifies the current directory where the 'docker-compose.yaml' file is located, indicating that the Docker build context is the current directory.
+
+# If we put . after context it will search for the Dockerfile in the same directory where this 'compose.yaml' is located
+# If the 'Dockerfile' is located in other directory we need to specify the directory instead of putting just the . (dot)  
