@@ -1,0 +1,63 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 0;
+    padding-bottom: 1.7rem;
+    background-color: $white;
+    box-shadow: 0 1px 2px rgba($black, .25);
+
+    &__branding {
+        display: block;
+
+        @include respond(desktop) {
+            padding-top: $border;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    // Menu List
+    &__menu {
+        display: none;
+        align-self: stretch;
+
+        &-link {
+            display: inline-block;
+            height: 100%;
+            padding: 2rem 4rem;
+            border-top: $border solid transparent;
+            color: $text-gray;
+            font-size: 1.6rem;
+            text-transform: capitalize;
+            transition: $transit;
+
+            &--active {
+                border-color: $primary;
+            }
+
+            &:hover {
+                background-color: $bg-gray;
+            }
+        }
+
+        @include respond(desktop) {
+            display: flex;
+        }
+    }
+
+    &__cta {
+        @include respond(desktop) {
+            padding-top: $border;
+        }
+    }
+
+    @include respond(desktop) {
+        padding: 0;
+    }
+
+}

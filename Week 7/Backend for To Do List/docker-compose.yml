@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodejs_app
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    environment:
+      NODE_ENV: development
+      SERVER_PORT: 8000
+      ACCESS_TOKEN_SECRET: 'access_token_secret'
+      REFRESH_TOKEN_SECRET: 'refresh_token_secret'

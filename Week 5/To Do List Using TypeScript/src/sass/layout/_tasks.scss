@@ -1,0 +1,69 @@
+.add-task {
+    position: relative;
+
+    &__input {
+        padding: 0 2rem;
+        padding-right: 0;
+        border-bottom: 1px solid $border-color;
+        color: rgba($black, 0.8);
+        transition: $transit;
+
+        &:focus {
+            border-color: $primary;
+        }
+    }
+
+    &__actions {
+        right: -2rem;
+    }
+}
+
+.task {
+    display: flex;
+    min-height: 6rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    border-bottom: 1px solid $light-gray;
+    background-color: $white;
+    font-size: 1.6rem;
+    font-weight: 400;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    &__title {
+        color: #666;
+        font: {
+            size: 1.6rem;
+            weight: 400;
+        }
+    }
+
+    &__text {
+        overflow: hidden;
+        color: $light-gray;
+        color: #666;
+        font-size: 1.4rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.tasks-empty {
+    display: flex;
+    height: 40rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    color: $light-gray;
+
+    &__text {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+}

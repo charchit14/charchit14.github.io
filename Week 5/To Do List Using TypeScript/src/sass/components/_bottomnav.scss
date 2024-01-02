@@ -1,0 +1,50 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -1px 2px rgba($black, .25);
+    
+    &__wrapper {
+        display: flex;
+        max-width: 102.2rem;
+        align-items: stretch;
+        margin: 0 auto;
+
+        & > * {
+            flex: 0 0 calc(33.333%);
+        }
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.2rem;
+        padding-bottom: calc(1.2rem - .4rem);
+        border-bottom: $border solid transparent;
+
+        &-icon {
+            pointer-events: none;
+        }
+        
+        &-text {
+            color: $text-gray;
+            font-size: 1.4rem;
+            pointer-events: none;
+            text-transform: capitalize;
+        }
+
+        &--active {
+            border-color: $primary;
+
+            & > * {
+                color: $primary;
+                fill: $primary;
+            }
+        }
+    }
+
+    @include respond(desktop) {
+        display: none;
+    }
+}

@@ -1,0 +1,23 @@
+.form-control {
+    width: 100%;
+    min-height: 6rem;
+    padding: 0 6rem 0 2rem;
+    border: none;
+    color: rgba($black, 1);
+    font-family: inherit;
+    font-size: 1.6rem;
+    line-height: 6rem;
+    outline: 0;
+
+    &::placeholder {
+        color: rgba($black, 0.7);
+    }
+}
+
+.form-control-addon-wrapper {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    gap: 2rem;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,24 @@
+.form-search {
+    margin-bottom: 4rem; 
+
+    input {
+        color: rgba($black, 0.8);
+        
+
+        &::placeholder {
+            color: rgba($black, 0.7);
+        }
+    }
+
+}
+
+.input-group {
+    position: relative;
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 2rem;
+    }
+}

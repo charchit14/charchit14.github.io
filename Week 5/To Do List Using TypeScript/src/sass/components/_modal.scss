@@ -1,0 +1,72 @@
+.modal {
+    width: 90%;
+    max-width: 94rem;
+    border-radius: $border;
+    background-color: $white;
+
+    &__header {
+        display: flex;
+        height: 6.4rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        border-bottom: 1px solid $light-gray;
+    }
+    
+    &-overlay {
+        position: fixed;
+        z-index: 996;
+        display: none;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($black, 0.8);
+        inset: 0;
+        transition: $transit;
+    }
+
+    &__title {
+        color: #666;
+        font-size: 1.6rem;
+        font-weight: 400;
+    }
+
+    &__footer {
+        display: flex;
+        height: 6.4rem;
+        align-items: center;
+        justify-content: end;
+        padding-right: 2rem;
+        gap: 2rem;
+
+        &-btn {
+            padding: 1.2rem 2.7rem;
+            
+        }
+    }
+
+    &-hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.modal-add-task {
+    &__title,&__description {
+        padding: 0 2rem;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid $border-color;
+        color: rgba($black, 0.8);
+        transition: $transit;
+
+        &::placeholder {
+            color: $text-gray;
+        }
+
+        &:focus {
+            border-color: $primary;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.u-container {
+    max-width: 103.9rem;
+    padding: 0 2rem;
+    margin: 0 auto;
+
+    @include respond(desktop) {
+        padding: 0;
+    }
+}
+
+.u-text-through {
+    text-decoration: line-through;
+}

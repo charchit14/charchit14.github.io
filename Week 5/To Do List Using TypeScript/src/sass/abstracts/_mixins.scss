@@ -1,0 +1,9 @@
+@mixin respond($breakpoint) {
+    @if $breakpoint == tablet {
+        @media only screen and (width >= 29.9rem) { @content };
+    }
+
+    @if $breakpoint == desktop {
+        @media only screen and (width >= 63.9rem) { @content };
+    }
+}
