@@ -1,52 +1,41 @@
-import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-
 import * as authService from '../service/auth';
 
-export const signup = async (req: Request, res: Response) => {
-  const { body } = req;
+import HttpStatus from 'http-status-codes';
+import { NextFunction, Request, Response } from 'express';
 
-  if (!body.email || !body.password || !body.id) {
-    return res.status(401).json({
-      success: false,
-      message: 'All fields are required!',
-    });
-  }
+import { ISignUp } from '../interface/auth';
+
+export const signup = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
+    const body: ISignUp = req.body;
+
     await authService.signup(body);
-    return res.json({
+
+    return res.status(HttpStatus.CREATED).json({
       message: 'Signed up successfully',
     });
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: error?.toString(),
-    });
+    next(error);
   }
 };
 
-export const login = async (req: Request, res: Response) => {
-  const { body } = req;
-
-  if (!body.email || !body.password) {
-    return res.status(401).json({
-      success: false,
-      message: 'All fields are required!',
-    });
-  }
-
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
+    const { body } = req;
+
     const data = await authService.login(body);
 
-    return res.json({
-      success: true,
-      data,
-    });
+    return res.json(data);
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: error?.toString(),
-    });
+    next(error);
   }
 };
 
@@ -63,11 +52,9 @@ export const refreshToken = (req: Request, res: Response) => {
     const accessToken = authService.refreshToken(refreshToken);
     return res.status(200).json({ success: true, accessToken });
   } catch (error) {
-    return res
-      .status(401)
-      .json({
-        success: false,
-        message: 'couldnt generate access token',
-      });
+    return res.status(401).json({
+      success: false,
+      message: 'couldnt generate access token',
+    });
   }
 };

@@ -1,54 +1,65 @@
-import type { Task } from '../interface/task';
+import type { ITask } from '../interface/task';
 
-let tasks: Task[] = [
-  {
-    id: '1',
-    title: 'Task one',
-    description: 'Task description',
-    completed: false,
-  },
-  {
-    id: '2',
-    title: 'Task Two',
-    completed: false,
-  },
-  {
-    id: '3',
-    title: 'Task Three',
-    description: 'Task description',
-    completed: true,
-  },
-];
+import BaseModel from './BaseModel';
 
-export const getTaskById = (id: string) =>
-  tasks.find(({ id: taskId }) => taskId === id);
+export default class TaskModel extends BaseModel {
+  static async getAll(params: any) {
+    const query = this.queryBuilder()
+      .select({
+        id: 'id',
+        title: 'title',
+        description: 'description',
+        completed: 'completed',
+      })
+      .from('tasks');
 
-export const getTasks = () => tasks;
+    if (params.completed) {
+      query.where('completed', true);
+    }
 
-export const addTask = (task: Task) => {
-  tasks.push(task);
-};
+    query.offset(params.offset).limit(params.limit);
 
-export const editTask = (updatedTask: Task) => {
-  const index = tasks.findIndex(({ id }) => id === updatedTask.id);
-
-  if (index !== -1) {
-    // Update the existing task with the provided data
-    tasks[index] = {
-      ...tasks[index],
-      ...updatedTask,
-    };
-  } else {
-    throw new Error('Task not found');
+    return query;
   }
-};
 
-export const deleteTask = (id: string) => {
-  const index = tasks.findIndex((task) => task.id === id);
+  static countAll(params: any) {
+    const query = this.queryBuilder()
+      .table('tasks')
+      .count({ count: 'id' })
+      .first();
 
-  if (index !== -1) {
-    tasks.splice(index, 1);
-  } else {
-    throw new Error('Task not found');
+    if (params.completed) {
+      query.where('completed', true);
+    }
+
+    return query;
   }
-};
+
+  static async getById(id: number) {
+    return this.queryBuilder()
+      .select({
+        id: 'id',
+        title: 'title',
+        description: 'description',
+        completed: 'completed',
+      })
+      .from('tasks')
+      .where({ id })
+      .first();
+  }
+
+  static async create(task: ITask) {
+    return this.queryBuilder().insert(task).table('tasks');
+  }
+
+  static async update(id: number, task: ITask) {
+    return this.queryBuilder()
+      .update(task)
+      .table('tasks')
+      .where({ id });
+  }
+
+  static async delete(id: number) {
+    return this.queryBuilder().table('tasks').where({ id }).del();
+  }
+}

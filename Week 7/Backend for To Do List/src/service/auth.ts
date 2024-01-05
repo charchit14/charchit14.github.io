@@ -1,65 +1,46 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
 import config from '../config';
-
-import {
-  getUsers,
-  addUser,
-  getUserByEmail,
-  getUserById,
-} from '../model/users';
-
+import UserModel from '../model/users';
+import { ISignUp } from '../interface/auth';
+import BadRequestError from '../error/BadRequestError';
 import {
   ACCESS_TOKEN_EXPIRY,
   REFRESH_TOKEN_EXPIRY,
 } from '../constant';
-import { getRandomString } from '../utils';
-import { User } from '../interface/user';
 
 const SALT_ROUNDS = 10;
 
-const generateAccessToken = (user: User) => {
-  const { accessTokenSecret } = config.jwt;
-  return jwt.sign(
-    { userId: user.id, email: user.email },
-    accessTokenSecret,
-    { expiresIn: ACCESS_TOKEN_EXPIRY }
-  );
-};
-
-export const signup = async (body: User) => {
-  // Check if a user with the provided email already exists
-  const existingUserByEmail = getUserByEmail(body.email);
-  if (existingUserByEmail) {
-    throw new Error('User with this email already exists');
-  }
-
-  // Check if a user with the provided ID already exists
-  const existingUserById = getUserById(body.id);
-  if (existingUserById) {
-    throw new Error('User with this ID already exists');
-  }
-
+export const signup = async (body: ISignUp) => {
   const hashedPassword = await bcrypt.hash(
     body.password,
     SALT_ROUNDS
   );
 
-  const newUser: User = {
-    id: body.id,
-    name: body.name,
-    email: body.email,
-    password: hashedPassword,
-  };
+  const userEmailExists = await UserModel.getByEmail(body.email);
 
-  addUser(newUser);
+  if (userEmailExists) {
+    throw new BadRequestError(
+      `User with email: ${body.email} already exists`
+    );
+  }
+
+  await UserModel.create({
+    ...body,
+    password: hashedPassword,
+  });
+
+  return {
+    message: 'User signed up successfully',
+  };
 };
 
-export const login = async (body: User) => {
-  const user = getUsers().find(({ email }) => email === body.email);
+export const login = async (body: ISignUp) => {
+  const user = await UserModel.getByEmail(body.email);
 
   if (!user) {
-    throw new Error('User not found');
+    throw new BadRequestError('Invalid Email or Password');
   }
 
   const passwordMatch = await bcrypt.compare(
@@ -68,7 +49,7 @@ export const login = async (body: User) => {
   );
 
   if (!passwordMatch) {
-    throw new Error('Password does not match');
+    throw new BadRequestError('Invalid Email or Password');
   }
 
   const accessToken = jwt.sign(user, config.jwt.accessTokenSecret!, {
@@ -89,6 +70,15 @@ export const login = async (body: User) => {
   };
 };
 
+const generateAccessToken = (user: any) => {
+  const { accessTokenSecret } = config.jwt;
+  return jwt.sign(
+    { userId: user.id, email: user.email },
+    accessTokenSecret,
+    { expiresIn: ACCESS_TOKEN_EXPIRY }
+  );
+};
+
 export const refreshToken = (refreshToken: string) => {
   const { refreshTokenSecret } = config.jwt;
   const decoded = jwt.verify(
@@ -97,7 +87,7 @@ export const refreshToken = (refreshToken: string) => {
   ) as jwt.JwtPayload;
 
   // Check if the user exists
-  const user = getUserById(decoded.id);
+  const user = UserModel.getById(decoded.id);
   if (!user) {
     throw new Error('User not found');
   }
