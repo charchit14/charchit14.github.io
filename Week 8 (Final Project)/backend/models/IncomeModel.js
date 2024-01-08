@@ -36,7 +36,7 @@ const IncomeSchema = new mongoose.Schema ({
         maxLength: 20,
         trim: true
     },
-},{timestamps: true}    // To automatically manage created and updated fields in the document
+},{timestamps: true}    // To automatically manage createdAt and updatedAt fields in the document
 )
 
 
