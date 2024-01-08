@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const { db } = require('./db/db');
 
 const app = express()
 
@@ -13,10 +14,15 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use(cors())
 
+// Testing API
+// app.get('/', (req, res)=> {
+//     res.send('Hello there')
+// })
 
 const server = () => {
+    db()
     app.listen(PORT, () => {
-        console.log('listen to port:', PORT)
+        console.log('Listening to port:', PORT)
     })
 }
 
