@@ -1,13 +1,13 @@
 // Importing modules
-const IncomeSchema= require("../models/IncomeModel")
+const ExpenseSchema = require("../models/ExpenseModel")
 
 
 // Handling addition of new entry
-exports.addIncome = async (req, res) => {
+exports.addExpense = async (req, res) => {
     const {title, amount, category, description, date}  = req.body
 
-    // Creating new instance of the 'IncomeSchema' model
-    const income = IncomeSchema({
+    // Creating new instance of the 'ExpenseSchema' model
+    const income = ExpenseSchema({
         title,
         amount,
         category,
@@ -26,7 +26,7 @@ exports.addIncome = async (req, res) => {
 
         // Saving an entry if validation case is passed
         await income.save()
-        res.status(200).json({message: 'Income Added'})
+        res.status(200).json({message: 'Expense Added'})
     } catch (error) {
         res.status(500).json({message: 'Server Error'})
     }
@@ -35,10 +35,10 @@ exports.addIncome = async (req, res) => {
 }
 
 
-// Retrieving all income entries 
-exports.getIncomes = async (req, res) =>{
+//  Retrieving all expense entries 
+exports.getExpense = async (req, res) =>{
     try {
-        const incomes = await IncomeSchema.find().sort({createdAt: -1}) // Sorting in descending (last created is seen first)
+        const incomes = await ExpenseSchema.find().sort({createdAt: -1})    // Sorting in descending (last created is seen first)
         res.status(200).json(incomes)
     } catch (error) {
         res.status(500).json({message: 'Server Error'})
@@ -46,12 +46,12 @@ exports.getIncomes = async (req, res) =>{
 }
 
 
-// Deleting an income entry
-exports.deleteIncome = async (req, res) =>{
+// Deleting an expense entry
+exports.deleteExpense = async (req, res) =>{
     const {id} = req.params;
-    IncomeSchema.findByIdAndDelete(id)
+    ExpenseSchema.findByIdAndDelete(id)
         .then((income) =>{
-            res.status(200).json({message: 'Income Deleted'})
+            res.status(200).json({message: 'Expense Deleted'})
         })
         .catch((err) =>{
             res.status(500).json({message: 'Server Error'})

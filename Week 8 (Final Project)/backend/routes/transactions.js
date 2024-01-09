@@ -1,18 +1,18 @@
 // Importing modules
-const { addIncome } = require('../controllers/income')
+const { addExpense, getExpense, deleteExpense } = require('../controllers/expense');
+const { addIncome, getIncomes, deleteIncome } = require('../controllers/income');
 
 // Initializing express router
 const router = require('express').Router()
 
 
-// // Defining GET route for the root url
-// router.get('/', (req, res) => {
-//     res.send('Hello there')
-// })
-
-
+// Defining route paths
 router.post('/add-income', addIncome)
-
+.get('/get-incomes', getIncomes)
+.delete('/delete-income/:id', deleteIncome)
+.post('/add-expense', addExpense)
+.get('/get-expenses', getExpense)
+.delete('/delete-expense/:id', deleteExpense)
 
 
 // Exporting 'router' instance
