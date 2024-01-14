@@ -1,1 +1,42 @@
 node_modules
+.env
+
+# # Dependency directories
+# lib/
+# vendor/
+# *.md
+
+# # User-specific files
+# .npmrc
+# .npmignore
+# .npm
+# yarn-error.log
+
+# # Environment variables
+# .env
+
+# # Logs
+# logs
+# *.log
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+# #Others
+# dist/
+# uploads/
+# # Coverage output
+# coverage/
+
+# # TypeScript
+# *.tsbuildinfo
+# *.tsbuildinfo.*
+
+# # System Files
+# .DS_Store
+# Thumbs.db
+
+# # macOS
+# .idea/
+
+# # Visual Studio Code
+# .vscode/

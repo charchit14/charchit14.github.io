@@ -1,0 +1,38 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}*
+
+body {
+  background: yellow;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  font-family: 'Poppins', sans-serif;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  background-color: lavender;
+  color: black;
+  border-radius: 10px;
+  border: 2px solid red;
+}
+
+.form-outline {
+  margin-bottom: 15px; /* Add gap between each section */
+}
+
+#btn-login {
+  background-color: yellow;
+  color: black;
+  width: 80px;
+  border-radius: 20px;
+  transition: none;
+}

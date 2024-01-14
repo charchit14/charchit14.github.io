@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Registration Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container justify-content-center align-content-center">
+    <div class="row justify-content-center">
+      <div class="col-md-12 text-center p-5">
+        <!-- <h1 class="heading-section text-black"><b>Register new user</b></h1> -->
+      </div>
+    </div>
+
+    <div class="registration-box">
+      <h1 class="heading-section text-black"><b>Register new user</b></h1>
+      <br>
+      <form id="form-register">
+        <div id="error-message" class="d-none alert alert-danger"></div>
+        <div id="success-message" class="d-none alert alert-success"></div>
+
+        <!-- Username input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="register-username"><b>Full Name</b></label>
+          <input type="text" id="register-username" class="form-control" />
+        </div>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="register-email"><b>Email Address</b></label>
+          <input type="email" id="register-email" class="form-control" />
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="register-password"><b>Password</b></label>
+          <input type="password" id="register-password" class="form-control" />
+        </div>
+
+        <!-- Re-Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="register-repassword"><b>Re-enter the Password</b></label>
+          <input type="password" id="register-repassword" class="form-control" />
+        </div>
+
+        <!-- Submit button -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary mb-4" id="btn-register">
+            Register
+          </button>
+        </div>
+
+
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>
+            <b>Click here to: </b>
+            <a href="/views/login/" class="text-danger text-decoration-none"><b><u>Login</u></b></a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="./script.ts"></script>
+</body>
+
+</html>

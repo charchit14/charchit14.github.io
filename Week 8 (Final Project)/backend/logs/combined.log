@@ -1,0 +1,29 @@
+[2024-01-13 02:46:43.472 PM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-13 02:47:09.155 PM] [32minfo[39m: 	[32mGET: /users/summary : 200[39m
+[2024-01-13 02:47:09.168 PM] [31merror[39m: 	[31mError: Access Token has expired![39m
+[31m    at E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:29:12[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:31:71[39m
+[31m    at new Promise (<anonymous>)[39m
+[31m    at __awaiter (E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:27:12)[39m
+[31m    at jwtAuth (E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:16:5)[39m
+[31m    at Layer.handle [as handle_request] (E:\Expense Tracker\Backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at trim_prefix (E:\Expense Tracker\Backend\node_modules\express\lib\router\index.js:328:13)[39m
+[31m    at E:\Expense Tracker\Backend\node_modules\express\lib\router\index.js:286:9[39m
+[31m    at Function.process_params (E:\Expense Tracker\Backend\node_modules\express\lib\router\index.js:346:12)[39m
+[2024-01-13 02:47:15.636 PM] [32minfo[39m: 	[32mGET: /users/summary : 200[39m
+[2024-01-13 02:47:15.639 PM] [31merror[39m: 	[31mError: Access Token has expired![39m
+[31m    at E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:29:12[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:31:71[39m
+[31m    at new Promise (<anonymous>)[39m
+[31m    at __awaiter (E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:27:12)[39m
+[31m    at jwtAuth (E:\Expense Tracker\Backend\src\middlewares\JwtAuth.ts:16:5)[39m
+[31m    at Layer.handle [as handle_request] (E:\Expense Tracker\Backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at trim_prefix (E:\Expense Tracker\Backend\node_modules\express\lib\router\index.js:328:13)[39m
+[31m    at E:\Expense Tracker\Backend\node_modules\express\lib\router\index.js:286:9[39m
+[31m    at Function.process_params (E:\Expense Tracker\Backend\node_modules\express\lib\router\index.js:346:12)[39m
+[2024-01-13 02:47:28.144 PM] [32minfo[39m: 	[32mPOST: /login : 200[39m
+[2024-01-13 02:47:28.400 PM] [32minfo[39m: 	[32mGET: /users/summary : 200[39m
+[2024-01-13 02:50:52.577 PM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-14 05:30:06.239 PM] [32minfo[39m: 	[32mDatabase is connected !![39m

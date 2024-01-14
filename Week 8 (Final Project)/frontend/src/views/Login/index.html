@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 text-center p-5 align-baseline">
+        <h1 class="heading-section text-black"><b>Enter your credentials</b></h1>
+      </div>
+    </div>
+
+    <form id="form-login">
+      <div id="error-message" class="d-none alert alert-danger"></div>
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="login-email"><b>Email Address</b></label>
+        <input type="email" id="login-email" class="form-control" />
+        <div class="invalid-feedback" id="login-email-error"></div>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="login-password"><b>Password</b></label>
+        <input type="password" id="login-password" class="form-control" />
+        <div class="invalid-feedback" id="login-password-error"></div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary btn-block mb-4" id="btn-login">
+          <b>Login</b>
+        </button>
+      </div>
+
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>
+          <b>Create a new account here: </b>
+          <a href="/views/register/" class="text-danger text-decoration-none"><u>Register User</u></a>
+        </p>
+      </div>
+    </form>
+  </div>
+  <script type="module" src="./script.ts"></script>
+</body>
+
+</html>

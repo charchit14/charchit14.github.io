@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}*
+
+.registration-box {
+    font-family: 'Poppins', sans-serif;
+    width: 50%;
+    padding: 20px;
+    text-align: center;
+    background-color: lavender;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid red;
+    margin: 0 auto; /* Center the box *
+}
+
+.heading-section {
+    margin-bottom: 20px; /* Add margin to the heading */
+}
+
+#btn-register {
+    font-family: 'Poppins', sans-serif;
+    background-color: yellow;
+    color: black;
+    width: 80px; /* Adjusted button width */
+    border-radius: 20px;
+    transition: none; /* Removed transition effect */
+}

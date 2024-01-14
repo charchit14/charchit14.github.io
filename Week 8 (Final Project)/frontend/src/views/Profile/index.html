@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <script type="module" src="../../service/CheckAuth.ts"></script>
+    <script
+      src="https://kit.fontawesome.com/e087eda0a5.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav id="nav-placeholder"></nav>
+    <main class="container">
+      <section class="container row h-50 mt-3">
+        <section class="header row">
+          <h3 class="col-10 text-primary">Categories</h3>
+          <button class="btn btn-primary col" id="btn-add-category">
+            <i class="fa-solid fa-plus"></i>
+            Add Category
+          </button>
+        </section>
+        <table class="table text-primary">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider" id="category-container"></tbody>
+        </table>
+      </section>
+      <!-- Add Category Dialog Box -->
+      <section>
+        <div
+          class="modal fade"
+          id="add-category-dialog"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="customModalLabel"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-lg modal-dialog-centered"
+            role="document"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Category</h5>
+              </div>
+              <div class="modal-body gap-4 d-flex flex-column">
+                <div class="form-group">
+                  <label for="amount">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="add-category-title"
+                    placeholder="Enter Title"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="remarks">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="add-category-description"
+                    placeholder="Enter Description"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  id="btn-save-category"
+                  class="btn btn-primary"
+                >
+                  Save Category
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="btn-close-category-dialog"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Add Category Dialog Box -->
+    </main>
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
