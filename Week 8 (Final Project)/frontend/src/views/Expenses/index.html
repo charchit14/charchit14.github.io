@@ -1,117 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expenses</title>
-    <script type="module" src="../../service/CheckAuth.ts"></script>
-    <script
-      src="https://kit.fontawesome.com/e087eda0a5.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <nav id="nav-placeholder"></nav>
-    <main class="container">
-      <section class="row mt-3">
-        <div class="input-group d-flex col-12 justify-content-center">
-          <div class="form-outline w-75" data-mdb-input-init>
-            <input type="search" id="search-bar" class="form-control" />
-          </div>
-          <button
-            type="button"
-            class="btn btn-primary"
-            id="btn-search"
-            data-mdb-ripple-init
-          >
-            <i class="fas fa-search"></i>
-          </button>
-          <a type="button" class="btn btn-primary" id="btn-add-expense">
-            <i class="fas fa-add"></i>
-            Add
-          </a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expenses</title>
+  <script type="module" src="../../service/CheckAuth.ts"></script>
+  <!-- <script src="https://kit.fontawesome.com/e087eda0a5.js" crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+  <nav id="nav-placeholder"></nav>
+  <main class="container">
+    <section class="row mt-3">
+      <div class="input-group d-flex col-12 justify-content-center">
+        <div class="form-outline w-75" data-mdb-input-init>
+          <input type="search" id="search-bar" class="form-control" />
         </div>
-      </section>
-      <section class="container p-5 row rounded-3" id="expense-container">
-        <h1 class="text-center h-75 p-5">Sorry No Data Found!</h1>
-      </section>
+        <button type="button" class="btn btn-primary" id="btn-search" data-mdb-ripple-init>
+          <i class="fas fa-search"></i>
+        </button>
+        <a type="button" class="btn btn-primary" id="btn-add-expense">
+          <i class="fas fa-add"></i>
+          Add
+        </a>
+      </div>
+    </section>
+    <section class="container p-5 row rounded-3" id="expense-container">
+      <h1 class="text-center h-75 p-5">Sorry No Data Found!</h1>
+    </section>
 
-      <!-- Add Expense Dialog Box -->
-      <section>
-        <div
-          class="modal fade"
-          id="add-expense-dialog"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="customModalLabel"
-          aria-hidden="true"
-        >
-          <div
-            class="modal-dialog modal-lg modal-dialog-centered"
-            role="document"
-          >
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="customModalLabel">Expense</h5>
+    <!-- Add Expense Dialog Box -->
+    <section>
+      <div class="modal fade" id="add-expense-dialog" tabindex="-1" role="dialog" aria-labelledby="customModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="customModalLabel">Expense</h5>
+            </div>
+            <div class="modal-body gap-4 d-flex flex-column">
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control" id="add-amount" placeholder="Enter amount" />
               </div>
-              <div class="modal-body gap-4 d-flex flex-column">
-                <div class="form-group">
-                  <label for="amount">Amount</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="add-amount"
-                    placeholder="Enter amount"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="remarks">Remarks</label>
-                  <textarea
-                    class="form-control"
-                    id="add-remarks"
-                    placeholder="Enter remarks"
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="category">Category</label>
-                  <select class="form-control" id="add-category"></select>
-                </div>
-                <div class="form-group">
-                  <label for="date">Date</label>
-                  <input type="date" class="form-control" id="add-date" />
-                </div>
-                <div class="form-group">
-                  <label for="file">Attach Receipt</label>
-                  <input
-                    type="file"
-                    class="form-control-file"
-                    id="add-receipt"
-                  />
-                </div>
+              <div class="form-group">
+                <label for="remarks">Remarks</label>
+                <textarea class="form-control" id="add-remarks" placeholder="Enter remarks"></textarea>
               </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  id="btn-save-expense"
-                  class="btn btn-primary"
-                >
-                  Save Expense
-                </button>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="add-category"></select>
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="add-date" />
+              </div>
+              <div class="form-group">
+                <label for="file">Attach Receipt</label>
+                <input type="file" class="form-control-file" id="add-receipt" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btn-save-expense" class="btn btn-primary">
+                Save Expense
+              </button>
 
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  id="btn-close-expense-dialog"
-                >
-                  Close
-                </button>
-              </div>
+              <button type="button" class="btn btn-secondary" id="btn-close-expense-dialog">
+                Close
+              </button>
             </div>
           </div>
         </div>
-      </section>
-      <!-- End Add Expense Dialog Box -->
-    </main>
-    <script type="module" src="./script.ts"></script>
-  </body>
+      </div>
+    </section>
+    <!-- End Add Expense Dialog Box -->
+  </main>
+  <script type="module" src="./script.ts"></script>
+</body>
+
 </html>

@@ -1,20 +1,4 @@
-// $my-primary-color: #07936e;
-// @font-face {
-//   font-family: "YourFont";
-//   src: url("../fonts/Advent\ Pro\ Regular.ttf") format("truetype");
-//   font-weight: 700;
-//   font-size: x-large;
-// }
-// Setting Bootstrap's $font-family-base to Custom Font
-// $font-family-base: "YourFont", sans-serif;
-// $theme-colors: (
-//   primary: $my-primary-color,
-// );
-// $body-color: $my-primary-color;
-// $btn-primary-color: #fff;
-// $link-color: $my-primary-color;
-// $link-hover-color: $my-primary-color;
 @import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
-$font-family-base: 'Bitter', cursive;
+// @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+// $font-family-base: 'Bitter', cursive;
 @import "~bootstrap/scss/bootstrap";

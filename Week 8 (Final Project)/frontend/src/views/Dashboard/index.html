@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <script type="module" src="../../service/CheckAuth.ts"></script>
-    <script
-      src="https://kit.fontawesome.com/e087eda0a5.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <nav id="navbar-placeholder"></nav>
-    <section class="container">
-      <!-- Header Section -->
-      <section class="pt-4">
-        <h1 class="heading-section">
-          Welcome <span id="display-username"></span>
-        </h1>
-      </section>
-      <!-- Overview Section -->
-      <section class="container d-flex gap-4 card-group mt-4">
-        <div class="card bg-danger">
-          <div class="card-body">
-            <div class="text-white">
-              <i class="fa fa-money" aria-hidden="true"></i> Expenses
-            </div>
-            <h1 class="card-text text-white" id="summary-expense"></h1>
-          </div>
-        </div>
-        <div class="card bg-success">
-          <div class="card-body">
-            <div class="text-white">
-              <i class="fa fa-money-check"></i> Income
-            </div>
-            <h1 class="card-text text-white" id="summary-income"></h1>
-          </div>
-        </div>
-        <div class="card bg-primary">
-          <div class="card-body">
-            <div class="text-white">
-              <i class="fa-solid fa-piggy-bank"></i> Savings
-            </div>
-            <h1 class="card-text text-white" id="summary-budget"></h1>
-          </div>
-        </div>
-      </section>
-      <!-- Chart Section -->
-      <canvas class="container" id="expense-chart"></canvas>
-      <!-- Expense List Section -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Page</title>
+  <script type="module" src="../../service/CheckAuth.ts"></script>
+</head>
+
+<body>
+  <nav id="navbar-placeholder"></nav>
+  <section class="container">
+  <br><br><br>
+   
+    <!-- Header Section -->
+    <section class="pt-4">
+      <h1 class="heading-section d-flex justify-content-center align-items-center">
+      <b><u><span id="display-username"></span>'s Financial Overview </b></u>
+      </h1>
     </section>
-    <script type="module" src="./script.ts"></script>
-  </body>
+    <br><br><br>
+
+    <!-- Overview Section -->
+    <section class="container d-flex gap-4 card-group mt-4">
+      
+      <div class="card bg-success">
+        <div class="card-body">
+          <div class="text-black">
+            <i class="fa fa-money-check"></i> <b style="font-size: 40px;">Income</b>
+            <br><br><br><br>
+          </div>
+          <h1 class="card-text text-black" id="summary-income"></h1>
+        </div>
+      </div>
+
+      <div class="card bg-danger">
+        <div class="card-body">
+          <div class="text-black">
+            <i class="fa fa-money" aria-hidden="true"></i> <b style="font-size: 40px;">Expense</b>
+            <br><br><br><br>
+          </div>
+          <h1 class="card-text text-black" id="summary-expense"></h1>
+        </div>
+      </div>
+
+      <div class="card bg-warning">
+        <div class="card-body">
+          <div class="text-black">
+            <i class="fa-solid fa-piggy-bank"></i> <b style="font-size: 40px;">Net Balance</b>
+            <br><br><br><br>
+          </div>
+          <h1 class="card-text text-black" id="summary-budget"></h1>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Chart Section -->
+    <!-- <canvas class="container" id="expense-chart"></canvas> -->
+    
+    <!-- Expense List Section -->
+  </section>
+  <script type="module" src="./script.ts"></script>
+</body>
+
 </html>
