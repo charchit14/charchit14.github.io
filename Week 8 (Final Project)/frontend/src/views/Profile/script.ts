@@ -7,20 +7,17 @@ import createDeleteRequest from "../../service/DeleteRequest";
 import createGetRequest from "../../service/GetRequest";
 import createPostRequest from "../../service/PostRequest";
 import createPutRequest from "../../service/PutRequest";
-// --------------------- Getting elements from DOM -----------------------
+
 const navBar = document.getElementById("nav-placeholder") as HTMLElement;
-
 const categoryContainer = document.getElementById("category-container") as HTMLElement;
-
 const addCategoryDialog = document.getElementById("add-category-dialog") as HTMLElement;
 const addCategoryBtn = document.getElementById("btn-add-category") as HTMLElement;
 const btnCloseCategoryDialog = document.getElementById("btn-close-category-dialog") as HTMLElement;
-
 const btnSaveCategory = document.getElementById("btn-save-category") as HTMLElement;
 const categoryTitleInput = document.getElementById("add-category-title") as HTMLInputElement;
 const categoryDescriptionInput = document.getElementById("add-category-description") as HTMLInputElement;
-// --------------------- Initializing Modals -----------------------
 
+// Initializing Modals
 let categoryModal: bootstrap.Modal;
 let categoryId: string = "";
 window.onload = async () => {
@@ -82,7 +79,7 @@ const createCategoryCard = (category: Category) => {
   const actions = document.createElement("td");
   actions.setAttribute("colspan", "2");
   const editButton = document.createElement("button");
-  // editButton.innerHTML = "<i class='fa-solid fa-pen-to-square'></i>";
+
   editButton.innerText = "Edit";
   editButton.classList.add("btn", "btn-warning");
   editButton.addEventListener("click", () => {
@@ -92,7 +89,6 @@ const createCategoryCard = (category: Category) => {
     categoryDescriptionInput.value = category.description;
   });
   const deleteButton = document.createElement("button");
-  // deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
   deleteButton.innerText = "Delete";
 
   deleteButton.classList.add("btn", "btn-danger", "mx-2");
@@ -107,34 +103,31 @@ const createCategoryCard = (category: Category) => {
   return row;
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                  API Calls                                 */
-/* -------------------------------------------------------------------------- */
 
-/* ------------------------- Getting user categories ------------------------ */
+// Calling API
+// Getting Categories
 const getUserCategories = async () => {
   try {
     const categories = await createGetRequest("/categories/");
     return categories;
   } catch (error) {
-    // Todo remove
     console.log(error);
   }
 };
 
-/* --------------------------- Adding new category -------------------------- */
+// Adding new category
 const saveCategory = async (category: Category) => {
   try {
     const response = await createPostRequest("/categories/", category);
     if (response.status == HttpStatusCode.Accepted) {
-      //Todo
+      // If block
     }
   } catch (error) {
-    //Todo show Toast
+    // Catch block
   }
 };
 
-/* --------------------------- Deleting a category -------------------------- */
+// Deleting category
 const deleteCategory = async (id: string) => {
   try {
     const response = await createDeleteRequest(`/categories/${id}`);
@@ -142,7 +135,7 @@ const deleteCategory = async (id: string) => {
       renderUserCategories(await getUserCategories());
     }
   } catch (error) {
-    //Todo show Toast
+    // Catch block
   }
 };
 
@@ -150,9 +143,9 @@ const updateCategory = async (category: Category) => {
   try {
     const response = await createPutRequest("/categories/", category);
     if (response.status == HttpStatusCode.Accepted) {
-      //todo add toast
+      // If block
     }
   } catch (error) {
-    //Todo Add Toast
+    // Catch block
   }
 };

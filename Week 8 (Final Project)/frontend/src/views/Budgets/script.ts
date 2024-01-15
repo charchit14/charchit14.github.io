@@ -1,4 +1,4 @@
-/* --------------------------------- Imports -------------------------------- */
+// Importing modules
 import { HttpStatusCode } from "axios";
 import * as bootstrap from "bootstrap";
 import "../../assets/scss/style.scss";
@@ -11,42 +11,24 @@ import createPutRequest from "../../service/PutRequest";
 import createCategoryOptions from "../../utils/CategoryOptions";
 import createDeleteRequest from "../../service/DeleteRequest";
 
-/* -------------------------------------------------------------------------- */
-/*                          Getting elements from DOM                         */
-/* -------------------------------------------------------------------------- */
+// Getting elements
 const navBar = document.getElementById("nav-placeholder") as HTMLElement;
 const btnSaveBudget = document.getElementById("btn-save-budget") as HTMLElement;
 const addBudgetBtn = document.getElementById("btn-add-budget") as HTMLElement;
-const budgetContainer = document.getElementById(
-  "budget-container"
-) as HTMLElement;
-const addBudgetCategory = document.getElementById(
-  "add-budget-category"
-) as HTMLInputElement;
-const btnCloseBudgetDialog = document.getElementById(
-  "btn-close-budget-dialog"
-) as HTMLElement;
-const budgetDialogBox = document.getElementById(
-  "add-budget-dialog"
-) as HTMLElement;
-const budgetTitleInput = document.getElementById(
-  "add-budget-title"
-) as HTMLInputElement;
-const budgetAmountInput = document.getElementById(
-  "add-budget-amount"
-) as HTMLInputElement;
-const budgetTimeInput = document.getElementById(
-  "add-budget-time"
-) as HTMLInputElement;
-const btnDeleteBudget = document.getElementById(
-  "btn-delete-budget"
-) as HTMLElement;
-/* ------------------------- Initializing Variables ------------------------- */
+const budgetContainer = document.getElementById("budget-container") as HTMLElement;
+const addBudgetCategory = document.getElementById("add-budget-category") as HTMLInputElement;
+const btnCloseBudgetDialog = document.getElementById("btn-close-budget-dialog") as HTMLElement;
+const budgetDialogBox = document.getElementById("add-budget-dialog") as HTMLElement;
+const budgetTitleInput = document.getElementById("add-budget-title") as HTMLInputElement;
+const budgetAmountInput = document.getElementById("add-budget-amount") as HTMLInputElement;
+const budgetTimeInput = document.getElementById("add-budget-time") as HTMLInputElement;
+const btnDeleteBudget = document.getElementById("btn-delete-budget") as HTMLElement;
+
+// Defining Variables
 let budgetModal: bootstrap.Modal;
 let dialogBudgetId: string = "";
-/* -------------------------------------------------------------------------- */
-/*                       Initial tasks when page loads                        */
-/* -------------------------------------------------------------------------- */
+
+// When window loads
 window.onload = async () => {
   renderNavBar(navBar, "nav-budget");
   const userBudgets = await getUserBudgets("");
@@ -55,10 +37,7 @@ window.onload = async () => {
   renderUserBudgets(userBudgets);
 };
 
-
-/* -------------------------------------------------------------------------- */
-/*                           Button Event Listeners                           */
-/* -------------------------------------------------------------------------- */
+// Adding event listeners
 btnSaveBudget.addEventListener("click", async () => {
   const { startTime, endTime } = getTimeRange(budgetTimeInput.value);
   const budget = {
@@ -109,9 +88,7 @@ const renderUserBudgets = (budgets: Budget[]) => {
   });
 };
 
-/* -------------------------------------------------------------------------- */
-/*                             Create budget card                             */
-/* -------------------------------------------------------------------------- */
+// Creating the card
 const createBudgetCard = (budget: Budget) => {
   const spentPercent = (budget.spentAmount! / budget.amount) * 100;
   const progressColor = spentPercent < 80 ? "success" : "danger";
@@ -212,9 +189,7 @@ const createBudgetCard = (budget: Budget) => {
   return card;
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                  API Calls                                 */
-/* -------------------------------------------------------------------------- */
+// Calling API
 const saveBudget = async (budget: Budget) => {
   try {
     const response = await createPostRequest("/budgets/", budget);
@@ -223,7 +198,7 @@ const saveBudget = async (budget: Budget) => {
       renderUserBudgets(await getUserBudgets(""));
     }
   } catch (error) {
-    //Todo show Toast
+    // Catch block
   }
 };
 
@@ -232,7 +207,6 @@ const getUserBudgets = async (filter: string) => {
     const budgets = await createGetRequest(`/budgets/filter?${filter}`);
     return budgets;
   } catch (error) {
-    //Todo Remove
     console.log(error);
   }
 };
@@ -245,7 +219,7 @@ const updateBudget = async (budget: Budget) => {
       renderUserBudgets(await getUserBudgets(""));
     }
   } catch (error) {
-    //Todo show Toast
+    // Catch block
   }
 };
 
@@ -257,13 +231,11 @@ const deleteBudget = async (id: string) => {
       closeDialog();
     }
   } catch (error) {
-    //Todo show Toast
+    // Catch block
   }
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                   Helpers                                  */
-/* -------------------------------------------------------------------------- */
+// Other Elements
 const getTimeRange = (time: string) => {
   let startTime = new Date();
   let endTime = new Date();

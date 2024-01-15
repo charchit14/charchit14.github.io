@@ -6,14 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Category Page</title>
   <script type="module" src="../../service/CheckAuth.ts"></script>
-  <!-- <script src="https://kit.fontawesome.com/e087eda0a5.js" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
   <nav id="nav-placeholder"></nav>
   <main class="container">
     <br><br>
-    
+
     <section class="container row h-50 mt-3">
       <section class="header row">
         <h3 class="col-10">Categories</h3>
@@ -21,14 +20,10 @@
           <i class="fa-solid fa-plus"></i>
           <b>Add New Category</b>
         </button>
-        
       </section>
-        
-      
+
       <table class="table text-primary">
-        
         <thead>
-          
           <tr>
             <th scope="col">Category Name</th>
             <th scope="col">Category Description</th>
@@ -37,9 +32,8 @@
         </thead>
         <tbody class="table-group-divider" id="category-container"></tbody>
       </table>
-
     </section>
-    <!-- Add Category Dialog Box -->
+
     <section>
       <div class="modal fade" id="add-category-dialog" tabindex="-1" role="dialog" aria-labelledby="customModalLabel"
         aria-hidden="true">
@@ -71,7 +65,6 @@
         </div>
       </div>
     </section>
-    <!-- End Add Category Dialog Box -->
   </main>
   <script type="module" src="./script.ts"></script>
 </body>

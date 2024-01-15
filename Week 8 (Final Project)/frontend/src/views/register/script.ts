@@ -1,37 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpStatusCode } from "axios";
 import "../../assets/scss/style.scss";
-import http from "../../service/HttpClient";
+// import http from "../../service/HttpClient";
 import User from "../../interfaces/User";
 import createPostRequest from "../../service/PostRequest";
 
-const registerForm = document.getElementById(
-  "form-register"
-) as HTMLFormElement;
+const registerForm = document.getElementById("form-register") as HTMLFormElement;
 const validationError = document.getElementById("error-message") as HTMLElement;
-const successMessage = document.getElementById(
-  "success-message"
-) as HTMLElement;
-const usernameInput = document.getElementById(
-  "register-username"
-) as HTMLInputElement;
-const emailInput = document.getElementById(
-  "register-email"
-) as HTMLInputElement;
-const passwordInput = document.getElementById(
-  "register-password"
-) as HTMLInputElement;
-const repasswordInput = document.getElementById(
-  "register-repassword"
-) as HTMLInputElement;
+const successMessage = document.getElementById("success-message") as HTMLElement;
+const usernameInput = document.getElementById("register-username") as HTMLInputElement;
+const emailInput = document.getElementById("register-email") as HTMLInputElement;
+const passwordInput = document.getElementById("register-password") as HTMLInputElement;
+const repasswordInput = document.getElementById("register-repassword") as HTMLInputElement;
 
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  // Clear previous error messages
+  
+  // Clearing the previous error messages
   usernameInput.classList.remove("is-invalid");
   emailInput.classList.remove("is-invalid");
   passwordInput.classList.remove("is-invalid");
   repasswordInput.classList.remove("is-invalid");
+  
   if (!validationError.classList.contains("d-none")) {
     validationError.classList.add("d-none");
   }
@@ -39,7 +29,8 @@ registerForm.addEventListener("submit", async (e) => {
   const email = emailInput.value;
   const password = passwordInput.value;
   const repassword = repasswordInput.value;
-  // Validate input
+  
+  // Validating the input
   if (
     !validateInput(
       username.trim(),
@@ -50,7 +41,8 @@ registerForm.addEventListener("submit", async (e) => {
   ) {
     validationError.classList.remove("d-none");
   }
-  // Submit form
+  
+  // Submitting the form
   else {
     const user: User = { username, email, password };
     await sendPostRequest(user);
@@ -101,9 +93,6 @@ const sendPostRequest = async (user: User) => {
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    // // if (error.response.status == HttpStatusCode.BadRequest) {
-    // //   validationError.classList.remove("d-none");
-    // //   validationError.innerHTML = error.response.data.message;
-    // }
+    // Catch block
   }
 };

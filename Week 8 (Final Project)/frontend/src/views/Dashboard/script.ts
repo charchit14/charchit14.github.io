@@ -10,10 +10,6 @@ const displayExpense = document.getElementById("summary-expense") as HTMLElement
 const displayBudget = document.getElementById("summary-budget") as HTMLElement;
 // const expenseChart = document.getElementById("expense-chart") as HTMLCanvasElement;
 
-// const expenseContext = expenseChart.getContext(
-//   "2d"
-// ) as CanvasRenderingContext2D;
-
 window.onload = async () => {
   renderNavBar(navBar, "nav-dashboard");
   const userSummary = await createGetRequest("/users/summary");

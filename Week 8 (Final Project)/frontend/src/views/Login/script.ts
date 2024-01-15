@@ -6,14 +6,13 @@ import createPostRequest from "../../service/PostRequest";
 const loginForm = document.getElementById("form-login") as HTMLFormElement;
 const validationError = document.getElementById("error-message") as HTMLElement;
 const emailInput = document.getElementById("login-email") as HTMLInputElement;
-const passwordInput = document.getElementById(
-  "login-password"
-) as HTMLInputElement;
+const passwordInput = document.getElementById("login-password") as HTMLInputElement;
 
-// Login form submit handler
+// 'Log in' form submit handler
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  // Clear previous error messages
+  
+  // Clearing the previous error messages
   emailInput.classList.remove("is-invalid");
   passwordInput.classList.remove("is-invalid");
   if (!validationError.classList.contains("d-none")) {
@@ -21,11 +20,11 @@ loginForm.addEventListener("submit", async (e) => {
   }
   const email = emailInput.value;
   const password = passwordInput.value;
-  // Validate input
+  // Validating the input
   if (!validateInput(email.trim(), password.trim())) {
     validationError.classList.remove("d-none");
   }
-  // Submit form
+  // Submitting the form
   else {
     await sendAuthRequest(email, password);
   }
@@ -51,7 +50,8 @@ const validateInput = (email: string, password: string): boolean => {
 };
 
 const sendAuthRequest = async (email: string, password: string) => {
-  // Send request
+  
+  // Sending Request
   try {
     const user: User = { email, password };
     const response = await createPostRequest("/login", user);
@@ -61,13 +61,6 @@ const sendAuthRequest = async (email: string, password: string) => {
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    // if (
-    //   error.response.status == HttpStatusCode.BadRequest ||
-    //   error.response.status == HttpStatusCode.NotFound ||
-    //   error.response.status == HttpStatusCode.Forbidden
-    // ) {
-    //   validationError.classList.remove("d-none");
-    //   validationError.innerHTML = error.response.data.message;
-    // }
+    // Catch block
   }
 };

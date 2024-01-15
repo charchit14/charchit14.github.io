@@ -1,3 +1,4 @@
+// Importing modules
 import { HttpStatusCode } from "axios";
 import * as bootstrap from "bootstrap";
 import "../../assets/scss/style.scss";
@@ -8,27 +9,23 @@ import createGetRequest from "../../service/GetRequest";
 import createPostRequest from "../../service/PostRequest";
 import createPutRequest from "../../service/PutRequest";
 
+// Defining variables
 const navBar = document.getElementById("nav-placeholder") as HTMLElement;
 const searchInput = document.getElementById("search-bar") as HTMLInputElement;
 const searchBtn = document.getElementById("btn-search") as HTMLElement;
 const incomeAddBtn = document.getElementById("btn-add-income") as HTMLElement;
 const btnSaveIncome = document.getElementById("btn-save-income") as HTMLElement;
-const btnCloseDialog = document.getElementById(
-  "btn-close-income-dialog"
-) as HTMLElement;
-const addDialogBox = document.getElementById(
-  "add-income-dialog"
-) as HTMLElement;
+const btnCloseDialog = document.getElementById("btn-close-income-dialog") as HTMLElement;
+const addDialogBox = document.getElementById("add-income-dialog") as HTMLElement;
 const sourceInput = document.getElementById("add-source") as HTMLInputElement;
 const amountInput = document.getElementById("add-amount") as HTMLInputElement;
 const dateInput = document.getElementById("add-date") as HTMLInputElement;
-
-const incomeContainer = document.getElementById(
-  "income-container"
-) as HTMLElement;
+const incomeContainer = document.getElementById("income-container") as HTMLElement;
 
 let incomeModal: bootstrap.Modal;
 let dialogIncomeId: string = "";
+
+// When window loads
 window.onload = () => {
   renderNavBar(navBar, "nav-income");
   incomeModal = new bootstrap.Modal(addDialogBox);
@@ -87,40 +84,39 @@ const showDialog = (data?: {
 };
 
 const createExpenseCard = (data: Income) => {
-  // Create the expense card element
+  // Creating income card element
   const expenseCard = document.createElement("div");
   expenseCard.classList.add("card", "mb-2", "col-md-8", "gx-3");
   expenseCard.style.position = "relative"; // Set position relative for absolute positioning
 
-  // Create the card body element
+  // Creating card body element
   const cardBody = document.createElement("div");
   cardBody.classList.add("card-body", "mr-3");
 
-  // Create the card description element and assign the remarks from the data
+  // Create card title and assigning ta input data
   const cardSource = document.createElement("h3");
   cardSource.classList.add("card-title", "text-success", "m-0");
   cardSource.textContent = data.source;
 
-  // Create the card amount element and assign the amount from the data
+  // Creating card amount and assigning the input data
   const cardAmount = document.createElement("p");
   cardAmount.classList.add("card-text",  "m-0");
   cardAmount.textContent = "NRS. " + data.amount;
 
-  // Create the card date element and assign the date from the data
+  // Creating card date and assigning the input data
   const cardDate = document.createElement("p");
   cardDate.classList.add("card-text");
   cardDate.textContent = "Date: " + data.date;
 
-  // Create the delete button container with absolute positioning
+  // Creating the delete button 
   const btnDeleteContainer = document.createElement("div");
   btnDeleteContainer.style.position = "absolute";
   btnDeleteContainer.style.top = "5px";
   btnDeleteContainer.style.right = "20px";
 
-  // Create the delete button element and add a click event listener
+  // Adding event listener to the delete button
   const btnDelete = document.createElement("button");
   btnDelete.classList.add("btn", "btn-outline-danger", "round");
-  // btnDelete.innerHTML = "<i class='fas fa-trash'></i>";
   btnDelete.textContent = "Delete";
   btnDelete.setAttribute("data-bs-toggle", "tooltip");
   btnDelete.setAttribute("data-bs-placement", "top");
@@ -131,7 +127,7 @@ const createExpenseCard = (data: Income) => {
     btnDeletetooltip.dispose();
   });
 
-  // Append the delete button to its container
+  // Appending delete button to its container
   btnDeleteContainer.appendChild(btnDelete);
 
   // // Create the edit button container with absolute positioning
@@ -160,25 +156,21 @@ const createExpenseCard = (data: Income) => {
   // // Append the edit button to its container
   // btnEditContainer.appendChild(btnEdit);
 
-  // Create the view image link element and set the href and target
-
-  // Append the card date, description, amount, delete button container, edit button, and view image link to the card body
+  // Appending elements to the card body
   cardBody.appendChild(cardSource);
   cardBody.appendChild(cardAmount);
   cardBody.appendChild(cardDate);
   cardBody.appendChild(btnDeleteContainer);
   // cardBody.appendChild(btnEditContainer);
 
-  // Append the card body to the expense card
+  //  Appending card body to the income card
   expenseCard.appendChild(cardBody);
 
-  // Return the created expense card element
+  // Returning the created expense card element
   return expenseCard;
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                  API Calls                                 */
-/* -------------------------------------------------------------------------- */
+// Calling API
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const renderIncomeCards = async (filter: any) => {
   console.log(filter);
