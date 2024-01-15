@@ -87,3 +87,26 @@
 [31m    at router (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:47:12)[39m
 [2024-01-15 01:35:35.964 AM] [32minfo[39m: 	[32mDatabase is connected !![39m
 [2024-01-15 01:47:58.512 AM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-15 12:59:28.024 PM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-15 01:13:20.393 PM] [31merror[39m: 	[31mError: ENOENT: no such file or directory, open 'C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\uploads\user\1705303700387-image-DevOpsTutorial.pdf'[39m
+[2024-01-15 01:33:15.708 PM] [31merror[39m: 	[31mQueryFailedError: time zone "gmt+0545" not recognized[39m
+[31m    at PostgresQueryRunner.query (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\typeorm\src\driver\postgres\PostgresQueryRunner.ts:299:19)[39m
+[31m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UpdateQueryBuilder.execute (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\src\query-builder\UpdateQueryBuilder.ts:145:33)[39m
+[2024-01-15 01:33:24.545 PM] [31merror[39m: 	[31mQueryFailedError: time zone "gmt+0545" not recognized[39m
+[31m    at PostgresQueryRunner.query (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\typeorm\src\driver\postgres\PostgresQueryRunner.ts:299:19)[39m
+[31m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UpdateQueryBuilder.execute (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\src\query-builder\UpdateQueryBuilder.ts:145:33)[39m
+[2024-01-15 01:33:43.971 PM] [31merror[39m: 	[31mQueryFailedError: time zone "gmt+0545" not recognized[39m
+[31m    at PostgresQueryRunner.query (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\typeorm\src\driver\postgres\PostgresQueryRunner.ts:299:19)[39m
+[31m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UpdateQueryBuilder.execute (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\src\query-builder\UpdateQueryBuilder.ts:145:33)[39m
+[2024-01-15 01:35:17.030 PM] [31merror[39m: 	[31mQueryFailedError: time zone "gmt+0545" not recognized[39m
+[31m    at PostgresQueryRunner.query (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\typeorm\src\driver\postgres\PostgresQueryRunner.ts:299:19)[39m
+[31m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async UpdateQueryBuilder.execute (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\src\query-builder\UpdateQueryBuilder.ts:145:33)[39m
+[2024-01-15 05:26:32.997 PM] [31merror[39m: 	[31mError: User with email hello@world.com already exists[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:19:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[31m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
