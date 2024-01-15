@@ -9,83 +9,84 @@ import * as expenseRepo from "../repositories/ExpenseRepo";
 import { getUserById } from "../repositories/UserRepo";
 import { ExpenseQuery } from "../types/QueryType";
 
-//* -------------------- Function that adds a new expense -------------------- */
-
+// To add a new expense
 export const createExpense = async (user: User, expense: Expense) => {
   // Check if the user exists
   if (!(await getUserById(user.id))) {
     throw new NotFoundError("User not found");
   }
 
-  // Get the category for the expense
+  // Getting category of the expense
   const category = await getCategory(expense.category as any);
   if (!category) {
-    throw new NotFoundError("Category not found");
+    throw new NotFoundError("No such category");
   }
   await updateBudget(user, category, expense, "add");
 
   expense.user = user;
 
-  // Create the expense
+  // Creating expense
   await expenseRepo.createExpense(expense);
 };
-//* ----------------------------------- -- ----------------------------------- */
-//* ------- Service that returns all the expenses of a particular user ------ */
+
+
+// Returning all the expense of an user
 export const getAllExpenses = async (user: User) => {
   if (!(await getUserById(user.id))) {
-    throw new NotFoundError("User not found");
+    throw new NotFoundError("No such user");
   }
   const expenses = await expenseRepo.getExpenses(user);
   return expenses.map((expense) => expenseResponse(expense));
 };
-//* ----------------------------------- -- ----------------------------------- */
-/* --------------------- Service that updates an expense -------------------- */
+
+
+// Updating an expense
 export const updateExpense = async (user: User, expense: Expense) => {
   if (!(await getUserById(user.id))) {
-    throw new NotFoundError("User not found");
+    throw new NotFoundError("No such user");
   }
   const expenseExists = await expenseRepo.getExpensesById(expense.id);
   if (!expenseExists) {
-    throw new NotFoundError("Expense not found");
+    throw new NotFoundError("No any expense");
   }
   const category = await getCategory(expense.category as any);
   if (!category) {
-    throw new NotFoundError("Category not found");
+    throw new NotFoundError("No such category");
   }
   await updateBudget(user, category, expenseExists, "remove");
   await updateBudget(user, category, expense, "add");
   expense.user = user;
   await expenseRepo.updateExpense(expense);
 };
-//* ----------------------------------- -- ----------------------------------- */
-//* -------------- Service filteres expenses by query parameters ------------- */
+
+// Filtering an expense
 export const getFilteredExpenses = async (user: User, params: ExpenseQuery) => {
   if (!(await getUserById(user.id))) {
-    throw new NotFoundError("User not found");
+    throw new NotFoundError("No such user");
   }
   const expensesC = await expenseRepo.getAllExpenseByCategory(user);
   console.log(expensesC);
   const expenses = await expenseRepo.getExpenseWithCategory(user, params);
   return expenses.map((expense) => expenseResponse(expense));
 };
-/* ----------------------------------- -- ----------------------------------- */
+
 export const deleteExpense = async (user: User, id: string) => {
   if (!(await getUserById(user.id))) {
-    throw new NotFoundError("User not found");
+    throw new NotFoundError("No such user");
   }
   const expense = await expenseRepo.getExpensesById(id);
   if (!expense) {
-    throw new NotFoundError("Expense not found");
+    throw new NotFoundError("No any expense");
   }
   const category = await getCategory(expense.category as any);
   if (!category) {
-    throw new NotFoundError("Category not found");
+    throw new NotFoundError("No such category");
   }
   await updateBudget(user, category, expense, "remove");
   await expenseRepo.deleteExpense(expense.id);
 };
-/* --------------------------------- Extras --------------------------------- */
-// This function takes the expense object and returns a new expense object suitable for response.
+
+// Taking an expense object and returning new expense object for response
 const expenseResponse = (expense: Expense) => {
   const resExpense = new Expense();
   resExpense.id = expense.id;

@@ -5,7 +5,8 @@ import User from "../models/User";
 import * as incomeRepo from "../repositories/IncomeRepo";
 import { getUserById } from "../repositories/UserRepo";
 
-//* -------------------------- Add new Income source ------------------------- */
+
+// Adding new income source
 /**
  * Creates a new income for a user.
  *
@@ -16,34 +17,39 @@ import { getUserById } from "../repositories/UserRepo";
  * @throws ValidationError if the salary for the current month is already added.
  */
 export const createIncome = async (user: User, income: Income) => {
-  // Check if the user exists
+  
+  // Checking if user exists
   if (!(await getUserById(user.id))) {
     throw new NotFoundError("User not found");
   }
-  // Set the user for the income object
+
+  // Setting up the user for the income object
   income.user = user;
-  // Check if the income source is "salary"
+
+  // Checking if the income source is "salary"
   if (income.source.toLowerCase() == "salary") {
-    // Get the current salary for the user
+    
+    // Getting the current salary of the user
     const currentSalary = await incomeRepo.getIncomeSource(user);
     const currentDate = new Date();
 
-    // Check if a salary has already been added for the current month
+    // Checking if salary has already been added for the current month
     if (currentSalary) {
       if (
         currentDate.getMonth() == currentSalary.createdAt.getMonth() &&
         currentDate.getFullYear() == currentSalary.createdAt.getFullYear()
       ) {
-        throw new ValidationError("Salary already added for this month");
+        throw new ValidationError("This month's salary has already been added");
       }
     }
   }
 
-  // Create the income
+  // Creating income
   return incomeRepo.createIncome(income);
 };
 
-//* -------------------------- Get User Income ------------------------- */
+
+// Getting user's income
 /**
  * Retrieves the income of a user.
  *
@@ -51,32 +57,35 @@ export const createIncome = async (user: User, income: Income) => {
  * @return {Promise<Array<IncomeResponse>>} An array of income responses.
  */
 export const getUserIncome = async (user: User) => {
-  // Check if the user exists by calling getUserById function
+  
+  // Checking if the user exists by calling getUserById function
   if (!(await getUserById(user.id))) {
-    // Throw an error if the user does not exist
+    
+    // Throwing an error if user does not exist
     throw new NotFoundError(`User with not found`);
   }
 
-  // Get the income for the user by calling getIncome function from incomeRepo
+  // Getting the income for the user by calling getIncome function from incomeRepo
   const income = await incomeRepo.getIncome(user);
 
-  // Map each income object to its corresponding income response
+  // Mapping each income object to its corresponding income response
   return income.map((income) => incomeResponse(income));
 };
 
 export const updateIncome = async (user: User, income: Income) => {
-  if (!(await getUserById(user.id))) throw new NotFoundError("User not found");
+  if (!(await getUserById(user.id))) throw new NotFoundError("No such user");
   const existingIncome = await incomeRepo.getIncomeById(income.id);
-  if (!existingIncome) throw new NotFoundError("Income not found");
+  if (!existingIncome) throw new NotFoundError("No any income");
   await incomeRepo.updateIncome(income);
 };
 export const deleteIncome = async (user: User, id: string) => {
-  if (!(await getUserById(user.id))) throw new NotFoundError("User not found");
+  if (!(await getUserById(user.id))) throw new NotFoundError("No such user");
   const income = await incomeRepo.getIncomeById(id);
-  if (!income) throw new NotFoundError("Income not found");
+  if (!income) throw new NotFoundError("No any income");
   await incomeRepo.deleteIncome(income.id);
 };
-//* -------------------------- Helper Functions ------------------------- */
+
+
 /**
  * Creates a new instance of the Income class and copies some of the properties from the input income object.
  *
@@ -84,15 +93,16 @@ export const deleteIncome = async (user: User, id: string) => {
  * @return {Income} The new responseIncome object.
  */
 const incomeResponse = (income: Income) => {
-  // Create a new instance of the Income class
+  
+  // Creating a new instance of Income class
   const responseIncome = new Income();
 
-  // Copy the id, source, amount, and active properties from the input income object
+  // Copying id, source, amount, and active properties from the input income object
   responseIncome.id = income.id;
   responseIncome.source = income.source;
   responseIncome.amount = income.amount;
   responseIncome.date = income.date;
 
-  // Return the new responseIncome object
+  // Returning the new responseIncome object
   return responseIncome;
 };

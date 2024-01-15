@@ -9,30 +9,21 @@ import users from "./User";
 import { jwtAuth } from "../middlewares/JwtAuth";
 const router = Router();
 
-/* -------------------------------------------------------------------------- */
-/*                                   Routes                                   */
-/* -------------------------------------------------------------------------- */
-/* --------------------------- Initial Home Route --------------------------- */
+// Setting up the routes
 router.get("/", (req, res) => {
   res.json({
-    message: "Hello World from the Expense Tracker API!!",
+    message: "Welcome to Finacne Management System",
   });
 });
 
-/* ------------------------------- Sub Routes ------------------------------- */
-// Authentication routes
+// Sub routes
 router.use(auth);
-// User routes
 router.use("/users", jwtAuth, users);
-// Expense routes
 router.use("/expenses", jwtAuth, expenses);
-// Category routes
 router.use("/categories", jwtAuth, category);
-// Budget routes
 router.use("/budgets", jwtAuth, budget);
-// Income routes
 router.use("/incomes", jwtAuth, income);
-// Image routes
 router.use("/images", images);
-// Export the router
+
+// Exporting the routers
 export default router;
