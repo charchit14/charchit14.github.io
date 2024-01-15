@@ -10,30 +10,15 @@ import createPutRequest from "../../service/PutRequest";
 // --------------------- Getting elements from DOM -----------------------
 const navBar = document.getElementById("nav-placeholder") as HTMLElement;
 
-const categoryContainer = document.getElementById(
-  "category-container"
-) as HTMLElement;
+const categoryContainer = document.getElementById("category-container") as HTMLElement;
 
-const addCategoryDialog = document.getElementById(
-  "add-category-dialog"
-) as HTMLElement;
-const addCategoryBtn = document.getElementById(
-  "btn-add-category"
-) as HTMLElement;
+const addCategoryDialog = document.getElementById("add-category-dialog") as HTMLElement;
+const addCategoryBtn = document.getElementById("btn-add-category") as HTMLElement;
+const btnCloseCategoryDialog = document.getElementById("btn-close-category-dialog") as HTMLElement;
 
-const btnCloseCategoryDialog = document.getElementById(
-  "btn-close-category-dialog"
-) as HTMLElement;
-
-const btnSaveCategory = document.getElementById(
-  "btn-save-category"
-) as HTMLElement;
-const categoryTitleInput = document.getElementById(
-  "add-category-title"
-) as HTMLInputElement;
-const categoryDescriptionInput = document.getElementById(
-  "add-category-description"
-) as HTMLInputElement;
+const btnSaveCategory = document.getElementById("btn-save-category") as HTMLElement;
+const categoryTitleInput = document.getElementById("add-category-title") as HTMLInputElement;
+const categoryDescriptionInput = document.getElementById("add-category-description") as HTMLInputElement;
 // --------------------- Initializing Modals -----------------------
 
 let categoryModal: bootstrap.Modal;
@@ -97,8 +82,9 @@ const createCategoryCard = (category: Category) => {
   const actions = document.createElement("td");
   actions.setAttribute("colspan", "2");
   const editButton = document.createElement("button");
-  editButton.innerHTML = "<i class='fa-solid fa-pen-to-square'></i>";
-  editButton.classList.add("btn", "btn-primary");
+  // editButton.innerHTML = "<i class='fa-solid fa-pen-to-square'></i>";
+  editButton.innerText = "Edit";
+  editButton.classList.add("btn", "btn-warning");
   editButton.addEventListener("click", () => {
     categoryId = category.id!;
     categoryModal.show();
@@ -106,7 +92,9 @@ const createCategoryCard = (category: Category) => {
     categoryDescriptionInput.value = category.description;
   });
   const deleteButton = document.createElement("button");
-  deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
+  // deleteButton.innerHTML = "<i class='fa-solid fa-trash'></i>";
+  deleteButton.innerText = "Delete";
+
   deleteButton.classList.add("btn", "btn-danger", "mx-2");
   deleteButton.addEventListener("click", () => {
     deleteCategory(category.id!);

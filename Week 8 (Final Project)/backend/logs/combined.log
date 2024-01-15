@@ -27,3 +27,63 @@
 [2024-01-13 02:47:28.400 PM] [32minfo[39m: 	[32mGET: /users/summary : 200[39m
 [2024-01-13 02:50:52.577 PM] [32minfo[39m: 	[32mDatabase is connected !![39m
 [2024-01-14 05:30:06.239 PM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-14 09:08:08.095 PM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-14 09:20:59.289 PM] [31merror[39m: 	[31mError: Invalid password[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:45:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[2024-01-14 09:21:00.809 PM] [31merror[39m: 	[31mError: Invalid password[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:45:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[2024-01-14 09:21:03.673 PM] [31merror[39m: 	[31mError: Invalid password[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:45:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[2024-01-14 09:21:03.928 PM] [31merror[39m: 	[31mError: Invalid password[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:45:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[2024-01-14 09:21:04.122 PM] [31merror[39m: 	[31mError: Invalid password[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:45:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[2024-01-14 09:21:04.304 PM] [31merror[39m: 	[31mError: Invalid password[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:45:13[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\services\AuthService.ts:28:58)[39m
+[2024-01-14 09:21:10.777 PM] [31merror[39m: 	[31mError: email must be a valid email[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\middlewares\Validator.ts:11:15[39m
+[31m    at Layer.handle [as handle_request] (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at Route.dispatch (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\route.js:114:3)[39m
+[31m    at Layer.handle [as handle_request] (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:284:15[39m
+[31m    at Function.process_params (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:346:12)[39m
+[31m    at next (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:280:10)[39m
+[31m    at Function.handle (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:175:3)[39m
+[31m    at router (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:47:12)[39m
+[2024-01-14 09:21:11.234 PM] [31merror[39m: 	[31mError: email must be a valid email[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\middlewares\Validator.ts:11:15[39m
+[31m    at Layer.handle [as handle_request] (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at Route.dispatch (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\route.js:114:3)[39m
+[31m    at Layer.handle [as handle_request] (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:284:15[39m
+[31m    at Function.process_params (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:346:12)[39m
+[31m    at next (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:280:10)[39m
+[31m    at Function.handle (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:175:3)[39m
+[31m    at router (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:47:12)[39m
+[2024-01-14 09:21:11.428 PM] [31merror[39m: 	[31mError: email must be a valid email[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\src\middlewares\Validator.ts:11:15[39m
+[31m    at Layer.handle [as handle_request] (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at next (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\route.js:144:13)[39m
+[31m    at Route.dispatch (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\route.js:114:3)[39m
+[31m    at Layer.handle [as handle_request] (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\layer.js:95:5)[39m
+[31m    at C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:284:15[39m
+[31m    at Function.process_params (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:346:12)[39m
+[31m    at next (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:280:10)[39m
+[31m    at Function.handle (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:175:3)[39m
+[31m    at router (C:\Users\charc\Desktop\Leapfrog SE Internship\charchit14.github.io\Week 8 (Final Project)\backend\node_modules\express\lib\router\index.js:47:12)[39m
+[2024-01-15 01:35:35.964 AM] [32minfo[39m: 	[32mDatabase is connected !![39m
+[2024-01-15 01:47:58.512 AM] [32minfo[39m: 	[32mDatabase is connected !![39m
