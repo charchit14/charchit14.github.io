@@ -1,3 +1,4 @@
+// Import necessary modules and entities
 import { Router } from "express";
 import {
   createBudget,
@@ -14,14 +15,19 @@ import {
   budgetBodySchema,
   budgetQuerySchema,
 } from "../validations/ValidationSchema";
+
+// Create a router instance
 const router = Router();
 
+// Define routes for handling budget operations
 router
   .route("/")
-  .get(getAllBudgets)
-  .post(validateRequestBody(budgetBodySchema), createBudget)
-  .put(updateBudget);
-router.delete("/:id", deleteBudget);
-router.get("/filter", validateRequestQuery(budgetQuerySchema), getAllFilteredBudgets);
+  .get(getAllBudgets)  // GET request to fetch all budgets
+  .post(validateRequestBody(budgetBodySchema), createBudget)  // POST request to create a new budget
+  .put(updateBudget);  // PUT request to update an existing budget
 
+router.delete("/:id", deleteBudget);  // DELETE request to delete a budget by ID
+router.get("/filter", validateRequestQuery(budgetQuerySchema), getAllFilteredBudgets);  // GET request to fetch filtered budgets
+
+// Export the router
 export default router;

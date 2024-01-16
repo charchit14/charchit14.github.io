@@ -1,3 +1,4 @@
+// Import necessary modules, classes, and repositories
 import NotFoundError from "../errors/NotFound";
 import ValidationError from "../errors/Validation";
 import Income from "../models/Income";
@@ -5,8 +6,7 @@ import User from "../models/User";
 import * as incomeRepo from "../repositories/IncomeRepo";
 import { getUserById } from "../repositories/UserRepo";
 
-
-// Adding new income source
+// Function to create a new income
 /**
  * Creates a new income for a user.
  *
@@ -17,7 +17,6 @@ import { getUserById } from "../repositories/UserRepo";
  * @throws ValidationError if the salary for the current month is already added.
  */
 export const createIncome = async (user: User, income: Income) => {
-  
   // Checking if user exists
   if (!(await getUserById(user.id))) {
     throw new NotFoundError("User not found");
@@ -28,7 +27,6 @@ export const createIncome = async (user: User, income: Income) => {
 
   // Checking if the income source is "salary"
   if (income.source.toLowerCase() == "salary") {
-    
     // Getting the current salary of the user
     const currentSalary = await incomeRepo.getIncomeSource(user);
     const currentDate = new Date();
@@ -48,21 +46,19 @@ export const createIncome = async (user: User, income: Income) => {
   return incomeRepo.createIncome(income);
 };
 
-
-// Getting user's income
+// Function to get user's income
 /**
  * Retrieves the income of a user.
  *
  * @param {User} user - The user object.
  * @return {Promise<Array<IncomeResponse>>} An array of income responses.
+ * @throws NotFoundError if the user is not found.
  */
 export const getUserIncome = async (user: User) => {
-  
   // Checking if the user exists by calling getUserById function
   if (!(await getUserById(user.id))) {
-    
     // Throwing an error if user does not exist
-    throw new NotFoundError(`User with not found`);
+    throw new NotFoundError(`User not found`);
   }
 
   // Getting the income for the user by calling getIncome function from incomeRepo
@@ -72,12 +68,15 @@ export const getUserIncome = async (user: User) => {
   return income.map((income) => incomeResponse(income));
 };
 
+// Function to update an income
 export const updateIncome = async (user: User, income: Income) => {
   if (!(await getUserById(user.id))) throw new NotFoundError("No such user");
   const existingIncome = await incomeRepo.getIncomeById(income.id);
   if (!existingIncome) throw new NotFoundError("No any income");
   await incomeRepo.updateIncome(income);
 };
+
+// Function to delete an income
 export const deleteIncome = async (user: User, id: string) => {
   if (!(await getUserById(user.id))) throw new NotFoundError("No such user");
   const income = await incomeRepo.getIncomeById(id);
@@ -85,7 +84,7 @@ export const deleteIncome = async (user: User, id: string) => {
   await incomeRepo.deleteIncome(income.id);
 };
 
-
+// Helper function to transform an income for response
 /**
  * Creates a new instance of the Income class and copies some of the properties from the input income object.
  *
@@ -93,7 +92,6 @@ export const deleteIncome = async (user: User, id: string) => {
  * @return {Income} The new responseIncome object.
  */
 const incomeResponse = (income: Income) => {
-  
   // Creating a new instance of Income class
   const responseIncome = new Income();
 

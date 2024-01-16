@@ -1,3 +1,4 @@
+// Import necessary modules and classes
 import User from "../models/User";
 import * as userRepo from "../repositories/UserRepo";
 import fs from "fs";
@@ -12,6 +13,7 @@ import NotFoundError from "../errors/NotFound";
 import ForbiddenError from "../errors/Forbidden";
 import BadRequestError from "../errors/BadRequest";
 
+// Function to register a new user
 export const register = async (user: User) => {
   try {
     const userExists = await userRepo.getUserByEmail(user.email);
@@ -30,6 +32,7 @@ export const register = async (user: User) => {
   }
 };
 
+// Function to handle user login
 export const login = async (user: User) => {
   try {
     const foundUser = await userRepo.getUserByEmail(user.email);
@@ -57,6 +60,7 @@ export const login = async (user: User) => {
   }
 };
 
+// Function to handle user logout
 export const logout = async (user: User) => {
   try {
     const userFound = await userRepo.getUserById(user.id);
@@ -66,6 +70,7 @@ export const logout = async (user: User) => {
   }
 };
 
+// Function to refresh access token using refresh token
 export const refresh = async (id: string, refreshToken: string) => {
   try {
     const user = await userRepo.getUserById(id);
@@ -84,12 +89,15 @@ export const refresh = async (id: string, refreshToken: string) => {
     throw error;
   }
 };
+
+// Function to create a new access token
 const createAccessToken = (id: string) => {
   return jwt.sign({ userid: id }, config.jwt.accessSecret, {
     expiresIn: JWT_ACCESS_TOKEN_EXPIRY,
   });
 };
 
+// Function to create a new refresh token
 const createRefreshToken = (id: string) => {
   return jwt.sign({ userid: id }, config.jwt.refreshSecret, {
     expiresIn: JWT_REFRESH_TOKEN_EXPIRY,

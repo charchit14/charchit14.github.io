@@ -34,6 +34,6 @@ export const getCategoryTitle = async (user: User, title: string) => {
   const result = await repo.findOne({
     where: { user: { id: user.id }, title: ILike(`%${title}%`) },
   });
-  if (!result) return false;
-  return result.title ? true : false;
+  if (!result) return false;  // Return False if result is false
+  return result.title ? true : false; // Return true for result.title true else false
 };

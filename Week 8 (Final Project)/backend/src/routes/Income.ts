@@ -1,3 +1,4 @@
+// Import necessary modules and entities
 import { Router } from "express";
 const router = Router();
 import {
@@ -15,12 +16,15 @@ import {
   incomeQuerySchema,
 } from "../validations/ValidationSchema";
 
+// Define routes for handling income-related operations
 router
   .route("/")
-  .get(getIncome)
-  .post(validateRequestBody(incomeBodySchema), createIncome)
-  .put(updateIncome);
-router.delete("/:id", deleteIncome);
-router.get("/filter", validateRequestQuery(incomeQuerySchema));
+  .get(getIncome)  // Route for fetching income
+  .post(validateRequestBody(incomeBodySchema), createIncome)  // Route for creating income
+  .put(updateIncome);  // Route for updating income
 
+router.delete("/:id", deleteIncome);  // Route for deleting income
+router.get("/filter", validateRequestQuery(incomeQuerySchema));  // Route for filtering income
+
+// Export the router
 export default router;

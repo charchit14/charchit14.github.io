@@ -1,29 +1,30 @@
+// Import necessary modules and entities
 import { Router } from "express";
-import auth from "./Auth";
-import budget from "./Budget";
-import category from "./Category";
-import expenses from "./Expense";
-import images from "./Images";
-import income from "./Income";
-import users from "./User";
-import { jwtAuth } from "../middlewares/JwtAuth";
+import auth from "./Auth"; // Import authentication routes
+import budget from "./Budget"; // Import budget routes
+import category from "./Category"; // Import category routes
+import expenses from "./Expense"; // Import expense routes
+import images from "./Images"; // Import image routes
+import income from "./Income"; // Import income routes
+import users from "./User"; // Import user routes
+import { jwtAuth } from "../middlewares/JwtAuth"; // Import JWT authentication middleware
 const router = Router();
 
-// Setting up the routes
+// Setting up the root route
 router.get("/", (req, res) => {
   res.json({
-    message: "Welcome to Finacne Management System",
+    message: "Welcome to Finance Management System",
   });
 });
 
-// Sub routes
-router.use(auth);
-router.use("/users", jwtAuth, users);
-router.use("/expenses", jwtAuth, expenses);
-router.use("/categories", jwtAuth, category);
-router.use("/budgets", jwtAuth, budget);
-router.use("/incomes", jwtAuth, income);
-router.use("/images", images);
+// Sub routes with JWT authentication middleware
+router.use(auth); // Include authentication routes
+router.use("/users", jwtAuth, users); // Include user routes with JWT authentication
+router.use("/expenses", jwtAuth, expenses); // Include expense routes with JWT authentication
+router.use("/categories", jwtAuth, category); // Include category routes with JWT authentication
+router.use("/budgets", jwtAuth, budget); // Include budget routes with JWT authentication
+router.use("/incomes", jwtAuth, income); // Include income routes with JWT authentication
+router.use("/images", images); // Include image routes
 
-// Exporting the routers
+// Exporting the router
 export default router;
