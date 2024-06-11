@@ -17,7 +17,7 @@ var dy = -2;
 var m = 0;
 var j = 0;
 
-var aiSpeed = 0.5; // CPU players movement speed
+var aiSpeed = 2; // CPU players movement speed
 
 // Setting up the paddle dimensions
 var paddleHeight = 10;
