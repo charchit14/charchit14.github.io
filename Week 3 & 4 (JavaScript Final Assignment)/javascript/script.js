@@ -10,14 +10,14 @@ var y = canvas.height/2;
 var ballRadius = 8;
 
 // Setting up speed of the ball
-var dx = 2;
-var dy = -2;
+var dx = 3;
+var dy = -3;
 
 // Initializing speed of the ball
 var m = 0;
 var j = 0;
 
-var aiSpeed = 2; // CPU players movement speed
+var aiSpeed = 5; // CPU players movement speed
 
 // Setting up the paddle dimensions
 var paddleHeight = 10;
