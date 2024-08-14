@@ -1,0 +1,11 @@
+TO RUN THE BACKEND
+
+STEP 1: Navigate to backend (cd backend) 
+STEP 2: npm start
+
+...................................................
+
+TO RUN THE FRONTEND
+
+STEP 1: Naviage to frontend (cd frontend)
+STEP 2: npm run dev
